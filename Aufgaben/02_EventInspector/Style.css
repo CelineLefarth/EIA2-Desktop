@@ -1,0 +1,29 @@
+button {
+    position: absolute;
+    left: 70px;
+    top: 150px;
+    padding: 40px;
+}
+
+span {
+    position: fixed;
+    pointer-events: none;
+    border-color: black;
+    border-style: solid;
+    background-color: white;
+}
+div {
+    position: absolute;
+    border-color: black;
+    border-style: solid;
+    background-color: white;
+    padding-top: 400px;
+    padding-left: 300px;
+}
+
+div[name="div0"] {
+    left: 40px;
+}
+div[name="div1"] {
+    left: 440px;
+}
