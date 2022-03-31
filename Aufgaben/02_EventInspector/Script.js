@@ -4,8 +4,15 @@ var EventInspector;
     function handleLoad() {
         document.addEventListener("mousemove", setinfoBox);
         document.addEventListener("click", logInfo);
+        document.body.addEventListener("click", logInfo);
+        document.querySelector("[name='div0']").addEventListener("click", logInfo);
+        document.querySelector("[name='div1']").addEventListener("click", logInfo);
         document.addEventListener("keyup", logInfo);
+        document.body.addEventListener("keyup", logInfo);
+        document.querySelector("[name='div0']").addEventListener("keyup", logInfo);
+        document.querySelector("[name='div1']").addEventListener("keyup", logInfo);
         document.querySelector("button").addEventListener("click", sendInfo);
+        document.addEventListener("customEventButton", logEvent);
     }
     function setinfoBox(_event) {
         let x = _event.clientX;
@@ -21,10 +28,12 @@ var EventInspector;
         console.log("Event Target: ", _event.target);
         console.log("Current Target: ", _event.currentTarget);
     }
+    function logEvent(_event) {
+        console.log(_event);
+    }
     function sendInfo(_event) {
-        let customEvent = new CustomEvent("Custom Event Button", { bubbles: true, detail: { Text: "This is a custom event button" } });
+        let customEvent = new CustomEvent("customEventButton", { bubbles: true, detail: { Text: "This is a custom event button" } });
         _event.target.dispatchEvent(customEvent);
-        console.log(customEvent);
     }
 })(EventInspector || (EventInspector = {}));
 //# sourceMappingURL=Script.js.map
