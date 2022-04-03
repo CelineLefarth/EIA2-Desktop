@@ -1,3 +1,10 @@
+/*
+Aufgabe: <01_2 Boxes>
+Name: <Silvan Woschny>
+Matrikel: <	269370>
+Datum: <03.04.2022>
+Quellen: <>
+*/
 var Boxes;
 (function (Boxes) {
     window.addEventListener("load", handleLoad);
@@ -28,14 +35,14 @@ var Boxes;
                     break;
             }
         }
-        function createBox(_color, _x, _y, _size) {
-            let div = document.createElement("div");
-            document.body.appendChild(div);
-            div.classList.add(_size);
-            div.style.backgroundColor = _color;
-            div.style.left = _x + "px";
-            div.style.top = _y + "px";
-        }
+    }
+    function createBox(_color, _x, _y, _size) {
+        let div = document.createElement("div");
+        document.body.appendChild(div);
+        div.classList.add(_size);
+        div.style.backgroundColor = _color;
+        div.style.left = _x + "px";
+        div.style.top = _y + "px";
     }
 })(Boxes || (Boxes = {}));
 //# sourceMappingURL=Boxes.js.map

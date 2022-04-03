@@ -1,3 +1,10 @@
+/*
+Aufgabe: <01 Random Poem>
+Name: <Silvan Woschny>
+Matrikel: <	269370>
+Datum: <03.04.2022>
+Quellen: <>
+*/
 var randomPoem;
 (function (randomPoem) {
     window.addEventListener("load", handleLoad);

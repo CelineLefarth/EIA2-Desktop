@@ -1,3 +1,10 @@
+/*
+Aufgabe: <02 Event Inspector>
+Name: <Silvan Woschny>
+Matrikel: <	269370>
+Datum: <03.04.2022>
+Quellen: <>
+*/
 var EventInspector;
 (function (EventInspector) {
     window.addEventListener("load", handleLoad);
