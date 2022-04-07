@@ -75,6 +75,9 @@ namespace Memory {
         this.setAttribute("hidden", "false");
         toCheck.push(this.className);
     }
+
+
+    
     function click(): void {
 
         if (clicked == 2) {
@@ -82,32 +85,43 @@ namespace Memory {
             let checkTwo: number = toCheck[1];
 
             if (checkOne == checkTwo) {
-                alert("Du hast ein Paar Gefunden");
-                let elements: HTMLCollectionOf<Element> = document.getElementsByClassName(checkOne + "");
-                elements[0].setAttribute("hidden", "deleted");
-                elements[1].setAttribute("hidden", "deleted");
-                if (document.querySelectorAll("div div").length == document.querySelectorAll("[hidden = 'deleted']").length) {
-                    alert("Du hast gewonnen! " + "Du hast: " + minutes + " Minuten und " + seconds + " Sekunden " + "gebraucht! Das Spiel wird nun neu gestartet.");
-                    location.reload();
-                }
+                isMatch(checkOne);
             }
-            else {
-                let elementsCheckOne: HTMLCollectionOf<Element> = document.getElementsByClassName(checkOne + "");
-                elementsCheckOne[0].removeAttribute("noninteraction");
-                elementsCheckOne[1].removeAttribute("noninteraction");
-                elementsCheckOne[0].setAttribute("hidden", "true");
-                elementsCheckOne[1].setAttribute("hidden", "true");
-                let elementsCheckTwo: HTMLCollectionOf<Element> = document.getElementsByClassName(checkTwo + "");
-                elementsCheckTwo[0].removeAttribute("noninteraction");
-                elementsCheckTwo[1].removeAttribute("noninteraction");
-                elementsCheckTwo[0].setAttribute("hidden", "true");
-                elementsCheckTwo[1].setAttribute("hidden", "true");
+            else {noMatch(checkOne, checkTwo);
             }
             toCheck = [];
             clicked = 0;
         }
         document.querySelector("body").setAttribute("noninteraction", "false");
     }
+
+
+
+    function isMatch(_checkOne: number): void {
+        alert("Du hast ein Paar Gefunden");
+        let elements: HTMLCollectionOf<Element> = document.getElementsByClassName(_checkOne + "");
+        elements[0].setAttribute("hidden", "deleted");
+        elements[1].setAttribute("hidden", "deleted");
+        if (document.querySelectorAll("div div").length == document.querySelectorAll("[hidden = 'deleted']").length) {
+            alert("Du hast gewonnen! " + "Du hast: " + minutes + " Minuten und " + seconds + " Sekunden " + "gebraucht! Das Spiel wird nun neu gestartet.");
+            location.reload();
+        }
+    }
+
+
+
+    function noMatch(_checkOne: number, _checkTwo: number): void {
+            let elementsCheckOne: HTMLCollectionOf<Element> = document.getElementsByClassName(_checkOne + "");
+            elementsCheckOne[0].removeAttribute("noninteraction");
+            elementsCheckOne[1].removeAttribute("noninteraction");
+            elementsCheckOne[0].setAttribute("hidden", "true");
+            elementsCheckOne[1].setAttribute("hidden", "true");
+            let elementsCheckTwo: HTMLCollectionOf<Element> = document.getElementsByClassName(_checkTwo + "");
+            elementsCheckTwo[0].removeAttribute("noninteraction");
+            elementsCheckTwo[1].removeAttribute("noninteraction");
+            elementsCheckTwo[0].setAttribute("hidden", "true");
+            elementsCheckTwo[1].setAttribute("hidden", "true");
+        }
 
 
 

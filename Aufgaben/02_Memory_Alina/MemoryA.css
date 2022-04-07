@@ -1,0 +1,25 @@
+.card {
+    padding: 20px;
+    margin: 10px;
+    background-color: brown;
+    display: inline-block;
+    color: brown;
+}
+
+.active{
+    background-color: burlywood;
+    pointer-events: none;
+    color: black;
+}
+body {
+    user-select: none;
+}
+#inc:hover, #dec:hover {
+    cursor: pointer;
+}
+
+#inc, #dec {
+    border: 2px;
+    border-style: solid;
+    border-color: black;
+}
