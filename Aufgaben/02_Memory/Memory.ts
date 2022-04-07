@@ -1,6 +1,12 @@
 namespace Memory {
 
-
+/*
+Aufgabe: <02.2 Memory>
+Name: <Silvan Woschny>
+Matrikel: <	269370>
+Datum: <07.04.2022>
+Quellen: <>
+*/
 
     window.addEventListener("load", handleLoad);
     let seconds: number = 0;
