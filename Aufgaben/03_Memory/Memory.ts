@@ -1,7 +1,7 @@
 namespace Memory {
 
     /*
-    Aufgabe: <02.2 Memory>
+    Aufgabe: <03 Memory>
     Name: <Silvan Woschny>
     Matrikel: <	269370>
     Datum: <12.04.2022>
