@@ -13,10 +13,7 @@ h1 {
     font-weight: 900;
 }
 div div {
-    padding-left: 40px;
-    padding-right: 40px;
-    padding-top: 40px;
-    padding-bottom: 40px;
+    padding: 40px;
     margin: 20px;
     display: inline-block;
     border: 4px;
@@ -25,17 +22,12 @@ div div {
     border-radius: 5px;
     font-size: 40px;
     font-weight: 900;
+    font-family: Times;
 }
 div div:hover {
     cursor: pointer;
 }
 
-div[hidden = true] {
-    background-color: black;
-}
-div[hidden = false] {
-    background-color: lightgrey;
-}
 div[hidden = deleted] {
     visibility: hidden;
     pointer-events: none;
@@ -55,4 +47,60 @@ div div[noninteraction = "false"] {
 }
 body{
     user-select: none;
+}
+
+
+form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+form > *{
+    margin-top: 20px;
+    font-size: large;
+}
+
+h2 {
+    position: relative;
+    left: 45px;
+}
+
+input[type = "number"] {
+    position: relative;
+    left: 25px;
+}
+input[type = "range"] {
+    position: relative;
+    left: 29px;
+}
+form span{
+    position: relative;
+    left: 29px;
+}
+#font{
+    position: relative;
+    left: 54px;
+}
+#card{
+    position: relative;
+    left: 39px;
+}
+#radio0 {
+    position: relative;
+    left: 55px;
+}
+#radio1 {
+    position: relative;
+    left: 65px;
+}
+#radio2 {
+    position: relative;
+    left: 32px;
+}
+form button {
+    position: relative;
+    top: 50px;
+    left: -10px;
 }
