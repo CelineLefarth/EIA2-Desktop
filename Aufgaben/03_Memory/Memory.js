@@ -1,7 +1,7 @@
 var Memory;
 (function (Memory) {
     /*
-    Aufgabe: <02.2 Memory>
+    Aufgabe: <03 Memory>
     Name: <Silvan Woschny>
     Matrikel: <	269370>
     Datum: <12.04.2022>
@@ -149,6 +149,7 @@ var Memory;
     }
     function delStartMenu() {
         document.querySelector("form").appendChild(delMenu);
+        delMenu.setAttribute("type", "button");
         delMenu.innerHTML = "Start";
         delMenu.addEventListener("click", startGame);
     }

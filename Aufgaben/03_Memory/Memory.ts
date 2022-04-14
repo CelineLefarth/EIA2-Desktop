@@ -167,6 +167,7 @@ namespace Memory {
 
     function delStartMenu(): void {
         document.querySelector("form").appendChild(delMenu);
+        delMenu.setAttribute("type", "button");
         delMenu.innerHTML = "Start";
         delMenu.addEventListener("click", startGame);
     }
