@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abstract</title>
+    <script src="abstract.js"></script>
+    <link rel="stylesheet" href="abstract.css">
+</head>
+
+<body>
+    <div class="BnC">
+            <h3>Loadingtime = (1/Fractalscale);</h3>
+        <div id="btns">
+            <button id="city">Destroyed City</button>
+            <button id="dots">Dots</button>
+            <button id="rubber">Rubber</button>
+            <button id="fractal">Fractal</button>
+            <button id="smoke">Smoke</button>
+            <button id="download">Download</button>
+        </div>
+        <div id="sliders">
+            <input type="range" min="1" max="10000" step="1" value="5000" id="sliderAmount" class="slider1">
+            <label for="sliderAmount" class="label1">Amount</label>
+            &NonBreakingSpace;
+            <input type="range" min="1" max="200" step="1" value="100" id="sliderWidth" class="slider2">
+            <label for="sliderWidth" class="label2">Max Width</label>
+        </div>
+        <canvas id="canvas"></canvas>
+    </div>
+</body>
+
+</html>
