@@ -1,0 +1,68 @@
+body{
+    background-color:slategray;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+#container{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color:slategray;
+}
+canvas{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: 90%;
+    border: 10px;
+    border-color:rgb(73, 87, 102);
+    border-radius: 100px;
+    border-style: solid;
+}
+
+
+#greenCrab{
+    color: rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0);
+    border-color: rgba(0, 0, 0, 0);
+    position: absolute;
+    pad: 0%;
+    top: 62%;
+    left: 40%;
+}
+#redCrab{
+    color: rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0);
+    border-color: rgba(0, 0, 0, 0);
+    position: absolute;
+    pad: 0%;
+    top: 67%;
+    left: 57%;
+}
+
+span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 50px;
+    padding: 5px;
+    color: white;
+    border-color: rgb(73, 87, 102);
+    border-style: solid;
+    border-radius: 40px;
+    background-color: slategray;
+}
+span:hover{
+    cursor: pointer;
+    background-color: slategray;
+    border-color: rgb(73, 87, 102);
+}
+#greenCrab:hover {
+    cursor: crosshair;
+}
+#redCrab:hover {
+    cursor: crosshair;
+}
