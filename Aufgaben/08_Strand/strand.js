@@ -7,7 +7,6 @@ var strand;
     let cw;
     let ch;
     let path;
-    let gradient;
     let animation;
     function hdlLoad() {
         canvas = document.createElement("canvas");
@@ -63,31 +62,31 @@ var strand;
         i--;
         drawBackground();
         reset();
-        drawSun(-700 - i, 0 - 400 * Math.sin(i / 400), 0, 1 * Math.sin(i / 500), 1 * Math.sin(i / 500), "yellow");
+        drawSun(-700 - i, 0 - 400 * Math.sin(i / 400), 0, 1 * Math.sin(i / 500), 1 * Math.sin(i / 500), "#FABE0F");
         //Clouds
         drawCloud(0 + 150 * Math.sin(i / 100) * -0.3, 200, 1, 0.7, 0.7, "whitesmoke");
-        drawCloud(100 + 150 * Math.sin(i / 100) * -0.3, 250, 0, 1, 1, "white");
-        drawCloud(400 + 150 * Math.sin(i / 100) * -0.3, 400, 0, 0.5, 0.5, "white");
+        drawCloud(100 + 150 * Math.sin(i / 100) * -0.3, 250, 0, 1, 1, "#F5F5FF");
+        drawCloud(400 + 150 * Math.sin(i / 100) * -0.3, 400, 0, 0.5, 0.5, "#F5F5FF");
         drawCloud(-300 + 150 * Math.sin(i / 100) * -0.3, 380, 3.2, 0.3, 0.3, "whitesmoke");
-        drawCloud(-400 + 150 * Math.sin(i / 100) * -0.3, 400, 0, 0.5, 0.5, "white");
+        drawCloud(-400 + 150 * Math.sin(i / 100) * -0.3, 400, 0, 0.5, 0.5, "#F5F5FF");
         //Ship
-        drawShip(1.5 * i + 600, -50, Math.sin(i / 50) * 0.05, 2, 2, "brown", "black", "white", "darkgoldenrod");
+        drawShip(1.5 * i + 600, -50, Math.sin(i / 50) * 0.05, 2, 2, "brown", "#232323", "#E1E6E6", "#E19B3C");
         //Waves
         drawWaves(i);
         //Surfboard
         drawSurfBoard(200 + Math.sin(i / 80) * 300, -150 + 150 * Math.sin(i / 40) * 0.6, Math.sin(i / 40) * 0.2 - 1.6, 0.7, 1.5);
         //Woman
-        drawWoman(200 + Math.sin(i / 80) * 300, -70 + 150 * Math.sin(i / 40) * 0.6, Math.sin(i / 40) * 0.2, 0.2, 0.2, "pink", "green", "firebrick", i, 1, 1, -1, -1);
-        drawWoman(-300 + Math.sin(i / 40) * 150, -200 + 150 * Math.sin(i / 20) * -0.4, 0, 0.3, 0.3, "peru", "white", "yellow", i, 0.5, 0.3, -0.4, -0.2);
+        drawWoman(200 + Math.sin(i / 80) * 300, -70 + 150 * Math.sin(i / 40) * 0.6, Math.sin(i / 40) * 0.2, 0.2, 0.2, "#FFD2D7", "#506E00", "firebrick", i, 1, 1, -1, -1);
+        drawWoman(-300 + Math.sin(i / 40) * 150, -200 + 150 * Math.sin(i / 20) * -0.4, 0, 0.3, 0.3, "#C87D5A", "#E1E6E6", "#FABE0F", i, 0.5, 0.3, -0.4, -0.2);
         //Ring
         drawRing(-300 + Math.sin(i / 40) * 150, -230 + 150 * Math.sin(i / 20) * -0.4, 0, 0.7, 0.7);
         //Sand Dune
-        drawSandDune(-(cw / 2), -400 + 150, 0, 4, 2, "wheat");
+        drawSandDune(-(cw / 2), -400 + 150, 0, 4, 2, "#F5D78C");
         //Woman Dark Shadow
-        drawWoman(-300, -560, 1, 0.4, 0.6, "tan", "tan", "tan", i, 1.6 + Math.sin(i / 30) * 0.5, 0.5 + Math.sin(i / 30) * 0.5, -0.2, 0);
+        drawWoman(-300, -560, 1, 0.4, 0.6, "#EBC369", "#EBC369", "#EBC369", i, 1.6 + Math.sin(i / 30) * 0.5, 0.5 + Math.sin(i / 30) * 0.5, -0.2, 0);
         //Palm Dark Shadow
-        drawPalm(-(cw / 2), -(ch / 2), -1.3, 1 + Math.sin(i / 50) * 0.2, 1.5 + Math.sin(i / 50) * 0.2, "tan", "tan", i);
-        drawPalm((cw / 2), -(ch / 2), 1.3, 1 + Math.cos(i / 50) * 0.3, 1.5 + Math.cos(i / 50) * 0.3, "tan", "tan", i);
+        drawPalm(-(cw / 2), -(ch / 2), -1.3, 1 + Math.sin(i / 50) * 0.2, 1.5 + Math.sin(i / 50) * 0.2, "#EBC369", "#EBC369", i);
+        drawPalm((cw / 2), -(ch / 2), 1.3, 1 + Math.cos(i / 50) * 0.3, 1.5 + Math.cos(i / 50) * 0.3, "#EBC369", "#EBC369", i);
         //Crab Shadow
         drawCrab(k + -200 + Math.cos(i / 10) * 80, -250, 0.2, 1, 0.5, "rgba(0,0,0,0.3)", "rgba(0,0,0,0.3)", i);
         drawCrab(l + 150 + Math.sin(i / 10) * 80, -350, 0.2, 0.8, 0.4, "rgba(0,0,0,0.3)", "rgba(0,0,0,0.3)", i);
@@ -99,14 +98,14 @@ var strand;
         drawCrab(k + -200 + Math.cos(i / 10) * 80, -250, 0, 1, 1, "olivedrab", "olive", i);
         drawCrab(l + 150 + Math.sin(i / 10) * 80, -350, 0, 0.8, 0.8, "tomato", "crimson", i);
         //Left Palm
-        drawPalm(-(cw / 2), -(ch / 2), 0, 4 + Math.sin(i / 50) * 0.2, 4.5 + Math.sin(i / 50) * 0.2, "sienna", "green", i);
+        drawPalm(-(cw / 2), -(ch / 2), 0, 4 + Math.sin(i / 50) * 0.2, 4.5 + Math.sin(i / 50) * 0.2, "#733223", "#506E00", i);
         drawPalm(-(cw / 2), -(ch / 2), 0, 4 + Math.sin(i / 50) * 0.2, 4.5 + Math.sin(i / 50) * 0.2, "rgba(0,0,0,0.3)", "rgba(0,0,0,0.3)", i);
         //RightPalm
-        drawPalm((cw / 2), -(ch / 2), 0, 3 + Math.cos(i / 50) * 0.3, 4.5 + Math.cos(i / 50) * 0.3, "sienna", "green", i);
+        drawPalm((cw / 2), -(ch / 2), 0, 3 + Math.cos(i / 50) * 0.3, 4.5 + Math.cos(i / 50) * 0.3, "#733223", "#506E00", i);
         drawPalm((cw / 2), -(ch / 2), 0, 3 + Math.cos(i / 50) * 0.3, 4.5 + Math.cos(i / 50) * 0.3, "rgba(0,0,0,0.3)", "rgba(0,0,0,0.3)", i);
         //SurfBoard
         //Woman
-        drawWoman(-100, -400, 0, 0.7, 0.7, "salmon", "red", "black", i, 1.6 + Math.sin(i / 30) * 0.5, 0.5 + Math.sin(i / 30) * 0.5, -0.2, 0);
+        drawWoman(-100, -400, 0, 0.7, 0.7, "#FFAAA5", "#C81E23", "#232323", i, 1.6 + Math.sin(i / 30) * 0.5, 0.5 + Math.sin(i / 30) * 0.5, -0.2, 0);
         //Brightness
         let brightness = (Math.sin((300 + i) / 200) * 0.9);
         if (brightness > 0.8974159500672447) {
@@ -129,20 +128,11 @@ var strand;
     }
     function drawBackground() {
         let redness = (Math.sin((300 + i) / 200) * 0.9);
-        gradient = ctx.createLinearGradient(0, 0, 0, ch / 2);
-        gradient.addColorStop(0, "white");
-        gradient.addColorStop(1, "rgba(" + redness * 300 + ",0," + redness * -300 + "," + redness + ")");
-        ctx.fillStyle = gradient;
+        ctx.fillStyle = "rgba(" + redness * 200 + ",50," + redness * -200 + "," + redness + ")";
         ctx.fillRect(0, 0, cw, ch);
-        gradient = ctx.createLinearGradient(0, ch / 2, 0, ch);
-        gradient.addColorStop(0, "darkblue");
-        gradient.addColorStop(1, "darkblue");
-        ctx.fillStyle = gradient;
+        ctx.fillStyle = "#007DA5";
         ctx.fillRect(0, ch / 2, cw, ch);
-        gradient = ctx.createLinearGradient(0, ch, 0, ch / 2);
-        gradient.addColorStop(0, "wheat");
-        gradient.addColorStop(1, "wheat");
-        ctx.fillStyle = gradient;
+        ctx.fillStyle = "#F5D78C";
         ctx.fillRect(0, ch / 1.5, cw, ch);
         ctx.resetTransform();
     }
@@ -177,10 +167,10 @@ var strand;
         ctx.fill(path);
         //White Ship Body-Roof
         path = new Path2D;
-        path.moveTo(-60, 100);
+        path.moveTo(-60, 99);
         path.lineTo(-40, 120);
         path.lineTo(340, 120);
-        path.lineTo(360, 100);
+        path.lineTo(360, 99);
         ctx.fillStyle = _color3;
         ctx.fill(path);
         for (let chimnieCount = 0; chimnieCount < 4; chimnieCount++) {
@@ -335,11 +325,11 @@ var strand;
         ctx.scale(_osX, _osY);
         for (let crabEyes = 0; crabEyes < 4; crabEyes++) {
             if (crabEyes < 3) {
-                ctx.strokeStyle = "white";
+                ctx.strokeStyle = "#E1E6E6";
                 ctx.lineWidth = 30;
             }
             else {
-                ctx.strokeStyle = "black";
+                ctx.strokeStyle = "#232323";
                 ctx.lineWidth = 20;
             }
             ctx.beginPath();
@@ -385,17 +375,14 @@ var strand;
     //--------------------------------------------------------------------------------------------------------------------//
     function drawWaves(_waveSpeed) {
         ctx.resetTransform();
-        gradient = ctx.createLinearGradient(0, ch / 2, 0, ch);
-        gradient.addColorStop(0, "darkblue");
-        gradient.addColorStop(1, "darkblue");
-        ctx.fillStyle = gradient;
+        ctx.fillStyle = "#007DA5";
         ctx.fillRect(0, ch / 2, cw, (ch / 2) - 800);
         ctx.translate(cw / 2, ch / 2);
         ctx.scale(1, -1);
         for (let j = 0; j < 1; j++) {
             let color;
             if (j == 0) {
-                color = "darkblue";
+                color = "#007DA5";
                 //Shipreflektion
                 drawShip(i + 600, -50, Math.sin(i / 50) * 0.05, 2, -1, "rgba(0,0,0,0.1)", "rgba(0,0,0,0.1)", "rgba(0,0,0,0.1)", "rgba(0,0,0,0.1)");
             }
@@ -612,7 +599,7 @@ var strand;
         path.bezierCurveTo(50, 50, 25, -50, 25, -50);
         path.lineTo(-25, -50);
         path.bezierCurveTo(-50, 50, 0, 100, 0, 100);
-        ctx.fillStyle = "white";
+        ctx.fillStyle = "#E1E6E6";
         ctx.fill(path);
         reset();
     }
@@ -621,7 +608,7 @@ var strand;
         ctx.translate(_mox, _moy);
         ctx.rotate(_mor);
         ctx.scale(_mosX, _mosY);
-        ctx.strokeStyle = "purple";
+        ctx.strokeStyle = "#64508C";
         ctx.lineCap = "round";
         ctx.lineWidth = 100;
         ctx.beginPath();
