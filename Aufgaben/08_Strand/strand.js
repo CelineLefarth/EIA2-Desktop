@@ -384,7 +384,7 @@ var strand;
             if (j == 0) {
                 color = "#007DA5";
                 //Shipreflektion
-                drawShip(i + 600, -50, Math.sin(i / 50) * 0.05, 2, -1, "rgba(0,0,0,0.1)", "rgba(0,0,0,0.1)", "rgba(0,0,0,0.1)", "rgba(0,0,0,0.1)");
+                drawShip(1.5 * i + 600, -50, Math.sin(i / 50) * 0.05, 2, -1, "rgba(0,0,0,0.1)", "rgba(0,0,0,0.1)", "rgba(0,0,0,0.1)", "rgba(0,0,0,0.1)");
             }
             //Waves
             else {
