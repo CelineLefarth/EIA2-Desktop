@@ -1,7 +1,9 @@
+
 body{
     background-color:slategray;
     overflow-y: hidden;
     overflow-x: hidden;
+    user-select: none;
 }
 #container{
     position: absolute;
@@ -14,32 +16,10 @@ canvas{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: auto;
-    height: 90%;
     border: 10px;
     border-color:rgb(73, 87, 102);
     border-radius: 100px;
     border-style: solid;
-}
-
-
-#greenCrab{
-    color: rgba(0, 0, 0, 0);
-    background-color: rgba(0, 0, 0, 0);
-    border-color: rgba(0, 0, 0, 0);
-    position: absolute;
-    pad: 0%;
-    top: 62%;
-    left: 40%;
-}
-#redCrab{
-    color: rgba(0, 0, 0, 0);
-    background-color: rgba(0, 0, 0, 0);
-    border-color: rgba(0, 0, 0, 0);
-    position: absolute;
-    pad: 0%;
-    top: 67%;
-    left: 57%;
 }
 
 span {
@@ -59,10 +39,4 @@ span:hover{
     cursor: pointer;
     background-color: slategray;
     border-color: rgb(73, 87, 102);
-}
-#greenCrab:hover {
-    cursor: crosshair;
-}
-#redCrab:hover {
-    cursor: crosshair;
 }
