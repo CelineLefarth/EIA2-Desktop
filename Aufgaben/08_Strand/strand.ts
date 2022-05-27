@@ -15,6 +15,8 @@ namespace strand {
     export let i: number = 0;
 
     //Toggel Variabeln für die jeweiligen Objekte, ob sie schon angeklickt wurden (Wenn ja, dann werden sie auf true gestellt)
+    // All die vielen exporte sind für die Interaktion. Ich habe sie absichtlich noch nicht im Construktor mitgegeben, falls sich
+    // das später noch ändert, wie wir die Interaktion umsetzten sollen, damit ich nicht 50 verschiedene Übergaben abändern muss.
     export let picked: boolean = false;
     export let womanWalk: boolean = false;
     export let womanSwim: boolean = false;
@@ -40,7 +42,7 @@ namespace strand {
     export let walkerWomanColor: string = "#FFAAA5";
     export let surferWomanColor: string = "#FFD2D7";
     export let swimmerWomanColor: string = "#C87D5A";
-
+    //Ende der vielen exports für die Interactionen
 
     function hdlLoad(): void {
         canvas = document.createElement("canvas");
@@ -65,43 +67,43 @@ namespace strand {
             console.log(mouseX, mouseY);
             if (womanWalk == false && picked == false) {
                 let womanWalkerListener: Woman = new Woman(-100, -300);
-                womanWalkerListener.click(mouseX, mouseY, "Walker");
+                womanWalkerListener.interact(mouseX, mouseY, "Walker");    //Ich erstelle eine "Geisterinstanz", welche auf die Interaktion wartet
             }
             if (greenCrab == false && picked == false) {
                 let crabGreenListener: Crab = new Crab(-200 + Math.cos(i / 10) * 80, -250);
-                crabGreenListener.click(mouseX, mouseY, "green");
+                crabGreenListener.interact(mouseX, mouseY, "green");
             }
             if (redCrab == false && picked == false) {
                 let crabRedListener: Crab = new Crab(150 + Math.sin(i / 10) * 80, -350);
-                crabRedListener.click(mouseX, mouseY, "red");
+                crabRedListener.interact(mouseX, mouseY, "red");
             }
             if (womanSurf == false && picked == false) {
                 let womanSurferListener: Woman = new Woman(200 + Math.sin(i / 80) * 300, -70 + 150 * Math.sin(i / 40) * 0.6, Math.sin(i / 40) * 0.2);
-                womanSurferListener.click(mouseX, mouseY, "Surfer");
+                womanSurferListener.interact(mouseX, mouseY, "Surfer");
             }
             if (womanSwim == false && picked == false) {
                 let womanSwimmerListener: Woman = new Woman(-300 + Math.sin(i / 40) * 150, -120 + 150 * Math.sin(i / 20) * -0.4);
-                womanSwimmerListener.click(mouseX, mouseY, "Swimmer");
+                womanSwimmerListener.interact(mouseX, mouseY, "Swimmer");
             }
             if (ship == false && picked == false) {
                 let shipListener: Ship = new Ship(1.5 * i + 900, 50);
-                shipListener.click(mouseX, mouseY);
+                shipListener.interact(mouseX, mouseY);
             }
             if (cloudOne == false && picked == false) {
                 let cloudOneListener: Cloud = new Cloud(150 + 150 * Math.sin(i / 100) * -0.3, 300);
-                cloudOneListener.click(mouseX, mouseY, "one");
+                cloudOneListener.interact(mouseX, mouseY, "one");
             }
             if (cloudTwo == false && picked == false) {
                 let cloudTwoListener: Cloud = new Cloud(450 + 150 * Math.sin(i / 100) * -0.3, 400);
-                cloudTwoListener.click(mouseX, mouseY, "two");
+                cloudTwoListener.interact(mouseX, mouseY, "two");
             }
             if (cloudThree == false && picked == false) {
                 let cloudThreeListener: Cloud = new Cloud(-350 + 150 * Math.sin(i / 100) * -0.3, 400);
-                cloudThreeListener.click(mouseX, mouseY, "three");
+                cloudThreeListener.interact(mouseX, mouseY, "three");
             }
             if (sunCrab == false && picked == false) {
                 let sunListener: Crab = new Crab(-700 - i, 0 - 400 * Math.sin(i / 400));
-                sunListener.click(mouseX, mouseY, "sun");
+                sunListener.interact(mouseX, mouseY, "sun");
             }
         });
 
@@ -199,6 +201,7 @@ namespace strand {
         womanWalker.draw();
 
         //Brightness
+        //Der Tag resettet sich "wenn es zu dunkel ist". So Wird auch das Schifff und die Sonne Resettet
         let brightness: number = (Math.sin((300 + i) / 200) * 0.9);
         if (brightness > 0.8974159500672447) { i = 0; }
         //ctx.fillStyle = "rgba(10,0,10," + brightness  + ")";

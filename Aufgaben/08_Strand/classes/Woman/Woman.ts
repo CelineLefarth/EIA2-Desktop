@@ -140,7 +140,7 @@ namespace strand {
             reset();
         }
 
-        click(_x: number, _y: number, _type: string): void {
+        interact(_x: number, _y: number, _type: string): void {
 
             const distanceX: number = Math.sqrt(((_x - this.mox) * (_x - this.mox)));
             const distanceY: number = Math.sqrt(((_y - this.moy) * (_y - this.moy)));

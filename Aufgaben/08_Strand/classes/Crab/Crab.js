@@ -95,7 +95,7 @@ var strand;
             drawEyes(1, 1);
             strand.reset();
         }
-        click(_x, _y, _type) {
+        interact(_x, _y, _type) {
             const distanceX = Math.sqrt(((_x - this.mox) * (_x - this.mox)));
             const distanceY = Math.sqrt(((_y - this.moy) * (_y - this.moy)));
             if (distanceX < 100 && distanceY < 100) {

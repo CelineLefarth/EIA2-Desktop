@@ -79,7 +79,7 @@ var strand;
             strand.reset();
             //console.log(this.mox, this.moy);
         }
-        click(_x, _y) {
+        interact(_x, _y) {
             const distanceX = Math.sqrt(((_x - this.mox) * (_x - this.mox)));
             const distanceY = Math.sqrt(((_y - this.moy) * (_y - this.moy)));
             if (distanceX < 500 && distanceY < 150) {
