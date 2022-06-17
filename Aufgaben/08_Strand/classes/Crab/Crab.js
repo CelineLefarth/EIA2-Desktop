@@ -1,5 +1,11 @@
 var strand;
 (function (strand) {
+    strand.redCrabSpeed = 80;
+    strand.greenCrabSpeed = 80;
+    strand.sunRotation = 1;
+    let hitboxClickedGreenCrab = false;
+    let hitboxClickedRedCrab = false;
+    let hitboxClickedSunCrab = false;
     class Crab {
         mox;
         moy;
@@ -99,20 +105,21 @@ var strand;
             const distanceX = Math.sqrt(((_x - this.mox) * (_x - this.mox)));
             const distanceY = Math.sqrt(((_y - this.moy) * (_y - this.moy)));
             if (distanceX < 100 && distanceY < 100) {
-                console.log("Crabby " + _type, distanceX, distanceY);
-                if (_type == "green") {
+                if (_type == "green" && hitboxClickedGreenCrab == false && strand.picked == false) {
+                    console.log("Crabby " + _type, distanceX, distanceY);
                     strand.greenCrabSpeed = 190;
-                    strand.greenCrab = true;
+                    hitboxClickedGreenCrab = true;
                     strand.picked = true;
                 }
-                else if (_type == "red") {
+                else if (_type == "red" && hitboxClickedRedCrab == false && strand.picked == false) {
+                    console.log("Crabby " + _type, distanceX, distanceY);
                     strand.redCrabSpeed = 150;
-                    strand.redCrab = true;
+                    hitboxClickedRedCrab = true;
                     strand.picked = true;
                 }
-                else {
+                else if (_type == "sun" && hitboxClickedSunCrab == false && strand.picked == false) {
                     strand.sunRotation = 50;
-                    strand.sunCrab = true;
+                    hitboxClickedSunCrab = true;
                     strand.picked = true;
                 }
             }

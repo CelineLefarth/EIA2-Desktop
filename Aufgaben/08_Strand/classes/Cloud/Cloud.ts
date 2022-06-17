@@ -1,5 +1,12 @@
 namespace strand {
 
+    export let cloudColor1: string = "#F5F5FF";
+    export let cloudColor2: string = "#F5F5FF";
+    export let cloudColor3: string = "#F5F5FF";
+    let hitboxClickedCloudOne: boolean = false;
+    let hitboxClickedCloudTwo: boolean = false;
+    let hitboxClickedCloudThree: boolean = false;
+
     export class Cloud {
 
         mox: number;
@@ -66,20 +73,20 @@ namespace strand {
             const distanceX: number = Math.sqrt(((_x - this.mox) * (_x - this.mox)));
             const distanceY: number = Math.sqrt(((_y - this.moy) * (_y - this.moy)));
             if (distanceX < 250 && distanceY < 150) {
-            if (_type == "one") {
-                cloudOne = true;
+            if (_type == "one" && hitboxClickedCloudOne == false && picked == false) {
+                hitboxClickedCloudOne = true;
                 picked = true;
                 console.log("Cloud " + _type, distanceX, distanceY);
                 cloudColor1 = "#333";
             }
-            else if (_type == "two" && distanceY < 100 && distanceX < 70) {
-                cloudTwo = true;
+            else if (_type == "two" && distanceY < 100 && distanceX < 70 && hitboxClickedCloudTwo == false && picked == false) {
+                hitboxClickedCloudTwo = true;
                 picked = true;
                 console.log("Cloud " + _type, distanceX, distanceY);
                 cloudColor2 = "#444";
             }
-            else if (_type == "three" && distanceY < 100 && distanceX < 70) {
-                cloudThree = true;
+            else if (_type == "three" && distanceY < 100 && distanceX < 70 && hitboxClickedCloudThree == false && picked == false) {
+                hitboxClickedCloudThree = true;
                 picked = true;
                 console.log("Cloud " + _type, distanceX, distanceY);
                 cloudColor3 = "#555";

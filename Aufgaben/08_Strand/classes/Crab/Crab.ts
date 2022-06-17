@@ -1,5 +1,12 @@
 namespace strand {
 
+    export let redCrabSpeed: number = 80;
+    export let greenCrabSpeed: number = 80;
+    export let sunRotation: number = 1;
+    let hitboxClickedGreenCrab: boolean = false;
+    let hitboxClickedRedCrab: boolean = false;
+    let hitboxClickedSunCrab: boolean = false;
+
     export class Crab {
 
         mox: number;
@@ -115,20 +122,21 @@ namespace strand {
             const distanceX: number = Math.sqrt(((_x - this.mox) * (_x - this.mox)));
             const distanceY: number = Math.sqrt(((_y - this.moy) * (_y - this.moy)));
             if (distanceX < 100 && distanceY < 100) {
+            if (_type == "green" && hitboxClickedGreenCrab == false && picked == false) {
             console.log("Crabby " + _type, distanceX, distanceY);
-            if (_type == "green") {
             greenCrabSpeed = 190;
-            greenCrab = true;
+            hitboxClickedGreenCrab = true;
             picked = true;
             }
-            else if (_type == "red") {
+            else if (_type == "red" && hitboxClickedRedCrab == false && picked == false) {
+                console.log("Crabby " + _type, distanceX, distanceY);
                 redCrabSpeed = 150;
-                redCrab = true;
+                hitboxClickedRedCrab = true;
                 picked = true;
             }
-            else {
+            else if (_type == "sun" && hitboxClickedSunCrab == false && picked == false) {
                 sunRotation = 50;
-                sunCrab = true;
+                hitboxClickedSunCrab = true;
                 picked = true;
             }
             }

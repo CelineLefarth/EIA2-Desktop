@@ -1,5 +1,11 @@
 var strand;
 (function (strand) {
+    strand.walkerWomanColor = "#FFAAA5";
+    strand.surferWomanColor = "#FFD2D7";
+    strand.swimmerWomanColor = "#C87D5A";
+    let hitboxClickedWomanWalk = false;
+    let hitboxClickedWomanSwim = false;
+    let hitboxClickedWomanSurf = false;
     class Woman {
         mox;
         moy;
@@ -130,21 +136,21 @@ var strand;
             const distanceX = Math.sqrt(((_x - this.mox) * (_x - this.mox)));
             const distanceY = Math.sqrt(((_y - this.moy) * (_y - this.moy)));
             if (distanceX < 90 && distanceY < 400) {
-                if (_type == "Walker") {
+                if (_type == "Walker" && hitboxClickedWomanWalk == false) {
                     strand.walkerWomanColor = "#FF5550";
-                    strand.womanWalk = true;
+                    hitboxClickedWomanWalk = true;
                     strand.picked = true;
                     console.log("Woman " + _type, distanceX, distanceY);
                 }
-                else if (_type == "Swimmer" && distanceY < 120 && distanceX < 70) {
+                else if (_type == "Swimmer" && distanceY < 120 && distanceX < 70 && hitboxClickedWomanSwim == false) {
                     strand.swimmerWomanColor = "#FF7072";
-                    strand.womanSwim = true;
+                    hitboxClickedWomanSwim = true;
                     strand.picked = true;
                     console.log("Woman " + _type, distanceX, distanceY);
                 }
-                else if (_type == "Surfer" && distanceY < 120 && distanceX < 100) {
+                else if (_type == "Surfer" && distanceY < 120 && distanceX < 100 && hitboxClickedWomanSurf == false) {
                     strand.surferWomanColor = "#FF8082";
-                    strand.womanSurf = true;
+                    hitboxClickedWomanSurf = true;
                     strand.picked = true;
                     console.log("Woman " + _type, distanceX, distanceY);
                 }

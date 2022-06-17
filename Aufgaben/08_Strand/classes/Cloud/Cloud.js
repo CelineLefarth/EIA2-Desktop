@@ -1,5 +1,11 @@
 var strand;
 (function (strand) {
+    strand.cloudColor1 = "#F5F5FF";
+    strand.cloudColor2 = "#F5F5FF";
+    strand.cloudColor3 = "#F5F5FF";
+    let hitboxClickedCloudOne = false;
+    let hitboxClickedCloudTwo = false;
+    let hitboxClickedCloudThree = false;
     class Cloud {
         mox;
         moy;
@@ -57,20 +63,20 @@ var strand;
             const distanceX = Math.sqrt(((_x - this.mox) * (_x - this.mox)));
             const distanceY = Math.sqrt(((_y - this.moy) * (_y - this.moy)));
             if (distanceX < 250 && distanceY < 150) {
-                if (_type == "one") {
-                    strand.cloudOne = true;
+                if (_type == "one" && hitboxClickedCloudOne == false && strand.picked == false) {
+                    hitboxClickedCloudOne = true;
                     strand.picked = true;
                     console.log("Cloud " + _type, distanceX, distanceY);
                     strand.cloudColor1 = "#333";
                 }
-                else if (_type == "two" && distanceY < 100 && distanceX < 70) {
-                    strand.cloudTwo = true;
+                else if (_type == "two" && distanceY < 100 && distanceX < 70 && hitboxClickedCloudTwo == false && strand.picked == false) {
+                    hitboxClickedCloudTwo = true;
                     strand.picked = true;
                     console.log("Cloud " + _type, distanceX, distanceY);
                     strand.cloudColor2 = "#444";
                 }
-                else if (_type == "three" && distanceY < 100 && distanceX < 70) {
-                    strand.cloudThree = true;
+                else if (_type == "three" && distanceY < 100 && distanceX < 70 && hitboxClickedCloudThree == false && strand.picked == false) {
+                    hitboxClickedCloudThree = true;
                     strand.picked = true;
                     console.log("Cloud " + _type, distanceX, distanceY);
                     strand.cloudColor3 = "#555";

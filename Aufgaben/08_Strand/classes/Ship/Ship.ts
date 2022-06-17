@@ -1,5 +1,10 @@
 namespace strand {
 
+    export let titanicTurn: number = 0;
+    export let titanicDirection: number = 1;
+    export let titanicDrag: number = 0;
+    let hitboxClicked: boolean = false;
+
     export class Ship {
         mox: number;
         moy: number;
@@ -92,9 +97,9 @@ namespace strand {
 
             const distanceX: number = Math.sqrt(((_x - this.mox) * (_x - this.mox)));
             const distanceY: number = Math.sqrt(((_y - this.moy) * (_y - this.moy)));
-            if (distanceX < 500 && distanceY < 150) {
+            if (distanceX < 500 && distanceY < 150 && hitboxClicked == false) {
             console.log("Schiff", distanceX, distanceY);
-            ship = true;
+            hitboxClicked = true;
             picked = true;
             titanicDirection = 0;
             titanicTurn = 1.6;

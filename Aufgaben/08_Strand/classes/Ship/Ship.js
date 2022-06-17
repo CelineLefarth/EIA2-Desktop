@@ -1,5 +1,9 @@
 var strand;
 (function (strand) {
+    strand.titanicTurn = 0;
+    strand.titanicDirection = 1;
+    strand.titanicDrag = 0;
+    let hitboxClicked = false;
     class Ship {
         mox;
         moy;
@@ -82,9 +86,9 @@ var strand;
         interact(_x, _y) {
             const distanceX = Math.sqrt(((_x - this.mox) * (_x - this.mox)));
             const distanceY = Math.sqrt(((_y - this.moy) * (_y - this.moy)));
-            if (distanceX < 500 && distanceY < 150) {
+            if (distanceX < 500 && distanceY < 150 && hitboxClicked == false) {
                 console.log("Schiff", distanceX, distanceY);
-                strand.ship = true;
+                hitboxClicked = true;
                 strand.picked = true;
                 strand.titanicDirection = 0;
                 strand.titanicTurn = 1.6;

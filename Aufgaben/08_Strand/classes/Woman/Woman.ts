@@ -1,5 +1,12 @@
 namespace strand {
 
+    export let walkerWomanColor: string = "#FFAAA5";
+    export let surferWomanColor: string = "#FFD2D7";
+    export let swimmerWomanColor: string = "#C87D5A";
+    let hitboxClickedWomanWalk: boolean = false;
+    let hitboxClickedWomanSwim: boolean = false;
+    let hitboxClickedWomanSurf: boolean = false;
+
     export class Woman {
 
         mox: number;
@@ -139,27 +146,28 @@ namespace strand {
 
             reset();
         }
+        
 
         interact(_x: number, _y: number, _type: string): void {
 
             const distanceX: number = Math.sqrt(((_x - this.mox) * (_x - this.mox)));
             const distanceY: number = Math.sqrt(((_y - this.moy) * (_y - this.moy)));
             if (distanceX < 90 && distanceY < 400) {
-            if (_type == "Walker") {
+            if (_type == "Walker" && hitboxClickedWomanWalk == false) {
                 walkerWomanColor = "#FF5550";
-                womanWalk = true;
+                hitboxClickedWomanWalk = true;
                 picked = true;
                 console.log("Woman " + _type, distanceX, distanceY);
             }
-            else if (_type == "Swimmer" && distanceY < 120 && distanceX < 70) {
+            else if (_type == "Swimmer" && distanceY < 120 && distanceX < 70 && hitboxClickedWomanSwim == false) {
                 swimmerWomanColor = "#FF7072";
-                womanSwim = true;
+                hitboxClickedWomanSwim = true;
                 picked = true;
                 console.log("Woman " + _type, distanceX, distanceY);
             }
-            else if (_type == "Surfer" && distanceY < 120 && distanceX < 100) {
+            else if (_type == "Surfer" && distanceY < 120 && distanceX < 100 && hitboxClickedWomanSurf == false) {
                 surferWomanColor = "#FF8082";
-                womanSurf = true;
+                hitboxClickedWomanSurf = true;
                 picked = true;
                 console.log("Woman " + _type, distanceX, distanceY);
             }
@@ -189,4 +197,5 @@ namespace strand {
         ctx.fillStyle = _color;
         ctx.fill(path);
     }
+    
 }
