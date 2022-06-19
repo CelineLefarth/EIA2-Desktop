@@ -1,25 +1,26 @@
 namespace strand {
 
-    export class Palm {
+    export class Palm extends BeachObject{
 
-        mox: number;
-        moy: number;
-        mor: number;
-        mosX: number;
-        mosY: number;
+        mmosX: number;
+        mmosY: number;
         color: string;
         color2: string;
         swingPalm: number;
 
         constructor(_mox: number, _moy: number, _mor: number, _mosX: number, _mosY: number, _color: string, _color2: string, _swingPalm: number) {
-            this.mox = _mox;
-            this.moy = _moy;
-            this.mor = _mor;
-            this.mosX = _mosX;
-            this.mosY = _mosY;
+            super(_mox, _moy, _mor, _mosX, _mosY);
+            this.mmosX = _mosX;
+            this.mmosY = _mosY;
             this.color = _color;
             this.color2 = _color2;
             this.swingPalm = _swingPalm;
+        }
+
+        move(): void {
+            this.mosX = this.mmosX + Math.sin(i / 50) * 0.2;
+            this.mosY = this.mmosY + Math.sin(i / 50) * 0.2;
+            this.swingPalm = i;
         }
 
         draw(): void {
@@ -73,5 +74,10 @@ namespace strand {
 
             reset();
         }
+
+        interact(_x: number, _y: number): void {
+            //ich habe noch keine Interaktion
+        }
+        
     }
 }

@@ -1,35 +1,29 @@
 namespace strand {
 
-    export let cloudColor1: string = "#F5F5FF";
-    export let cloudColor2: string = "#F5F5FF";
-    export let cloudColor3: string = "#F5F5FF";
+    export let color: string = "#F5F5FF";
     let hitboxClickedCloudOne: boolean = false;
     let hitboxClickedCloudTwo: boolean = false;
     let hitboxClickedCloudThree: boolean = false;
 
-    export class Cloud {
+    export class Cloud extends BeachObject {
 
-        mox: number;
-        moy: number;
-        mor: number;
-        mosX: number;
-        mosY: number;
+        mmox: number;
         color: string;
 
         constructor(_mox: number, _moy: number, _mor?: number, _mosX?: number, _mosY?: number, _color?: string) {
-            this.mox = _mox;
-            this.moy = _moy;
-            this.mor = _mor;
-            this.mosX = _mosX;
-            this.mosY = _mosY;
+            super(_mox, _moy, _mor, _mosX, _mosY);
+            this.mmox = _mox;
             this.color = _color;
+        }
+
+        move(): void {
+            this.mox = this.mmox + -50 * Math.sin(i / 100);
         }
 
         draw(): void {
             ctx.translate(this.mox, this.moy);
             ctx.rotate(this.mor);
             ctx.scale(this.mosX, this.mosY);
-
             ctx.strokeStyle = this.color;
             ctx.lineCap = "round";
             ctx.lineWidth = 150;
@@ -68,28 +62,28 @@ namespace strand {
             reset();
         }
 
-        interact(_x: number, _y: number, _type: string): void {
+        interact(_x: number, _y: number): void {
 
             const distanceX: number = Math.sqrt(((_x - this.mox) * (_x - this.mox)));
             const distanceY: number = Math.sqrt(((_y - this.moy) * (_y - this.moy)));
             if (distanceX < 250 && distanceY < 150) {
-            if (_type == "one" && hitboxClickedCloudOne == false && picked == false) {
+            if (hitboxClickedCloudOne == false && picked == false) {
                 hitboxClickedCloudOne = true;
                 picked = true;
-                console.log("Cloud " + _type, distanceX, distanceY);
-                cloudColor1 = "#333";
+                console.log("Cloud", distanceX, distanceY);
+                this.color = "#333";
             }
-            else if (_type == "two" && distanceY < 100 && distanceX < 70 && hitboxClickedCloudTwo == false && picked == false) {
+            else if (distanceY < 100 && distanceX < 70 && hitboxClickedCloudTwo == false && picked == false) {
                 hitboxClickedCloudTwo = true;
                 picked = true;
-                console.log("Cloud " + _type, distanceX, distanceY);
-                cloudColor2 = "#444";
+                console.log("Cloud ", distanceX, distanceY);
+                this.color = "#444";
             }
-            else if (_type == "three" && distanceY < 100 && distanceX < 70 && hitboxClickedCloudThree == false && picked == false) {
+            else if (distanceY < 100 && distanceX < 70 && hitboxClickedCloudThree == false && picked == false) {
                 hitboxClickedCloudThree = true;
                 picked = true;
-                console.log("Cloud " + _type, distanceX, distanceY);
-                cloudColor3 = "#555";
+                console.log("Cloud ", distanceX, distanceY);
+                this.color = "#555";
             }
             }
         }

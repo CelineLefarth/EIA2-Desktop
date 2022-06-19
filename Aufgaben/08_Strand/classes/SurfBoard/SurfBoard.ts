@@ -15,6 +15,12 @@ namespace strand {
             this.mosY = _mosY;
         }
 
+        move(): void {
+            this.mox = 200 + Math.sin(i / 80) * 300;
+            this.moy = -150 + 150 * Math.sin(i / 40) * 0.6;
+            this.mor = Math.sin(i / 40) * 0.2 - 1.6;
+        }
+
         draw(): void {   // mo = mainobject + (x,y,rotation,scale X & scaleY)
             ctx.translate(this.mox, this.moy);
             ctx.rotate(this.mor);
@@ -30,5 +36,10 @@ namespace strand {
     
             reset();
         }  
+
+        interact(_x: number, _y: number): void {
+        //ich habe noch keine Interaktion
+        }
+
     }
 }

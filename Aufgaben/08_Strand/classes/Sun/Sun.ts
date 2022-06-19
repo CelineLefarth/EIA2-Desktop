@@ -1,20 +1,18 @@
 namespace strand {
-    export class Sun {
+    export class Sun extends BeachObject {
 
-        mox: number;
-        moy: number;
-        mor: number;
-        mosX: number;
-        mosY: number;
         color: string;
 
         constructor(_mox: number, _moy: number, _mor: number, _mosX: number, _mosY: number, _color: string) {
-            this.mox = _mox;
-            this.moy = _moy;
-            this.mor = _mor;
-            this.mosX = _mosX;
-            this.mosY = _mosY;
+            super(_mox, _moy, _mor, _mosX, _mosY);
             this.color = _color;
+        }
+
+        move(): void {
+            this.mox = -700 - i;
+            this.moy = -400 * Math.sin(i / 400);
+            this.mosX = 1 * Math.sin(i / 500);
+            this.mosY = 1 * Math.sin(i / 500);
         }
 
         draw(): void {
@@ -25,5 +23,10 @@ namespace strand {
             crabSun.draw();
             reset();
         }
+
+        interact(_x: number, _y: number): void {
+            //habe ich warum auch immer in der Crabben Klasse lul
+        }
+
     }
 }

@@ -5,23 +5,14 @@ namespace strand {
     export let titanicDrag: number = 0;
     let hitboxClicked: boolean = false;
 
-    export class Ship {
-        mox: number;
-        moy: number;
-        mor: number;
-        mosX: number;
-        mosY: number;
+    export class Ship extends BeachObject {
         color: string;
         color2: string;
         color3: string;
         color4: string;
 
         constructor(_mox: number, _moy: number, _mor?: number, _mosX?: number, _mosY?: number, _color?: string, _color2?: string, _color3?: string, _color4?: string) {
-            this.mox = _mox;
-            this.moy = _moy;
-            this.mor = _mor;
-            this.mosX = _mosX;
-            this.mosY = _mosY;
+            super(_mox, _moy, _mor, _mosX, _mosY);
             this.color = _color;
             this.color2 = _color2;
             this.color3 = _color3;
@@ -92,12 +83,17 @@ namespace strand {
 
         }
         
+        move(): void {
+            this.mox = 1.5 * i + 600;
+            this.moy = -50 + i * titanicDrag;
+            this.mor = Math.sin(i / 50) * 0.05 + titanicTurn;
+        }
 
         interact(_x: number, _y: number): void {
 
             const distanceX: number = Math.sqrt(((_x - this.mox) * (_x - this.mox)));
             const distanceY: number = Math.sqrt(((_y - this.moy) * (_y - this.moy)));
-            if (distanceX < 500 && distanceY < 150 && hitboxClicked == false) {
+            if (distanceX < 500 && distanceY < 150 && hitboxClicked == false && picked == false) {
             console.log("Schiff", distanceX, distanceY);
             hitboxClicked = true;
             picked = true;

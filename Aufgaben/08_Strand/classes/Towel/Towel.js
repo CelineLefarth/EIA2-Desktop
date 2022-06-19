@@ -1,19 +1,13 @@
 var strand;
 (function (strand) {
-    class Towel {
-        mox;
-        moy;
-        mor;
-        mosX;
-        mosY;
+    class Towel extends strand.BeachObject {
         color;
         constructor(_mox, _moy, _mor, _mosX, _mosY, _color) {
-            this.mox = _mox;
-            this.moy = _moy;
-            this.mor = _mor;
-            this.mosX = _mosX;
-            this.mosY = _mosY;
+            super(_mox, _moy, _mor, _mosX, _mosY);
             this.color = _color;
+        }
+        move() {
+            //I dont
         }
         draw() {
             strand.ctx.translate(this.mox, this.moy);
@@ -28,6 +22,9 @@ var strand;
             strand.ctx.fillStyle = this.color;
             strand.ctx.fill(strand.path);
             strand.reset();
+        }
+        interact(_x, _y) {
+            //mit mir kann man noch nicht interacten
         }
     }
     strand.Towel = Towel;

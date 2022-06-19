@@ -1,18 +1,18 @@
 namespace strand {
-    export class Ring {
-        
-        mox: number;
-        moy: number;
-        mor: number;
-        mosX: number;
-        mosY: number;
+    export class Ring extends BeachObject {
 
         constructor(_mox: number, _moy: number, _mor: number, _mosX: number, _mosY: number) {
+            super(_mox, _moy, _mor, _mosX, _mosY);
             this.mox = _mox;
             this.moy = _moy;
             this.mor = _mor;
             this.mosX = _mosX;
             this.mosY = _mosY;
+        }
+
+        move(): void {
+            this.mox = -300 + Math.sin(i / 40) * 150;
+            this.moy = -230 + 150 * Math.sin(i / 20) * -0.4;
         }
 
         draw(): void {   // mo = mainobject + (x,y,rotation,scale X & scaleY)
@@ -30,6 +30,10 @@ namespace strand {
             ctx.stroke();
     
             reset();
+        }
+
+        interact(_x: number, _y: number): void {
+        //ich habe noch keine Interaktion
         }
     }
 }

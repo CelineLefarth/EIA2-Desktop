@@ -1,23 +1,23 @@
 var strand;
 (function (strand) {
-    class Palm {
-        mox;
-        moy;
-        mor;
-        mosX;
-        mosY;
+    class Palm extends strand.BeachObject {
+        mmosX;
+        mmosY;
         color;
         color2;
         swingPalm;
         constructor(_mox, _moy, _mor, _mosX, _mosY, _color, _color2, _swingPalm) {
-            this.mox = _mox;
-            this.moy = _moy;
-            this.mor = _mor;
-            this.mosX = _mosX;
-            this.mosY = _mosY;
+            super(_mox, _moy, _mor, _mosX, _mosY);
+            this.mmosX = _mosX;
+            this.mmosY = _mosY;
             this.color = _color;
             this.color2 = _color2;
             this.swingPalm = _swingPalm;
+        }
+        move() {
+            this.mosX = this.mmosX + Math.sin(strand.i / 50) * 0.2;
+            this.mosY = this.mmosY + Math.sin(strand.i / 50) * 0.2;
+            this.swingPalm = strand.i;
         }
         draw() {
             strand.ctx.translate(this.mox, this.moy);
@@ -65,6 +65,9 @@ var strand;
                 strand.ctx.rotate(0.5);
             }
             strand.reset();
+        }
+        interact(_x, _y) {
+            //ich habe noch keine Interaktion
         }
     }
     strand.Palm = Palm;

@@ -1,21 +1,17 @@
 namespace strand {
-    export class Towel {
+    export class Towel extends BeachObject {
 
-        mox: number;
-        moy: number;
-        mor: number;
-        mosX: number;
-        mosY: number;
         color: string;
 
         constructor(_mox: number, _moy: number, _mor: number, _mosX: number, _mosY: number, _color: string) {
-            this.mox = _mox;
-            this.moy = _moy;
-            this.mor = _mor;
-            this.mosX = _mosX;
-            this.mosY = _mosY;
+            super(_mox, _moy, _mor, _mosX, _mosY);
             this.color = _color;
         }
+
+        move(): void {
+            //I dont
+        }
+
         draw(): void {
             ctx.translate(this.mox, this.moy);
             ctx.rotate(this.mor);
@@ -32,5 +28,10 @@ namespace strand {
     
             reset();
         }
+
+        interact(_x: number, _y: number): void {
+            //mit mir kann man noch nicht interacten
+        }
+    
     }
 }

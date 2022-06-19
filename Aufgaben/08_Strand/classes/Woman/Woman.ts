@@ -7,13 +7,8 @@ namespace strand {
     let hitboxClickedWomanSwim: boolean = false;
     let hitboxClickedWomanSurf: boolean = false;
 
-    export class Woman {
+    export class Woman extends BeachObject {
 
-        mox: number;
-        moy: number;
-        mor: number;
-        mosX: number;
-        mosY: number;
         bodyColor: string;
         shortsColor: string;
         hairColor: string;
@@ -23,11 +18,7 @@ namespace strand {
         lab: number;
 
         constructor(_mox: number, _moy: number, _mor?: number, _mosX?: number, _mosY?: number, _bodyColor?: string, _shortsColor?: string, _hairColor?: string, _rat?: number, _rab?: number, _lat?: number, _lab?: number) {
-            this.mox = _mox;
-            this.moy = _moy;
-            this.mor = _mor;
-            this.mosX = _mosX;
-            this.mosY = _mosY;
+            super(_mox, _moy, _mor, _mosX, _mosY);
             this.bodyColor = _bodyColor;
             this.shortsColor = _shortsColor;
             this.hairColor = _hairColor;
@@ -35,6 +26,22 @@ namespace strand {
             this.rab = _rab;
             this.lat = _lat;
             this.lab = _lab;
+        }
+
+        move(): void {
+            if (this.hairColor == "firebrick") {
+            this.mox = 200 + Math.sin(i / 80) * 300;
+            this.moy = -70 + 150 * Math.sin(i / 40) * 0.6;
+            this.mor = Math.sin(i / 40) * 0.2;
+            }
+            if (this.hairColor == "#FABE0F") {
+                this.mox = -300 + Math.sin(i / 40) * 150;
+                this.moy = -200 + 150 * Math.sin(i / 20) * -0.4;
+                }
+            else {
+                this.rat =  1.6 + Math.sin(i / 30) * 0.5;
+                this.rab = 0.5 + Math.sin(i / 30) * 0.5;
+                }
         }
 
         draw(): void {   // mo = mainobject + (x,y,rotation,scale X & scaleY) //rat = right arm top //lab = left arm bottom etc.
@@ -148,28 +155,28 @@ namespace strand {
         }
         
 
-        interact(_x: number, _y: number, _type: string): void {
+        interact(_x: number, _y: number): void {
 
             const distanceX: number = Math.sqrt(((_x - this.mox) * (_x - this.mox)));
             const distanceY: number = Math.sqrt(((_y - this.moy) * (_y - this.moy)));
             if (distanceX < 90 && distanceY < 400) {
-            if (_type == "Walker" && hitboxClickedWomanWalk == false) {
-                walkerWomanColor = "#FF5550";
+            if (hitboxClickedWomanWalk == false && picked == false) {
+                this.bodyColor = "#FF6050";
                 hitboxClickedWomanWalk = true;
                 picked = true;
-                console.log("Woman " + _type, distanceX, distanceY);
+                console.log("Woman ", distanceX, distanceY);
             }
-            else if (_type == "Swimmer" && distanceY < 120 && distanceX < 70 && hitboxClickedWomanSwim == false) {
-                swimmerWomanColor = "#FF7072";
+            else if (distanceY < 120 && distanceX < 70 && hitboxClickedWomanSwim == false && picked == false) {
+                this.bodyColor = "#FF7072";
                 hitboxClickedWomanSwim = true;
                 picked = true;
-                console.log("Woman " + _type, distanceX, distanceY);
+                console.log("Woman ", distanceX, distanceY);
             }
-            else if (_type == "Surfer" && distanceY < 120 && distanceX < 100 && hitboxClickedWomanSurf == false) {
-                surferWomanColor = "#FF8082";
+            else if (distanceY < 120 && distanceX < 100 && hitboxClickedWomanSurf == false && picked == false) {
+                this.bodyColor = "#FF8082";
                 hitboxClickedWomanSurf = true;
                 picked = true;
-                console.log("Woman " + _type, distanceX, distanceY);
+                console.log("Woman ", distanceX, distanceY);
             }
             }
         }

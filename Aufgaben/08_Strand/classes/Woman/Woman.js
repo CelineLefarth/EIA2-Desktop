@@ -6,12 +6,7 @@ var strand;
     let hitboxClickedWomanWalk = false;
     let hitboxClickedWomanSwim = false;
     let hitboxClickedWomanSurf = false;
-    class Woman {
-        mox;
-        moy;
-        mor;
-        mosX;
-        mosY;
+    class Woman extends strand.BeachObject {
         bodyColor;
         shortsColor;
         hairColor;
@@ -20,11 +15,7 @@ var strand;
         lat;
         lab;
         constructor(_mox, _moy, _mor, _mosX, _mosY, _bodyColor, _shortsColor, _hairColor, _rat, _rab, _lat, _lab) {
-            this.mox = _mox;
-            this.moy = _moy;
-            this.mor = _mor;
-            this.mosX = _mosX;
-            this.mosY = _mosY;
+            super(_mox, _moy, _mor, _mosX, _mosY);
             this.bodyColor = _bodyColor;
             this.shortsColor = _shortsColor;
             this.hairColor = _hairColor;
@@ -32,6 +23,21 @@ var strand;
             this.rab = _rab;
             this.lat = _lat;
             this.lab = _lab;
+        }
+        move() {
+            if (this.hairColor == "firebrick") {
+                this.mox = 200 + Math.sin(strand.i / 80) * 300;
+                this.moy = -70 + 150 * Math.sin(strand.i / 40) * 0.6;
+                this.mor = Math.sin(strand.i / 40) * 0.2;
+            }
+            if (this.hairColor == "#FABE0F") {
+                this.mox = -300 + Math.sin(strand.i / 40) * 150;
+                this.moy = -200 + 150 * Math.sin(strand.i / 20) * -0.4;
+            }
+            else {
+                this.rat = 1.6 + Math.sin(strand.i / 30) * 0.5;
+                this.rab = 0.5 + Math.sin(strand.i / 30) * 0.5;
+            }
         }
         draw() {
             strand.ctx.translate(this.mox, this.moy);
@@ -132,27 +138,27 @@ var strand;
             strand.ctx.fill(strand.path);
             strand.reset();
         }
-        interact(_x, _y, _type) {
+        interact(_x, _y) {
             const distanceX = Math.sqrt(((_x - this.mox) * (_x - this.mox)));
             const distanceY = Math.sqrt(((_y - this.moy) * (_y - this.moy)));
             if (distanceX < 90 && distanceY < 400) {
-                if (_type == "Walker" && hitboxClickedWomanWalk == false) {
-                    strand.walkerWomanColor = "#FF5550";
+                if (hitboxClickedWomanWalk == false && strand.picked == false) {
+                    this.bodyColor = "#FF6050";
                     hitboxClickedWomanWalk = true;
                     strand.picked = true;
-                    console.log("Woman " + _type, distanceX, distanceY);
+                    console.log("Woman ", distanceX, distanceY);
                 }
-                else if (_type == "Swimmer" && distanceY < 120 && distanceX < 70 && hitboxClickedWomanSwim == false) {
-                    strand.swimmerWomanColor = "#FF7072";
+                else if (distanceY < 120 && distanceX < 70 && hitboxClickedWomanSwim == false && strand.picked == false) {
+                    this.bodyColor = "#FF7072";
                     hitboxClickedWomanSwim = true;
                     strand.picked = true;
-                    console.log("Woman " + _type, distanceX, distanceY);
+                    console.log("Woman ", distanceX, distanceY);
                 }
-                else if (_type == "Surfer" && distanceY < 120 && distanceX < 100 && hitboxClickedWomanSurf == false) {
-                    strand.surferWomanColor = "#FF8082";
+                else if (distanceY < 120 && distanceX < 100 && hitboxClickedWomanSurf == false && strand.picked == false) {
+                    this.bodyColor = "#FF8082";
                     hitboxClickedWomanSurf = true;
                     strand.picked = true;
-                    console.log("Woman " + _type, distanceX, distanceY);
+                    console.log("Woman ", distanceX, distanceY);
                 }
             }
         }

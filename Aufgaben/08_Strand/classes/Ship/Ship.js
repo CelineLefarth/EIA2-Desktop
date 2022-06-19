@@ -4,22 +4,13 @@ var strand;
     strand.titanicDirection = 1;
     strand.titanicDrag = 0;
     let hitboxClicked = false;
-    class Ship {
-        mox;
-        moy;
-        mor;
-        mosX;
-        mosY;
+    class Ship extends strand.BeachObject {
         color;
         color2;
         color3;
         color4;
         constructor(_mox, _moy, _mor, _mosX, _mosY, _color, _color2, _color3, _color4) {
-            this.mox = _mox;
-            this.moy = _moy;
-            this.mor = _mor;
-            this.mosX = _mosX;
-            this.mosY = _mosY;
+            super(_mox, _moy, _mor, _mosX, _mosY);
             this.color = _color;
             this.color2 = _color2;
             this.color3 = _color3;
@@ -83,10 +74,15 @@ var strand;
             strand.reset();
             //console.log(this.mox, this.moy);
         }
+        move() {
+            this.mox = 1.5 * strand.i + 600;
+            this.moy = -50 + strand.i * strand.titanicDrag;
+            this.mor = Math.sin(strand.i / 50) * 0.05 + strand.titanicTurn;
+        }
         interact(_x, _y) {
             const distanceX = Math.sqrt(((_x - this.mox) * (_x - this.mox)));
             const distanceY = Math.sqrt(((_y - this.moy) * (_y - this.moy)));
-            if (distanceX < 500 && distanceY < 150 && hitboxClicked == false) {
+            if (distanceX < 500 && distanceY < 150 && hitboxClicked == false && strand.picked == false) {
                 console.log("Schiff", distanceX, distanceY);
                 hitboxClicked = true;
                 strand.picked = true;
