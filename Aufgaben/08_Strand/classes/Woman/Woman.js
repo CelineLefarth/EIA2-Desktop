@@ -1,11 +1,14 @@
 var strand;
 (function (strand) {
-    strand.walkerWomanColor = "#FFAAA5";
-    strand.surferWomanColor = "#FFD2D7";
-    strand.swimmerWomanColor = "#C87D5A";
-    let hitboxClickedWomanWalk = false;
-    let hitboxClickedWomanSwim = false;
-    let hitboxClickedWomanSurf = false;
+    let ACTION;
+    (function (ACTION) {
+        ACTION[ACTION["WAIT"] = 0] = "WAIT";
+        ACTION[ACTION["WALKWATER"] = 1] = "WALKWATER";
+        ACTION[ACTION["SWIM"] = 2] = "SWIM";
+        ACTION[ACTION["WALKLAND"] = 3] = "WALKLAND";
+        ACTION[ACTION["NOBURN"] = 4] = "NOBURN";
+        ACTION[ACTION["BURN"] = 5] = "BURN";
+    })(ACTION || (ACTION = {}));
     class Woman extends strand.BeachObject {
         bodyColor;
         shortsColor;
@@ -14,7 +17,14 @@ var strand;
         rab;
         lat;
         lab;
-        constructor(_mox, _moy, _mor, _mosX, _mosY, _bodyColor, _shortsColor, _hairColor, _rat, _rab, _lat, _lab) {
+        rlt;
+        rlb;
+        llt;
+        llb;
+        action = ACTION.WAIT;
+        ismoving = false;
+        setted = false;
+        constructor(_mox, _moy, _mor, _mosX, _mosY, _bodyColor, _shortsColor, _hairColor, _rat, _rab, _lat, _lab, _rlt, _rlb, _llt, _llb) {
             super(_mox, _moy, _mor, _mosX, _mosY);
             this.bodyColor = _bodyColor;
             this.shortsColor = _shortsColor;
@@ -23,20 +33,104 @@ var strand;
             this.rab = _rab;
             this.lat = _lat;
             this.lab = _lab;
+            this.rlt = _rlt;
+            this.rlb = _rlb;
+            this.llt = _llt;
+            this.llb = _llb;
         }
         move() {
             if (this.hairColor == "firebrick") {
                 this.mox = 200 + Math.sin(strand.i / 80) * 300;
                 this.moy = -70 + 150 * Math.sin(strand.i / 40) * 0.6;
                 this.mor = Math.sin(strand.i / 40) * 0.2;
+                switch (this.action) {
+                    case ACTION.NOBURN:
+                        this.bodyColor = "#FFD2D7";
+                        break;
+                    case ACTION.BURN:
+                        this.bodyColor = "#FF6050";
+                        break;
+                }
             }
             if (this.hairColor == "#FABE0F") {
                 this.mox = -300 + Math.sin(strand.i / 40) * 150;
                 this.moy = -200 + 150 * Math.sin(strand.i / 20) * -0.4;
+                switch (this.action) {
+                    case ACTION.NOBURN:
+                        this.bodyColor = "#C87D5A";
+                        break;
+                    case ACTION.BURN:
+                        this.bodyColor = "#FF5050";
+                        break;
+                }
             }
-            else {
-                this.rat = 1.6 + Math.sin(strand.i / 30) * 0.5;
-                this.rab = 0.5 + Math.sin(strand.i / 30) * 0.5;
+            if (this.hairColor == "#232323") {
+                switch (this.action) {
+                    case ACTION.WAIT:
+                        this.moy = -400;
+                        this.mox = -100;
+                        this.rat = 1.6 + Math.sin(strand.i / 30) * 0.5;
+                        this.rab = 0.5 + Math.sin(strand.i / 30) * 0.5;
+                        break;
+                    case ACTION.WALKWATER:
+                        this.ismoving = true;
+                        this.llt = Math.sin(strand.i) * -0.2;
+                        this.llb = Math.sin(strand.i) * -0.2;
+                        this.rlt = Math.sin(strand.i) * 0.2;
+                        this.rlb = Math.sin(strand.i) * 0.2;
+                        if (this.mox < 200) {
+                            this.mox = this.mox + 2;
+                        }
+                        if (this.moy < -100) {
+                            this.moy = this.moy + 1.5;
+                        }
+                        if (this.mosX > 0.4 && this.mosY > 0.4) {
+                            this.mosX = this.mosX - 0.0015;
+                            this.mosY = this.mosY - 0.0015;
+                        }
+                        else {
+                            this.llt = 0;
+                            this.llb = 0;
+                            this.rlt = 0;
+                            this.rlb = 0;
+                            this.ismoving = false;
+                        }
+                        break;
+                    case ACTION.WALKLAND:
+                        this.ismoving = true;
+                        this.llt = Math.sin(strand.i) * -0.2;
+                        this.llb = Math.sin(strand.i) * -0.2;
+                        this.rlt = Math.sin(strand.i) * 0.2;
+                        this.rlb = Math.sin(strand.i) * 0.2;
+                        this.mor = 0;
+                        if (this.mox > -100) {
+                            this.mox = this.mox - 2;
+                        }
+                        if (this.moy > -400) {
+                            this.moy = this.moy - 1.5;
+                        }
+                        if (this.mosX < 0.7 && this.mosY < 0.7) {
+                            this.mosX = this.mosX + 0.0015;
+                            this.mosY = this.mosY + 0.0015;
+                        }
+                        else {
+                            this.llt = 0;
+                            this.llb = 0;
+                            this.rlt = 0;
+                            this.rlb = 0;
+                            this.ismoving = false;
+                        }
+                        break;
+                    case ACTION.SWIM:
+                        this.mor = -1.6 + Math.sin(strand.i / 10) * 0.2;
+                        this.lat = -2 + Math.sin(strand.i / 2) * -0.3;
+                        this.lab = Math.sin(strand.i / 2) * 0.3;
+                        this.rat = 2 + Math.sin(strand.i / 2) * 0.3;
+                        this.rab = Math.sin(strand.i / 2) * -0.3;
+                        this.rlt = 0.3 + Math.sin(strand.i / 2) * 0.3;
+                        this.llt = -0.3 + Math.sin(strand.i / 2) * 0.3;
+                        break;
+                }
             }
         }
         draw() {
@@ -92,16 +186,16 @@ var strand;
             strand.ctx.restore();
             strand.ctx.restore();
             //Right Leg
-            drawBodyPart(55, 0, 0, 1, 1, this.bodyColor, 80);
-            drawBodyPart(0, -170, 0, 0.9, 1.2, this.bodyColor, 80);
+            drawBodyPart(55, 0, this.rlt, 1, 1, this.bodyColor, 80);
+            drawBodyPart(0, -170, this.rlb, 0.9, 1.2, this.bodyColor, 80);
             //Right Foot
             drawBodyPart(0, -200, 1.2, 0.5, 0.5, this.bodyColor, 80);
             strand.ctx.restore();
             strand.ctx.restore();
             strand.ctx.restore();
             //Left Leg
-            drawBodyPart(-35, 0, 0, 1, 1, this.bodyColor, 80);
-            drawBodyPart(0, -170, 0, 0.9, 1.2, this.bodyColor, 80);
+            drawBodyPart(-35, 0, this.llt, 1, 1, this.bodyColor, 80);
+            drawBodyPart(0, -170, this.llb, 0.9, 1.2, this.bodyColor, 80);
             //Left Foot
             drawBodyPart(0, -200, 1.2, 0.5, 0.5, this.bodyColor, 80);
             strand.ctx.restore();
@@ -139,24 +233,41 @@ var strand;
             strand.reset();
         }
         interact(_x, _y) {
-            const distanceX = Math.sqrt(((_x - this.mox) * (_x - this.mox)));
-            const distanceY = Math.sqrt(((_y - this.moy) * (_y - this.moy)));
-            if (distanceX < 90 && distanceY < 400) {
-                if (hitboxClickedWomanWalk == false && strand.picked == false) {
-                    this.bodyColor = "#FF6050";
-                    hitboxClickedWomanWalk = true;
-                    strand.picked = true;
-                    console.log("Woman ", distanceX, distanceY);
+            if (this.hairColor == "#FABE0F" && this.setted == false) {
+                this.action = ACTION.NOBURN;
+            }
+            if (this.hairColor == "firebrick" && this.setted == false) {
+                this.action = ACTION.NOBURN;
+            }
+            this.setted = true;
+            if (this.ismoving == false) {
+                let hitboxX = 90;
+                let hitboxY = 600;
+                const distanceX = Math.sqrt(((_x - this.mox) * (_x - this.mox)));
+                const distanceY = Math.sqrt(((_y - this.moy) * (_y - this.moy)));
+                if (Math.abs(this.mor) > 1) {
+                    hitboxX = 600;
+                    hitboxY = 90;
                 }
-                else if (distanceY < 120 && distanceX < 70 && hitboxClickedWomanSwim == false && strand.picked == false) {
-                    this.bodyColor = "#FF7072";
-                    hitboxClickedWomanSwim = true;
-                    strand.picked = true;
-                    console.log("Woman ", distanceX, distanceY);
-                }
-                else if (distanceY < 120 && distanceX < 100 && hitboxClickedWomanSurf == false && strand.picked == false) {
-                    this.bodyColor = "#FF8082";
-                    hitboxClickedWomanSurf = true;
+                if (distanceX < hitboxX * 1.5 * this.mosX && distanceY < hitboxY * 1.5 * this.mosY && strand.picked == false) {
+                    if (this.action == ACTION.SWIM) {
+                        this.action = ACTION.WALKLAND;
+                    }
+                    else if (this.action == ACTION.WALKWATER) {
+                        this.action = ACTION.SWIM;
+                    }
+                    else if (this.action == ACTION.WALKLAND) {
+                        this.action = ACTION.WAIT;
+                    }
+                    else if (this.action == ACTION.WAIT) {
+                        this.action = ACTION.WALKWATER;
+                    }
+                    else if (this.action == ACTION.NOBURN) {
+                        this.action = ACTION.BURN;
+                    }
+                    else if (this.action == ACTION.BURN) {
+                        this.action = ACTION.NOBURN;
+                    }
                     strand.picked = true;
                     console.log("Woman ", distanceX, distanceY);
                 }

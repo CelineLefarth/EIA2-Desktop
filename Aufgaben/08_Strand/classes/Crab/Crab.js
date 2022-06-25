@@ -1,32 +1,23 @@
 var strand;
 (function (strand) {
-    strand.redCrabSpeed = 80;
-    strand.greenCrabSpeed = 80;
-    strand.sunRotation = 1;
-    let hitboxClickedGreenCrab = false;
-    let hitboxClickedRedCrab = false;
-    let hitboxClickedSunCrab = false;
     class Crab extends strand.BeachObject {
+        speed;
         mmox;
         color;
         color2;
         crabShake;
         type;
-        constructor(_mox, _moy, _mor, _mosX, _mosY, _color, _color2, _crabShake, _type) {
+        constructor(_mox, _moy, _mor, _mosX, _mosY, _color, _color2, _crabShake, _type, _speed) {
             super(_mox, _moy, _mor, _mosX, _mosY);
             this.mmox = _mox;
             this.color = _color;
             this.color2 = _color2;
             this.crabShake = _crabShake;
             this.type = _type;
+            this.speed = _speed;
         }
         move() {
-            if (this.type == "green") {
-                this.mox = this.mmox + Math.cos(strand.i / 10) * strand.greenCrabSpeed;
-            }
-            if (this.type == "red") {
-                this.mox = this.mmox + Math.cos(strand.i / 10) * strand.redCrabSpeed;
-            }
+            this.mox = this.mmox + Math.cos(strand.i / 10) * this.speed;
             this.crabShake = strand.i;
         }
         draw() {
@@ -108,24 +99,10 @@ var strand;
         interact(_x, _y) {
             const distanceX = Math.sqrt(((_x - this.mox) * (_x - this.mox)));
             const distanceY = Math.sqrt(((_y - this.moy) * (_y - this.moy)));
-            if (distanceX < 100 && distanceY < 100) {
-                if (hitboxClickedGreenCrab == false && strand.picked == false) {
-                    console.log("Crabby ", distanceX, distanceY);
-                    strand.greenCrabSpeed = 190;
-                    hitboxClickedGreenCrab = true;
-                    strand.picked = true;
-                }
-                if (hitboxClickedRedCrab == false && strand.picked == false) {
-                    console.log("Crabby ", distanceX, distanceY);
-                    strand.redCrabSpeed = 150;
-                    hitboxClickedRedCrab = true;
-                    strand.picked = true;
-                }
-                if (hitboxClickedSunCrab == false && strand.picked == false) {
-                    strand.sunRotation = 50;
-                    hitboxClickedSunCrab = true;
-                    strand.picked = true;
-                }
+            if (distanceX < 100 && distanceY < 100 && strand.picked == false) {
+                console.log("Crabby ", distanceX, distanceY);
+                this.speed = this.speed + 200;
+                strand.picked = true;
             }
         }
     }

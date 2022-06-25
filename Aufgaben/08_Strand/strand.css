@@ -40,3 +40,9 @@ span:hover{
     background-color: slategray;
     border-color: rgb(73, 87, 102);
 }
+p{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: xx-large;
+}

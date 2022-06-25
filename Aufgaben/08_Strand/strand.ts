@@ -4,7 +4,7 @@ namespace strand {
     let animation: HTMLElement;
     let canvas: HTMLCanvasElement;
     let container: HTMLElement;
-    let beachObjects: BeachObject[] = [];
+    export let beachObjects: BeachObject[] = [];
     let currentHitbox: number = 0;
     export let ctx: CanvasRenderingContext2D;
     export let cw: number;
@@ -44,32 +44,32 @@ namespace strand {
         canvas.addEventListener("click", (e) => { wantToClickOnHitbox(e); });
         beachObjects = [];
         beachObjects.push(new Sun(-700, 0, 0, 0, 0, "#FABE0F"));
-        beachObjects.push(new Cloud(0, 200, 1, 0.7, 0.7, color));
-        beachObjects.push(new Cloud(100, 250, 0, 1, 1, color));
-        beachObjects.push(new Cloud(400, 400, 0, 0.5, 0.5, color));
-        beachObjects.push(new Cloud(-300, 380, 3.2, 0.3, 0.3, color));
-        beachObjects.push(new Cloud(-400, 400, 0, 0.5, 0.5, color));
+        //beachObjects.push(new Cloud(0, 200, 1, 0.7, 0.7, "#F5F5FF"));
+        beachObjects.push(new Cloud(100, 250, 0, 1, 1, "#F5F5FF"));
+        beachObjects.push(new Cloud(400, 400, 0, 0.5, 0.5, "#F5F5FF"));
+        //beachObjects.push(new Cloud(-300, 380, 3.2, 0.3, 0.3, "#F5F5FF"));
+        beachObjects.push(new Cloud(-400, 400, 0, 0.5, 0.5, "#F5F5FF"));
         beachObjects.push(new Ship(600, -50, 0, 2, 2, "brown", "#232323", "#E1E6E6", "#E19B3C"));
         beachObjects.push(new SurfBoard(200, -150, -1.6, 0.7, 1.5));
-        beachObjects.push(new Woman(200, -70, 0, 0.2, 0.2, surferWomanColor, "#506E00", "firebrick", 1, 1, -1, -1));
-        beachObjects.push(new Woman(-300, -200, 0, 0.3, 0.3, swimmerWomanColor, "#E1E6E6", "#FABE0F", 0.5, 0.3, -0.4, -0.2));
+        beachObjects.push(new Woman(200, -70, 0, 0.2, 0.2, "#FFD2D7", "#506E00", "firebrick", 1, 1, -1, -1));
+        beachObjects.push(new Woman(-300, -200, 0, 0.3, 0.3, "#C87D5A", "#E1E6E6", "#FABE0F", 0.5, 0.3, -0.4, -0.2));
         beachObjects.push(new Ring(-300, -230, 0, 0.7, 0.7));
         beachObjects.push(new SandDune(-(cw / 2), -400 + 150, 0, 4, 2, "#F5D78C"));
-        beachObjects.push(new Woman(-300, -560, 1, 0.4, 0.6, "#EBC369", "#EBC369", "#EBC369", 1.6, 0.5, -0.2, 0));
+        //beachObjects.push(new Woman(-300, -560, 1, 0.4, 0.6, "#EBC369", "#EBC369", "#EBC369", 1.6, 0.5, -0.2, 0));
         beachObjects.push(new Palm((cw / 2), -(ch / 2), 1.3, 1, 1.5, "#EBC369", "#EBC369", i));
         beachObjects.push(new Palm(-(cw / 2), -(ch / 2), -1.3, 1, 1.5, "#EBC369", "#EBC369", i));
-        beachObjects.push(new Crab(-200, -250, 0.2, 1, 0.5, "rgba(0,0,0,0.3)", "rgba(0,0,0,0.3)", i, "green"));
-        beachObjects.push(new Crab(150, -350, 0.2, 0.8, 0.4, "rgba(0,0,0,0.3)", "rgba(0,0,0,0.3)", i, "red"));
+        //beachObjects.push(new Crab(-200, -250, 0.2, 1, 0.5, "rgba(0,0,0,0.3)", "rgba(0,0,0,0.3)", i, "green", 80));
+        //beachObjects.push(new Crab(150, -350, 0.2, 0.8, 0.4, "rgba(0,0,0,0.3)", "rgba(0,0,0,0.3)", i, "red", 80));
         beachObjects.push(new Towel(-22, -636, 0, 3, 4, "rgba(0,0,0,0.1)"));
         beachObjects.push(new Towel(-26, -632, 0, 3, 4, "rgba(0,0,0,0.1)"));
         beachObjects.push(new Towel(-20, -640, 0, 3, 4, "rgba(255,100,0,0.5)"));
-        beachObjects.push(new Crab(-200, -250, 0, 1, 1, "olivedrab", "olive", i, "green"));
-        beachObjects.push(new Crab(150, -350, 0, 0.8, 0.8, "tomato", "crimson", i, "red"));
+        beachObjects.push(new Crab(-200, -250, 0, 1, 1, "olivedrab", "olive", i, "green", 80));
+        beachObjects.push(new Crab(50, -350, 0, 0.8, 0.8, "tomato", "crimson", i, "red", 80));
         beachObjects.push(new Palm(-(cw / 2), -(ch / 2), 0, 4, 4.5, "#733223", "#506E00", i));
         beachObjects.push(new Palm(-(cw / 2), -(ch / 2), 0, 4, 4.5, "rgba(0,0,0,0.3)", "rgba(0,0,0,0.3)", i));
         beachObjects.push(new Palm((cw / 2), -(ch / 2), 0, 3, 4.5, "#733223", "#506E00", i));
         beachObjects.push(new Palm((cw / 2), -(ch / 2), 0, 3, 4.5, "rgba(0,0,0,0.3)", "rgba(0,0,0,0.3)", i));
-        beachObjects.push(new Woman(-100, -400, 0, 0.7, 0.7, walkerWomanColor, "#C81E23", "#232323", 1.6, 0.5, -0.2, 0));
+        beachObjects.push(new Woman(-100, -400, 0, 0.7, 0.7, "#FFAAA5", "#C81E23", "#232323", 1.6, 0.5, -0.2, 0, 0, 0, 0, 0));
 
         startDrawing();
     }
@@ -80,6 +80,13 @@ namespace strand {
         mouseX = _e.clientX - rect.left - (cw / 2);             //Wie man die Mouse-Position auf dem Canvas bekommt habe ich hier her: https://stackoverflow.com/a/17130415
         mouseY = -1 * (_e.clientY - rect.top) + (ch / 2);       //<----//
         console.log(mouseX, mouseY);
+
+        currentHitbox = 0;
+        for (let beachObject: number = beachObjects.length - 1; beachObject >= 0; beachObject--) {
+        beachObjects[beachObject].interact(mouseX, mouseY);
+        currentHitbox++;
+        }
+
          }
 
     function startDrawing(): void {
@@ -89,12 +96,9 @@ namespace strand {
         Background.draw();
         Wave.draw(i);
         reset();
-        currentHitbox = 0;
         for (let beachObject of beachObjects) {
-        beachObject.interact(mouseX, mouseY);
         beachObject.draw();
         beachObject.move();
-        currentHitbox++;
         }
         
         //Brightness

@@ -1,9 +1,5 @@
 var strand;
 (function (strand) {
-    strand.color = "#F5F5FF";
-    let hitboxClickedCloudOne = false;
-    let hitboxClickedCloudTwo = false;
-    let hitboxClickedCloudThree = false;
     class Cloud extends strand.BeachObject {
         mmox;
         color;
@@ -56,24 +52,14 @@ var strand;
         interact(_x, _y) {
             const distanceX = Math.sqrt(((_x - this.mox) * (_x - this.mox)));
             const distanceY = Math.sqrt(((_y - this.moy) * (_y - this.moy)));
-            if (distanceX < 250 && distanceY < 150) {
-                if (hitboxClickedCloudOne == false && strand.picked == false) {
-                    hitboxClickedCloudOne = true;
-                    strand.picked = true;
-                    console.log("Cloud", distanceX, distanceY);
+            if (distanceX < 250 * this.mosX && distanceY < 150 * this.mosY && strand.picked == false) {
+                strand.picked = true;
+                console.log("Cloud", distanceX, distanceY);
+                if (this.color == "#333") {
+                    this.color = "#F5F5FF";
+                }
+                else {
                     this.color = "#333";
-                }
-                else if (distanceY < 100 && distanceX < 70 && hitboxClickedCloudTwo == false && strand.picked == false) {
-                    hitboxClickedCloudTwo = true;
-                    strand.picked = true;
-                    console.log("Cloud ", distanceX, distanceY);
-                    this.color = "#444";
-                }
-                else if (distanceY < 100 && distanceX < 70 && hitboxClickedCloudThree == false && strand.picked == false) {
-                    hitboxClickedCloudThree = true;
-                    strand.picked = true;
-                    console.log("Cloud ", distanceX, distanceY);
-                    this.color = "#555";
                 }
             }
         }

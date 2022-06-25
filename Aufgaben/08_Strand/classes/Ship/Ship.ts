@@ -1,10 +1,5 @@
 namespace strand {
 
-    export let titanicTurn: number = 0;
-    export let titanicDirection: number = 1;
-    export let titanicDrag: number = 0;
-    let hitboxClicked: boolean = false;
-
     export class Ship extends BeachObject {
         color: string;
         color2: string;
@@ -85,21 +80,17 @@ namespace strand {
         
         move(): void {
             this.mox = 1.5 * i + 600;
-            this.moy = -50 + i * titanicDrag;
-            this.mor = Math.sin(i / 50) * 0.05 + titanicTurn;
+            this.mor = Math.sin(i / 50) * 0.05 + 0;
         }
 
         interact(_x: number, _y: number): void {
 
             const distanceX: number = Math.sqrt(((_x - this.mox) * (_x - this.mox)));
             const distanceY: number = Math.sqrt(((_y - this.moy) * (_y - this.moy)));
-            if (distanceX < 500 && distanceY < 150 && hitboxClicked == false && picked == false) {
+            if (distanceX < 50 * this.mosX && distanceY < 150 && picked == false) {
             console.log("Schiff", distanceX, distanceY);
-            hitboxClicked = true;
             picked = true;
-            titanicDirection = 0;
-            titanicTurn = 1.6;
-            titanicDrag = 2;
+            alert("Hier gibt es keine Eisberge");
             }
         }
 

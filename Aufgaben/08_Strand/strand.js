@@ -4,7 +4,7 @@ var strand;
     let animation;
     let canvas;
     let container;
-    let beachObjects = [];
+    strand.beachObjects = [];
     let currentHitbox = 0;
     strand.picked = false;
     //Laufvariabel für die Animationen
@@ -33,34 +33,34 @@ var strand;
         animation.addEventListener("click", startAnimation);
         document.querySelector("main").appendChild(animation);
         canvas.addEventListener("click", (e) => { wantToClickOnHitbox(e); });
-        beachObjects = [];
-        beachObjects.push(new strand.Sun(-700, 0, 0, 0, 0, "#FABE0F"));
-        beachObjects.push(new strand.Cloud(0, 200, 1, 0.7, 0.7, strand.color));
-        beachObjects.push(new strand.Cloud(100, 250, 0, 1, 1, strand.color));
-        beachObjects.push(new strand.Cloud(400, 400, 0, 0.5, 0.5, strand.color));
-        beachObjects.push(new strand.Cloud(-300, 380, 3.2, 0.3, 0.3, strand.color));
-        beachObjects.push(new strand.Cloud(-400, 400, 0, 0.5, 0.5, strand.color));
-        beachObjects.push(new strand.Ship(600, -50, 0, 2, 2, "brown", "#232323", "#E1E6E6", "#E19B3C"));
-        beachObjects.push(new strand.SurfBoard(200, -150, -1.6, 0.7, 1.5));
-        beachObjects.push(new strand.Woman(200, -70, 0, 0.2, 0.2, strand.surferWomanColor, "#506E00", "firebrick", 1, 1, -1, -1));
-        beachObjects.push(new strand.Woman(-300, -200, 0, 0.3, 0.3, strand.swimmerWomanColor, "#E1E6E6", "#FABE0F", 0.5, 0.3, -0.4, -0.2));
-        beachObjects.push(new strand.Ring(-300, -230, 0, 0.7, 0.7));
-        beachObjects.push(new strand.SandDune(-(strand.cw / 2), -400 + 150, 0, 4, 2, "#F5D78C"));
-        beachObjects.push(new strand.Woman(-300, -560, 1, 0.4, 0.6, "#EBC369", "#EBC369", "#EBC369", 1.6, 0.5, -0.2, 0));
-        beachObjects.push(new strand.Palm((strand.cw / 2), -(strand.ch / 2), 1.3, 1, 1.5, "#EBC369", "#EBC369", strand.i));
-        beachObjects.push(new strand.Palm(-(strand.cw / 2), -(strand.ch / 2), -1.3, 1, 1.5, "#EBC369", "#EBC369", strand.i));
-        beachObjects.push(new strand.Crab(-200, -250, 0.2, 1, 0.5, "rgba(0,0,0,0.3)", "rgba(0,0,0,0.3)", strand.i, "green"));
-        beachObjects.push(new strand.Crab(150, -350, 0.2, 0.8, 0.4, "rgba(0,0,0,0.3)", "rgba(0,0,0,0.3)", strand.i, "red"));
-        beachObjects.push(new strand.Towel(-22, -636, 0, 3, 4, "rgba(0,0,0,0.1)"));
-        beachObjects.push(new strand.Towel(-26, -632, 0, 3, 4, "rgba(0,0,0,0.1)"));
-        beachObjects.push(new strand.Towel(-20, -640, 0, 3, 4, "rgba(255,100,0,0.5)"));
-        beachObjects.push(new strand.Crab(-200, -250, 0, 1, 1, "olivedrab", "olive", strand.i, "green"));
-        beachObjects.push(new strand.Crab(150, -350, 0, 0.8, 0.8, "tomato", "crimson", strand.i, "red"));
-        beachObjects.push(new strand.Palm(-(strand.cw / 2), -(strand.ch / 2), 0, 4, 4.5, "#733223", "#506E00", strand.i));
-        beachObjects.push(new strand.Palm(-(strand.cw / 2), -(strand.ch / 2), 0, 4, 4.5, "rgba(0,0,0,0.3)", "rgba(0,0,0,0.3)", strand.i));
-        beachObjects.push(new strand.Palm((strand.cw / 2), -(strand.ch / 2), 0, 3, 4.5, "#733223", "#506E00", strand.i));
-        beachObjects.push(new strand.Palm((strand.cw / 2), -(strand.ch / 2), 0, 3, 4.5, "rgba(0,0,0,0.3)", "rgba(0,0,0,0.3)", strand.i));
-        beachObjects.push(new strand.Woman(-100, -400, 0, 0.7, 0.7, strand.walkerWomanColor, "#C81E23", "#232323", 1.6, 0.5, -0.2, 0));
+        strand.beachObjects = [];
+        strand.beachObjects.push(new strand.Sun(-700, 0, 0, 0, 0, "#FABE0F"));
+        //beachObjects.push(new Cloud(0, 200, 1, 0.7, 0.7, "#F5F5FF"));
+        strand.beachObjects.push(new strand.Cloud(100, 250, 0, 1, 1, "#F5F5FF"));
+        strand.beachObjects.push(new strand.Cloud(400, 400, 0, 0.5, 0.5, "#F5F5FF"));
+        //beachObjects.push(new Cloud(-300, 380, 3.2, 0.3, 0.3, "#F5F5FF"));
+        strand.beachObjects.push(new strand.Cloud(-400, 400, 0, 0.5, 0.5, "#F5F5FF"));
+        strand.beachObjects.push(new strand.Ship(600, -50, 0, 2, 2, "brown", "#232323", "#E1E6E6", "#E19B3C"));
+        strand.beachObjects.push(new strand.SurfBoard(200, -150, -1.6, 0.7, 1.5));
+        strand.beachObjects.push(new strand.Woman(200, -70, 0, 0.2, 0.2, "#FFD2D7", "#506E00", "firebrick", 1, 1, -1, -1));
+        strand.beachObjects.push(new strand.Woman(-300, -200, 0, 0.3, 0.3, "#C87D5A", "#E1E6E6", "#FABE0F", 0.5, 0.3, -0.4, -0.2));
+        strand.beachObjects.push(new strand.Ring(-300, -230, 0, 0.7, 0.7));
+        strand.beachObjects.push(new strand.SandDune(-(strand.cw / 2), -400 + 150, 0, 4, 2, "#F5D78C"));
+        //beachObjects.push(new Woman(-300, -560, 1, 0.4, 0.6, "#EBC369", "#EBC369", "#EBC369", 1.6, 0.5, -0.2, 0));
+        strand.beachObjects.push(new strand.Palm((strand.cw / 2), -(strand.ch / 2), 1.3, 1, 1.5, "#EBC369", "#EBC369", strand.i));
+        strand.beachObjects.push(new strand.Palm(-(strand.cw / 2), -(strand.ch / 2), -1.3, 1, 1.5, "#EBC369", "#EBC369", strand.i));
+        //beachObjects.push(new Crab(-200, -250, 0.2, 1, 0.5, "rgba(0,0,0,0.3)", "rgba(0,0,0,0.3)", i, "green", 80));
+        //beachObjects.push(new Crab(150, -350, 0.2, 0.8, 0.4, "rgba(0,0,0,0.3)", "rgba(0,0,0,0.3)", i, "red", 80));
+        strand.beachObjects.push(new strand.Towel(-22, -636, 0, 3, 4, "rgba(0,0,0,0.1)"));
+        strand.beachObjects.push(new strand.Towel(-26, -632, 0, 3, 4, "rgba(0,0,0,0.1)"));
+        strand.beachObjects.push(new strand.Towel(-20, -640, 0, 3, 4, "rgba(255,100,0,0.5)"));
+        strand.beachObjects.push(new strand.Crab(-200, -250, 0, 1, 1, "olivedrab", "olive", strand.i, "green", 80));
+        strand.beachObjects.push(new strand.Crab(50, -350, 0, 0.8, 0.8, "tomato", "crimson", strand.i, "red", 80));
+        strand.beachObjects.push(new strand.Palm(-(strand.cw / 2), -(strand.ch / 2), 0, 4, 4.5, "#733223", "#506E00", strand.i));
+        strand.beachObjects.push(new strand.Palm(-(strand.cw / 2), -(strand.ch / 2), 0, 4, 4.5, "rgba(0,0,0,0.3)", "rgba(0,0,0,0.3)", strand.i));
+        strand.beachObjects.push(new strand.Palm((strand.cw / 2), -(strand.ch / 2), 0, 3, 4.5, "#733223", "#506E00", strand.i));
+        strand.beachObjects.push(new strand.Palm((strand.cw / 2), -(strand.ch / 2), 0, 3, 4.5, "rgba(0,0,0,0.3)", "rgba(0,0,0,0.3)", strand.i));
+        strand.beachObjects.push(new strand.Woman(-100, -400, 0, 0.7, 0.7, "#FFAAA5", "#C81E23", "#232323", 1.6, 0.5, -0.2, 0, 0, 0, 0, 0));
         startDrawing();
     }
     function wantToClickOnHitbox(_e) {
@@ -69,6 +69,11 @@ var strand;
         strand.mouseX = _e.clientX - rect.left - (strand.cw / 2); //Wie man die Mouse-Position auf dem Canvas bekommt habe ich hier her: https://stackoverflow.com/a/17130415
         strand.mouseY = -1 * (_e.clientY - rect.top) + (strand.ch / 2); //<----//
         console.log(strand.mouseX, strand.mouseY);
+        currentHitbox = 0;
+        for (let beachObject = strand.beachObjects.length - 1; beachObject >= 0; beachObject--) {
+            strand.beachObjects[beachObject].interact(strand.mouseX, strand.mouseY);
+            currentHitbox++;
+        }
     }
     function startDrawing() {
         strand.ctx.resetTransform();
@@ -77,12 +82,9 @@ var strand;
         strand.Background.draw();
         strand.Wave.draw(strand.i);
         reset();
-        currentHitbox = 0;
-        for (let beachObject of beachObjects) {
-            beachObject.interact(strand.mouseX, strand.mouseY);
+        for (let beachObject of strand.beachObjects) {
             beachObject.draw();
             beachObject.move();
-            currentHitbox++;
         }
         //Brightness
         //Der Tag resettet sich "wenn es zu dunkel ist". So Wird auch das Schifff und die Sonne Resettet

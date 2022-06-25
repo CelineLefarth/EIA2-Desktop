@@ -1,9 +1,5 @@
 var strand;
 (function (strand) {
-    strand.titanicTurn = 0;
-    strand.titanicDirection = 1;
-    strand.titanicDrag = 0;
-    let hitboxClicked = false;
     class Ship extends strand.BeachObject {
         color;
         color2;
@@ -76,19 +72,15 @@ var strand;
         }
         move() {
             this.mox = 1.5 * strand.i + 600;
-            this.moy = -50 + strand.i * strand.titanicDrag;
-            this.mor = Math.sin(strand.i / 50) * 0.05 + strand.titanicTurn;
+            this.mor = Math.sin(strand.i / 50) * 0.05 + 0;
         }
         interact(_x, _y) {
             const distanceX = Math.sqrt(((_x - this.mox) * (_x - this.mox)));
             const distanceY = Math.sqrt(((_y - this.moy) * (_y - this.moy)));
-            if (distanceX < 500 && distanceY < 150 && hitboxClicked == false && strand.picked == false) {
+            if (distanceX < 50 * this.mosX && distanceY < 150 && strand.picked == false) {
                 console.log("Schiff", distanceX, distanceY);
-                hitboxClicked = true;
                 strand.picked = true;
-                strand.titanicDirection = 0;
-                strand.titanicTurn = 1.6;
-                strand.titanicDrag = 2;
+                alert("Hier gibt es keine Eisberge");
             }
         }
     }

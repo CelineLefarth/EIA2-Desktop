@@ -1,10 +1,5 @@
 namespace strand {
 
-    export let color: string = "#F5F5FF";
-    let hitboxClickedCloudOne: boolean = false;
-    let hitboxClickedCloudTwo: boolean = false;
-    let hitboxClickedCloudThree: boolean = false;
-
     export class Cloud extends BeachObject {
 
         mmox: number;
@@ -66,25 +61,15 @@ namespace strand {
 
             const distanceX: number = Math.sqrt(((_x - this.mox) * (_x - this.mox)));
             const distanceY: number = Math.sqrt(((_y - this.moy) * (_y - this.moy)));
-            if (distanceX < 250 && distanceY < 150) {
-            if (hitboxClickedCloudOne == false && picked == false) {
-                hitboxClickedCloudOne = true;
+            if (distanceX < 250 * this.mosX && distanceY < 150 * this.mosY && picked == false) {
                 picked = true;
                 console.log("Cloud", distanceX, distanceY);
+                if (this.color == "#333") {
+                this.color = "#F5F5FF";
+                }
+                else {
                 this.color = "#333";
-            }
-            else if (distanceY < 100 && distanceX < 70 && hitboxClickedCloudTwo == false && picked == false) {
-                hitboxClickedCloudTwo = true;
-                picked = true;
-                console.log("Cloud ", distanceX, distanceY);
-                this.color = "#444";
-            }
-            else if (distanceY < 100 && distanceX < 70 && hitboxClickedCloudThree == false && picked == false) {
-                hitboxClickedCloudThree = true;
-                picked = true;
-                console.log("Cloud ", distanceX, distanceY);
-                this.color = "#555";
-            }
+                }
             }
         }
     }

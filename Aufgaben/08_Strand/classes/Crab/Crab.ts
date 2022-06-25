@@ -1,38 +1,29 @@
 namespace strand {
 
-    export let redCrabSpeed: number = 80;
-    export let greenCrabSpeed: number = 80;
-    export let sunRotation: number = 1;
-    let hitboxClickedGreenCrab: boolean = false;
-    let hitboxClickedRedCrab: boolean = false;
-    let hitboxClickedSunCrab: boolean = false;
-
     export class Crab extends BeachObject {
 
+        speed: number;
         mmox: number;
         color: string;
         color2: string;
         crabShake: number;
         type: string;
 
-        constructor(_mox: number, _moy: number, _mor?: number, _mosX?: number, _mosY?: number, _color?: string, _color2?: string, _crabShake?: number, _type?: string) {
+        constructor(_mox: number, _moy: number, _mor?: number, _mosX?: number, _mosY?: number, _color?: string, _color2?: string, _crabShake?: number, _type?: string, _speed?: number) {
             super(_mox, _moy, _mor, _mosX, _mosY);
             this.mmox = _mox;
             this.color = _color;
             this.color2 = _color2;
             this.crabShake = _crabShake;
             this.type = _type;
+            this.speed = _speed;
         }
 
         move(): void {
-            if (this.type == "green") {
-                this.mox = this.mmox + Math.cos(i / 10) * greenCrabSpeed;
-                }
-            if (this.type == "red") {
-                this.mox = this.mmox + Math.cos(i / 10) * redCrabSpeed;
-                }
+            this.mox = this.mmox + Math.cos(i / 10) * this.speed; 
             this.crabShake = i;
         }
+        
 
         draw(): void {
             ctx.translate(this.mox, this.moy);
@@ -125,24 +116,10 @@ namespace strand {
 
             const distanceX: number = Math.sqrt(((_x - this.mox) * (_x - this.mox)));
             const distanceY: number = Math.sqrt(((_y - this.moy) * (_y - this.moy)));
-            if (distanceX < 100 && distanceY < 100) {
-            if (hitboxClickedGreenCrab == false && picked == false) {
+            if (distanceX < 100 && distanceY < 100 && picked == false) {
             console.log("Crabby ", distanceX, distanceY);
-            greenCrabSpeed = 190;
-            hitboxClickedGreenCrab = true;
+            this.speed = this.speed + 200;
             picked = true;
-            }
-            if (hitboxClickedRedCrab == false && picked == false) {
-                console.log("Crabby ", distanceX, distanceY);
-                redCrabSpeed = 150;
-                hitboxClickedRedCrab = true;
-                picked = true;
-            }
-            if (hitboxClickedSunCrab == false && picked == false) {
-                sunRotation = 50;
-                hitboxClickedSunCrab = true;
-                picked = true;
-            }
             }
         }
 
