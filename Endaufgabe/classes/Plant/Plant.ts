@@ -18,34 +18,38 @@ namespace GGSim {
             //
         }
 
-        playerUpdate(_action: ACTION): void {
-            if (_action == ACTION.WATER) {
+        playerUpdate(): void {
+            if (Player.action == ACTION.WATER) {
                 this.waterLevel ++;
+                console.log("you waterd");
             }
-            else if (_action == ACTION.FERTILIZE) {
+            else if (Player.action == ACTION.FERTILIZE) {
                 if (player.fertilizer > 0) {
                 this.fertilizeLevel ++;
                 player.fertilizer --;
+                console.log("you fertilized");
+                
                 }
                 else {
                     console.log("you have no fertilizer to fertilize me, buy some in the shop");
                 }
             }
-            else if (_action == ACTION.PESTICIDE) {
+            else if (Player.action == ACTION.PESTICIDE) {
                 if (player.pesticides > 0) {
                 this.pesticideAmount --;
                 player.pesticides --;
+                console.log("you pesticided");
                 }
                 else {
                     console.log("you have no pesticides to pesticide me, buy some in the shop");
                 }
             }
-            else if (_action == ACTION.HARVEST) {
+            else if (Player.action == ACTION.HARVEST) {
                 console.log("harvested plant need to add wich type and amount of money");
                 plants.splice(1, 1);
                 player.money ++;
             }
-            else if (_action == ACTION.PLANT) {
+            else if (Player.action == ACTION.PLANT) {
                 console.log("you need to click an empty field");
             }
         }

@@ -15,34 +15,37 @@ var GGSim;
         timeUpdate() {
             //
         }
-        playerUpdate(_action) {
-            if (_action == GGSim.ACTION.WATER) {
+        playerUpdate() {
+            if (GGSim.Player.action == GGSim.ACTION.WATER) {
                 this.waterLevel++;
+                console.log("you waterd");
             }
-            else if (_action == GGSim.ACTION.FERTILIZE) {
+            else if (GGSim.Player.action == GGSim.ACTION.FERTILIZE) {
                 if (GGSim.player.fertilizer > 0) {
                     this.fertilizeLevel++;
                     GGSim.player.fertilizer--;
+                    console.log("you fertilized");
                 }
                 else {
                     console.log("you have no fertilizer to fertilize me, buy some in the shop");
                 }
             }
-            else if (_action == GGSim.ACTION.PESTICIDE) {
+            else if (GGSim.Player.action == GGSim.ACTION.PESTICIDE) {
                 if (GGSim.player.pesticides > 0) {
                     this.pesticideAmount--;
                     GGSim.player.pesticides--;
+                    console.log("you pesticided");
                 }
                 else {
                     console.log("you have no pesticides to pesticide me, buy some in the shop");
                 }
             }
-            else if (_action == GGSim.ACTION.HARVEST) {
+            else if (GGSim.Player.action == GGSim.ACTION.HARVEST) {
                 console.log("harvested plant need to add wich type and amount of money");
                 GGSim.plants.splice(1, 1);
                 GGSim.player.money++;
             }
-            else if (_action == GGSim.ACTION.PLANT) {
+            else if (GGSim.Player.action == GGSim.ACTION.PLANT) {
                 console.log("you need to click an empty field");
             }
         }

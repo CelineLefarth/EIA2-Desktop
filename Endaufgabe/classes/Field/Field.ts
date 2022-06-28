@@ -4,6 +4,7 @@ namespace GGSim {
         positionX: number;
         positionY: number;
         empty: boolean = true;
+        plant: Plant;
 
         constructor(_positionX: number, _positionY: number) {
             this.positionX = _positionX * 50;
@@ -13,18 +14,24 @@ namespace GGSim {
         clicked(_x: number, _y: number): void {
             _x = _x - 50;
             _y = _y - 50;
+
             if (_x < this.positionX && _x > this.positionX - 50 && _y < this.positionY && _y > this.positionY - 50) {
                 console.log("Spalte: " + this.positionX / 50, "Zeile: " + this.positionY / 50);
-
+                if (this.empty == true) {
                 console.log(Player.action);
                 if (Player.action == ACTION.PLANT) {
-                if (this.empty == true) {
                     plants.push(new Plant(this.positionX / 50, this.positionY / 50));
+                    this.plant = plants[plants.length - 1];
                     plants[plants.length - 1].draw();
                     this.empty = false;
                     console.log("Plflanze gepflanzt");
                 }
                 }
+                else {
+                    console.log("es wurde auf die Pflanze gedrückt");
+                    this.plant.playerUpdate();
+                }
+
             }
 
         }
