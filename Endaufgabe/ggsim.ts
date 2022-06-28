@@ -72,6 +72,7 @@ function getMousePos(_canvas: HTMLCanvasElement, _evt: MouseEvent): void {
     mouseX = _evt.clientX - rect.left;
     mouseY = _evt.clientY - rect.top;
     console.log(mouseX, mouseY);
+    
     for (let field of fields) {
         field.clicked(mouseX, mouseY);
     }

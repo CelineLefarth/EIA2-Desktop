@@ -9,8 +9,10 @@ var GGSim;
             this.positionY = _positionY * 50;
         }
         clicked(_x, _y) {
-            if (0 < this.positionX / 50 && this.positionX / 50 < 50 && 0 < this.positionY / 50 && this.positionY / 50 < 50) {
-                console.log(this.positionX, this.positionY);
+            _x = _x - 50;
+            _y = _y - 50;
+            if (_x < this.positionX && _x > this.positionX - 50 && _y < this.positionY && _y > this.positionY - 50) {
+                console.log("Spalte: " + this.positionX / 50, "Zeile: " + this.positionY / 50);
             }
         }
         draw() {
