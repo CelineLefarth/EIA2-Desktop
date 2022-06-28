@@ -46,7 +46,7 @@ namespace GGSim {
             }
             else if (Player.action == ACTION.HARVEST) {
                 console.log("harvested plant need to add wich type and amount of money");
-                Player.money ++;
+                Player.money = Player.money + 2;
                 document.getElementById("moneyCount").innerHTML = Player.money + "$";
             }
             else if (Player.action == ACTION.PLANT) {

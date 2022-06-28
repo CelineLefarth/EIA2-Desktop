@@ -2,7 +2,7 @@ var GGSim;
 (function (GGSim) {
     class Player {
         static action;
-        static money = 0;
+        static money = 10;
         fertilizer;
         pesticides;
         seeds;

@@ -42,7 +42,7 @@ var GGSim;
             }
             else if (GGSim.Player.action == GGSim.ACTION.HARVEST) {
                 console.log("harvested plant need to add wich type and amount of money");
-                GGSim.Player.money++;
+                GGSim.Player.money = GGSim.Player.money + 2;
                 document.getElementById("moneyCount").innerHTML = GGSim.Player.money + "$";
             }
             else if (GGSim.Player.action == GGSim.ACTION.PLANT) {

@@ -16,7 +16,6 @@ var GGSim;
             if (_x < this.positionX && _x > this.positionX - 50 && _y < this.positionY && _y > this.positionY - 50) {
                 console.log("Spalte: " + this.positionX / 50, "Zeile: " + this.positionY / 50);
                 if (this.empty == true) {
-                    console.log(GGSim.Player.action);
                     if (GGSim.Player.action == GGSim.ACTION.PLANT) {
                         GGSim.plants.push(new GGSim.Plant(this.positionX / 50, this.positionY / 50));
                         this.plant = GGSim.plants[GGSim.plants.length - 1];
@@ -25,19 +24,14 @@ var GGSim;
                         console.log("Plflanze gepflanzt");
                     }
                 }
+                else if (GGSim.Player.action == GGSim.ACTION.HARVEST) {
+                    this.plant.playerUpdate(this.plant);
+                    GGSim.plants.splice(GGSim.plants.findIndex((e) => e == this.plant), 1);
+                    this.empty = true;
+                    GGSim.Simulation.update();
+                }
                 else {
-                    if (GGSim.Player.action == GGSim.ACTION.HARVEST) {
-                        console.log(GGSim.plants);
-                        this.plant.playerUpdate(this.plant);
-                        GGSim.plants.splice(GGSim.plants.findIndex((e) => e == this.plant));
-                        this.empty = true;
-                        GGSim.Simulation.update();
-                        console.log(GGSim.plants);
-                    }
-                    else {
-                        console.log("es wurde auf die Pflanze gedrückt");
-                        this.plant.playerUpdate(this.plant);
-                    }
+                    this.plant.playerUpdate(this.plant);
                 }
             }
         }

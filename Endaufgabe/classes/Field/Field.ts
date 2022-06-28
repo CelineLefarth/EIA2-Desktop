@@ -18,34 +18,27 @@ namespace GGSim {
             if (_x < this.positionX && _x > this.positionX - 50 && _y < this.positionY && _y > this.positionY - 50) {
                 console.log("Spalte: " + this.positionX / 50, "Zeile: " + this.positionY / 50);
                 if (this.empty == true) {
-                console.log(Player.action);
-                if (Player.action == ACTION.PLANT) {
-                    plants.push(new Plant(this.positionX / 50, this.positionY / 50));
-                    this.plant = plants[plants.length - 1];
-                    plants[plants.length - 1].draw();
-                    this.empty = false;
-                    console.log("Plflanze gepflanzt");
+                    if (Player.action == ACTION.PLANT) {
+                        plants.push(new Plant(this.positionX / 50, this.positionY / 50));
+                        this.plant = plants[plants.length - 1];
+                        plants[plants.length - 1].draw();
+                        this.empty = false;
+                        console.log("Plflanze gepflanzt");
+                    }
                 }
+                else if (Player.action == ACTION.HARVEST) {
+                    this.plant.playerUpdate(this.plant);
+                    plants.splice(plants.findIndex((e) => e == this.plant), 1);
+                    this.empty = true;
+                    Simulation.update();
                 }
                 else {
-                    if (Player.action == ACTION.HARVEST) {
-                        console.log(plants);
-                        this.plant.playerUpdate(this.plant);
-                        plants.splice(plants.findIndex((e) => e == this.plant));
-                        this.empty = true;
-                        Simulation.update();
-                        console.log(plants);
-                        
-                    }
-                    else {
-                    console.log("es wurde auf die Pflanze gedrückt");
                     this.plant.playerUpdate(this.plant);
                 }
-                }
-
             }
 
         }
+
 
         draw(): void {
             ctx.resetTransform();

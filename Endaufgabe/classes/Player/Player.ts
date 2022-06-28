@@ -7,7 +7,7 @@ namespace GGSim {
 
     export class Player {
         static action: ACTION;
-        static money: number = 0;
+        static money: number = 10;
         fertilizer: number;
         pesticides: number;
         seeds: Seed[];
