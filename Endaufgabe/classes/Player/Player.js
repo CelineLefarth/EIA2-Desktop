@@ -1,38 +1,43 @@
 var GGSim;
 (function (GGSim) {
     class Player {
+        static action;
         money;
         fertilizer;
         pesticides;
         seeds;
-        action = GGSim.ACTION.CLICK;
         constructor() {
             //
         }
         fertilize() {
             console.log("fertilize");
-            this.action = GGSim.ACTION.FERTILIZE;
+            Player.action = GGSim.ACTION.FERTILIZE;
             GGSim.currentActionVis.innerHTML = "fertilize";
+            console.log(Player.action);
         }
         water() {
             console.log("water");
-            this.action = GGSim.ACTION.WATER;
+            Player.action = GGSim.ACTION.WATER;
             GGSim.currentActionVis.innerHTML = "water";
+            console.log(Player.action);
         }
         plant() {
             console.log("plant");
-            this.action = GGSim.ACTION.PLANT;
+            Player.action = GGSim.ACTION.PLANT;
             GGSim.currentActionVis.innerHTML = "plant";
+            console.log(Player.action);
         }
         pesticide() {
             console.log("pesticide");
-            this.action = GGSim.ACTION.PESTICIDE;
+            Player.action = GGSim.ACTION.PESTICIDE;
             GGSim.currentActionVis.innerHTML = "pesticide";
+            console.log(Player.action);
         }
         harvest() {
             console.log("harvest");
-            this.action = GGSim.ACTION.HARVEST;
+            Player.action = GGSim.ACTION.HARVEST;
             GGSim.currentActionVis.innerHTML = "harvest";
+            console.log(Player.action);
         }
     }
     GGSim.Player = Player;

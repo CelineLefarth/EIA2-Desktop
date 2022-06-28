@@ -4,6 +4,7 @@ var GGSim;
         time;
         positionX;
         positionY;
+        empty = true;
         constructor(_positionX, _positionY) {
             this.positionX = _positionX * 50;
             this.positionY = _positionY * 50;
@@ -13,6 +14,15 @@ var GGSim;
             _y = _y - 50;
             if (_x < this.positionX && _x > this.positionX - 50 && _y < this.positionY && _y > this.positionY - 50) {
                 console.log("Spalte: " + this.positionX / 50, "Zeile: " + this.positionY / 50);
+                console.log(GGSim.Player.action);
+                if (GGSim.Player.action == GGSim.ACTION.PLANT) {
+                    if (this.empty == true) {
+                        GGSim.plants.push(new GGSim.Plant(this.positionX / 50, this.positionY / 50));
+                        GGSim.plants[GGSim.plants.length - 1].draw();
+                        this.empty = false;
+                        console.log("Plflanze gepflanzt");
+                    }
+                }
             }
         }
         draw() {

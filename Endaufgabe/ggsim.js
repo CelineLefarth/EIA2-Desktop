@@ -25,17 +25,8 @@ var GGSim;
                 GGSim.fields.push(new GGSim.Field(i, j));
             }
         }
-        GGSim.plants.push(new GGSim.Plant(0, 0));
-        GGSim.plants.push(new GGSim.Plant(1, 0));
-        GGSim.plants.push(new GGSim.Plant(2, 0));
-        GGSim.plants.push(new GGSim.Plant(3, 0));
-        GGSim.plants.push(new GGSim.Plant(4, 0));
-        GGSim.plants.push(new GGSim.Plant(5, 0));
         for (let field of GGSim.fields) {
             field.draw();
-        }
-        for (let plant of GGSim.plants) {
-            plant.draw();
         }
         GGSim.currentActionVis = document.getElementById("currentActionVis");
         const fertilizeBtn = document.getElementById("fertilizeBtn");

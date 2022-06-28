@@ -6,11 +6,12 @@ namespace GGSim {
     }
 
     export class Player {
+        static action: ACTION;
         money: number;
         fertilizer: number;
         pesticides: number;
         seeds: Seed[];
-        action: ACTION = ACTION.CLICK;
+        
 
         constructor() {
             //
@@ -18,33 +19,38 @@ namespace GGSim {
 
         fertilize(): void {
             console.log("fertilize");
-            this.action = ACTION.FERTILIZE;
+            Player.action = ACTION.FERTILIZE;
             currentActionVis.innerHTML = "fertilize";
-
+            console.log(Player.action);
+            
         }
 
         water(): void {
             console.log("water");
-            this.action = ACTION.WATER;
+            Player.action = ACTION.WATER;
             currentActionVis.innerHTML = "water";
+            console.log(Player.action);
         }
 
         plant(): void {
             console.log("plant");
-            this.action = ACTION.PLANT;
+            Player.action = ACTION.PLANT;
             currentActionVis.innerHTML = "plant";
+            console.log(Player.action);
         }
 
         pesticide(): void {
             console.log("pesticide");
-            this.action = ACTION.PESTICIDE;
+            Player.action = ACTION.PESTICIDE;
             currentActionVis.innerHTML = "pesticide";
+            console.log(Player.action);
         }
 
         harvest(): void {
             console.log("harvest");
-            this.action = ACTION.HARVEST;
+            Player.action = ACTION.HARVEST;
             currentActionVis.innerHTML = "harvest";
+            console.log(Player.action);
         }
     }
 }

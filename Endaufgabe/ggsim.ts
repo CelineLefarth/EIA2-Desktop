@@ -33,22 +33,13 @@ function handleLoad(): void {
     fields.push(new Field(i, j));
     }
     }
-
-    plants.push(new Plant(0, 0));
-    plants.push(new Plant(1, 0));
-    plants.push(new Plant(2, 0));
-    plants.push(new Plant(3, 0));
-    plants.push(new Plant(4, 0));
-    plants.push(new Plant(5, 0));
  
     for (let field of fields) {
         field.draw();
     }
 
 
-    for (let plant of plants) {
-        plant.draw();
-    }
+
 
     currentActionVis = document.getElementById("currentActionVis");
     const fertilizeBtn: HTMLElement = document.getElementById("fertilizeBtn");
