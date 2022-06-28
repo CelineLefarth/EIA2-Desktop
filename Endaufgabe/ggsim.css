@@ -1,0 +1,31 @@
+
+canvas{
+    background-color: rosybrown;
+}
+body{
+    background-color: black;
+}
+head{
+    background-color:brown;
+}
+main{
+    background-color:teal;
+}
+footer{
+    background-color:tomato;
+}
+#field{
+    background-color: khaki;
+}
+#money{
+    background-color: seagreen;
+}
+#market{
+    background-color:violet
+}
+#buttons{
+    background-color:royalblue
+}
+#hotbar{
+    background-color:slateblue;
+}

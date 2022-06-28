@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GG-Sim</title>
+    <link rel="stylesheet" href="ggsim.css">
+    <script src="classes/Player/Player.js"></script>
+    <script src="classes/Field/Field.js"></script>
+    <script src="classes/Market/Market.js"></script>
+    <script src="classes/Pest/Pest.js"></script>
+    <script src="classes/Plant/Plant.js"></script>
+    <script src="ggsim.js"></script>
+
+</head>
+<body>
+    <head>
+        <div id="market">
+            Market <br>
+            <canvas id="market_canvas"></canvas>
+        </div>
+        
+        <div id="money">
+            Money <br>
+            <span>000$</span>
+        </div>
+        <div id="buttons">
+            Buttons <br>
+            <button>Inventory</button>
+            <button>Shop</button>
+            <button>Settings</button>
+        </div>
+    </head>
+    <main>
+        <div id="field">
+            Field <br>
+            <canvas id="field_canvas"></canvas>
+        </div>
+    </main>
+    <footer>
+        <div id="hotbar">
+            Hotbar <br>
+            <span id="currentActionVis">Action</span>
+            <button id="plantBtn">Plant</button>
+            <button id="fertilizeBtn">Fertalize</button>
+            <button id="waterBtn">Water</button>
+            <button id="pesticideBtn">Pesticide</button>
+            <button id="harvestBtn">Harvest</button>
+        </div>
+    </footer>
+</body>
+</html>
