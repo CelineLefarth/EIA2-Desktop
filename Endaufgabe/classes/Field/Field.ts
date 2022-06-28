@@ -28,8 +28,19 @@ namespace GGSim {
                 }
                 }
                 else {
+                    if (Player.action == ACTION.HARVEST) {
+                        console.log(plants);
+                        this.plant.playerUpdate(this.plant);
+                        plants.splice(plants.findIndex((e) => e == this.plant));
+                        this.empty = true;
+                        Simulation.update();
+                        console.log(plants);
+                        
+                    }
+                    else {
                     console.log("es wurde auf die Pflanze gedrückt");
-                    this.plant.playerUpdate();
+                    this.plant.playerUpdate(this.plant);
+                }
                 }
 
             }
@@ -39,12 +50,13 @@ namespace GGSim {
         draw(): void {
             ctx.resetTransform();
             ctx.translate(this.positionX, this.positionY);
-            ctx.fillStyle = "darkbrown";
+            ctx.fillStyle = "black";
             ctx.fillRect(5, 5, 45, 45);
         }
 
         clearField(): void {
             //
         }
+
     }
 }

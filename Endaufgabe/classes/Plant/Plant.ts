@@ -18,7 +18,7 @@ namespace GGSim {
             //
         }
 
-        playerUpdate(): void {
+        playerUpdate(_plant: Plant): void {
             if (Player.action == ACTION.WATER) {
                 this.waterLevel ++;
                 console.log("you waterd");
@@ -46,8 +46,8 @@ namespace GGSim {
             }
             else if (Player.action == ACTION.HARVEST) {
                 console.log("harvested plant need to add wich type and amount of money");
-                plants.splice(1, 1);
-                player.money ++;
+                Player.money ++;
+                document.getElementById("moneyCount").innerHTML = Player.money + "$";
             }
             else if (Player.action == ACTION.PLANT) {
                 console.log("you need to click an empty field");
@@ -66,8 +66,8 @@ namespace GGSim {
             //
         }
 
-        die(): void {
-            //
+        die(_plant: Plant): void {
+            console.log("die");
         }
 
         draw(): void {

@@ -15,7 +15,7 @@ var GGSim;
         timeUpdate() {
             //
         }
-        playerUpdate() {
+        playerUpdate(_plant) {
             if (GGSim.Player.action == GGSim.ACTION.WATER) {
                 this.waterLevel++;
                 console.log("you waterd");
@@ -42,8 +42,8 @@ var GGSim;
             }
             else if (GGSim.Player.action == GGSim.ACTION.HARVEST) {
                 console.log("harvested plant need to add wich type and amount of money");
-                GGSim.plants.splice(1, 1);
-                GGSim.player.money++;
+                GGSim.Player.money++;
+                document.getElementById("moneyCount").innerHTML = GGSim.Player.money + "$";
             }
             else if (GGSim.Player.action == GGSim.ACTION.PLANT) {
                 console.log("you need to click an empty field");
@@ -58,8 +58,8 @@ var GGSim;
         dry() {
             //
         }
-        die() {
-            //
+        die(_plant) {
+            console.log("die");
         }
         draw() {
             GGSim.ctx.resetTransform();

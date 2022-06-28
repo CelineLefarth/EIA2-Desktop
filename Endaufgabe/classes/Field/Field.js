@@ -26,15 +26,25 @@ var GGSim;
                     }
                 }
                 else {
-                    console.log("es wurde auf die Pflanze gedrückt");
-                    this.plant.playerUpdate();
+                    if (GGSim.Player.action == GGSim.ACTION.HARVEST) {
+                        console.log(GGSim.plants);
+                        this.plant.playerUpdate(this.plant);
+                        GGSim.plants.splice(GGSim.plants.findIndex((e) => e == this.plant));
+                        this.empty = true;
+                        GGSim.Simulation.update();
+                        console.log(GGSim.plants);
+                    }
+                    else {
+                        console.log("es wurde auf die Pflanze gedrückt");
+                        this.plant.playerUpdate(this.plant);
+                    }
                 }
             }
         }
         draw() {
             GGSim.ctx.resetTransform();
             GGSim.ctx.translate(this.positionX, this.positionY);
-            GGSim.ctx.fillStyle = "darkbrown";
+            GGSim.ctx.fillStyle = "black";
             GGSim.ctx.fillRect(5, 5, 45, 45);
         }
         clearField() {

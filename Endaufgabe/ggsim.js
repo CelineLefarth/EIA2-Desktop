@@ -25,9 +25,7 @@ var GGSim;
                 GGSim.fields.push(new GGSim.Field(i, j));
             }
         }
-        for (let field of GGSim.fields) {
-            field.draw();
-        }
+        GGSim.Simulation.update();
         GGSim.currentActionVis = document.getElementById("currentActionVis");
         const fertilizeBtn = document.getElementById("fertilizeBtn");
         fertilizeBtn.addEventListener("click", GGSim.player.fertilize);

@@ -27,16 +27,13 @@ function handleLoad(): void {
     canvas.width = 50.5 * 10;
     canvas.height = 51 * 4;
     ctx = canvas.getContext("2d");
-
     for (let j: number = 0; j < 4; j ++) {
     for (let i: number = 0; i < 10; i++) {
     fields.push(new Field(i, j));
     }
     }
  
-    for (let field of fields) {
-        field.draw();
-    }
+    Simulation.update();
 
 
 
