@@ -42,6 +42,9 @@ namespace GGSim {
                 plant.draw();
             }
             document.getElementById("moneyCount").innerHTML = Player.money + "$";
+            document.getElementById("fertiCount").innerHTML = Player.fertilizer + "F";
+            document.getElementById("pestiCount").innerHTML = Player.pesticides + "P";
+            document.getElementById("seedsCount").innerHTML = Player.seeds + "S";
         }
     }
 

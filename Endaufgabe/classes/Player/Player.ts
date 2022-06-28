@@ -8,9 +8,9 @@ namespace GGSim {
     export class Player {
         static action: ACTION;
         static money: number = 10;
-        fertilizer: number;
-        pesticides: number;
-        seeds: Seed[];
+        static fertilizer: number = 20;
+        static pesticides: number = 20;
+        static seeds: Seed[];
         
 
         constructor() {

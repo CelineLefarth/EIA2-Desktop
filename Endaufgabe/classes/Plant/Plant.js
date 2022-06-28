@@ -46,16 +46,16 @@ var GGSim;
         }
         playerUpdate(_plant) {
             if (GGSim.Player.action == GGSim.ACTION.WATER) {
-                if (this.waterLevel < 4) {
+                if (this.waterLevel < 4 && this.ready == false) {
                     this.waterLevel++;
                     this.color = this.dryColor[this.waterLevel];
                     console.log("you waterd");
                 }
             }
             else if (GGSim.Player.action == GGSim.ACTION.FERTILIZE) {
-                if (GGSim.player.fertilizer > 0) {
+                if (GGSim.Player.fertilizer > 0 && this.fertilizeLevel < 4) {
                     this.fertilizeLevel++;
-                    GGSim.player.fertilizer--;
+                    GGSim.Player.fertilizer--;
                     console.log("you fertilized");
                 }
                 else {
@@ -63,9 +63,9 @@ var GGSim;
                 }
             }
             else if (GGSim.Player.action == GGSim.ACTION.PESTICIDE) {
-                if (GGSim.player.pesticides > 0) {
+                if (GGSim.Player.pesticides > 0) {
                     this.pesticideAmount--;
-                    GGSim.player.pesticides--;
+                    GGSim.Player.pesticides--;
                     console.log("you pesticided");
                 }
                 else {
@@ -75,7 +75,7 @@ var GGSim;
             else if (GGSim.Player.action == GGSim.ACTION.HARVEST) {
                 console.log("harvested plant need to add wich type and amount of money");
                 if (this.ready == true) {
-                    GGSim.Player.money = GGSim.Player.money + 2;
+                    GGSim.Player.money = GGSim.Player.money + 2 + 1 * this.fertilizeLevel;
                 }
                 else {
                     console.log("this plant is not ready its worth nothing");
@@ -101,7 +101,7 @@ var GGSim;
         draw() {
             GGSim.ctx.resetTransform();
             GGSim.ctx.translate(25 + 50 * this.fieldX, 25 + 50 * this.fieldY);
-            GGSim.ctx.scale(this.scaleX, this.scaleY);
+            GGSim.ctx.scale(this.scaleX + 1 * this.fertilizeLevel, this.scaleY + 1 * this.fertilizeLevel);
             GGSim.ctx.translate(-24 - this.scaleX, -24 - this.scaleY);
             GGSim.ctx.fillStyle = this.color;
             GGSim.ctx.fillRect(25, 25, 5, 5);

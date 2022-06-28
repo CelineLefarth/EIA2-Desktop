@@ -3,9 +3,9 @@ var GGSim;
     class Player {
         static action;
         static money = 10;
-        fertilizer;
-        pesticides;
-        seeds;
+        static fertilizer = 20;
+        static pesticides = 20;
+        static seeds;
         constructor() {
             //
         }

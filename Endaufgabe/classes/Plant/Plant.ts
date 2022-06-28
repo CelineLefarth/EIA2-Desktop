@@ -51,16 +51,16 @@ namespace GGSim {
 
         playerUpdate(_plant: Plant): void {
             if (Player.action == ACTION.WATER) {
-                if (this.waterLevel < 4) {
+                if (this.waterLevel < 4 && this.ready == false) {
                 this.waterLevel++;
                 this.color = this.dryColor[this.waterLevel];
                 console.log("you waterd");
                 }
             }
             else if (Player.action == ACTION.FERTILIZE) {
-                if (player.fertilizer > 0) {
+                if (Player.fertilizer > 0 && this.fertilizeLevel < 4) {
                     this.fertilizeLevel++;
-                    player.fertilizer--;
+                    Player.fertilizer--;
                     console.log("you fertilized");
 
                 }
@@ -69,9 +69,9 @@ namespace GGSim {
                 }
             }
             else if (Player.action == ACTION.PESTICIDE) {
-                if (player.pesticides > 0) {
+                if (Player.pesticides > 0) {
                     this.pesticideAmount--;
-                    player.pesticides--;
+                    Player.pesticides--;
                     console.log("you pesticided");
                 }
                 else {
@@ -81,7 +81,7 @@ namespace GGSim {
             else if (Player.action == ACTION.HARVEST) {
                 console.log("harvested plant need to add wich type and amount of money");
                 if (this.ready == true) {
-                    Player.money = Player.money + 2;
+                    Player.money = Player.money + 2 + 1 * this.fertilizeLevel;
                 }
                 else {
                     console.log("this plant is not ready its worth nothing");
@@ -113,7 +113,7 @@ namespace GGSim {
         draw(): void {
             ctx.resetTransform();
             ctx.translate(25 + 50 * this.fieldX, 25 + 50 * this.fieldY);
-            ctx.scale(this.scaleX, this.scaleY);
+            ctx.scale(this.scaleX +  1 * this.fertilizeLevel, this.scaleY +  1 * this.fertilizeLevel);
             ctx.translate(-24 - this.scaleX, -24 - this.scaleY);
             ctx.fillStyle = this.color;
             ctx.fillRect(25, 25, 5, 5);

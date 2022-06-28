@@ -34,6 +34,9 @@ var GGSim;
                 plant.draw();
             }
             document.getElementById("moneyCount").innerHTML = GGSim.Player.money + "$";
+            document.getElementById("fertiCount").innerHTML = GGSim.Player.fertilizer + "F";
+            document.getElementById("pestiCount").innerHTML = GGSim.Player.pesticides + "P";
+            document.getElementById("seedsCount").innerHTML = GGSim.Player.seeds + "S";
         }
     }
     GGSim.Simulation = Simulation;
