@@ -1,7 +1,7 @@
 var GGSim;
 (function (GGSim) {
     class Plant {
-        waterLevel = 50;
+        waterLevel = 4;
         fertilizeLevel = 0;
         pesticideAmount = 0;
         age = 0;
@@ -12,32 +12,45 @@ var GGSim;
         color = "green";
         pests = [];
         ready = false;
+        dryColor = ["brown", "red", "orange", "yellow", "green"];
         constructor(_fieldX, _fieldY) {
             this.fieldX = _fieldX;
             this.fieldY = _fieldY;
         }
         timeUpdate(_action) {
             if (_action == GGSim.TIMEACTION.GROW) {
-                if (this.age < 15) {
-                    console.log("grow");
-                    this.age++;
-                    this.scaleX = this.scaleX + 0.1;
-                    this.scaleY = this.scaleY + 0.1;
-                }
-                else {
-                    this.color = "red";
-                    this.ready = true;
+                if (this.waterLevel > 0) {
+                    if (this.age < 15) {
+                        console.log("grow");
+                        this.age++;
+                        this.scaleX = this.scaleX + 0.1;
+                        this.scaleY = this.scaleY + 0.1;
+                    }
+                    else {
+                        this.color = "blue";
+                        this.ready = true;
+                    }
                 }
             }
             else if (_action == GGSim.TIMEACTION.DRY) {
-                console.log("dry");
+                if (this.ready == false && this.waterLevel > 0) {
+                    console.log("dry");
+                    this.waterLevel--;
+                    this.color = this.dryColor[this.waterLevel];
+                }
+                if (this.waterLevel == 0) {
+                    console.log("dry");
+                }
             }
             GGSim.Simulation.update();
         }
         playerUpdate(_plant) {
             if (GGSim.Player.action == GGSim.ACTION.WATER) {
-                this.waterLevel++;
-                console.log("you waterd");
+                if (this.waterLevel < 4) {
+                    this.waterLevel++;
+                    this.color = this.dryColor[this.waterLevel];
+                    console.log("you waterd");
+                }
             }
             else if (GGSim.Player.action == GGSim.ACTION.FERTILIZE) {
                 if (GGSim.player.fertilizer > 0) {
@@ -67,11 +80,11 @@ var GGSim;
                 else {
                     console.log("this plant is not ready its worth nothing");
                 }
-                GGSim.Simulation.update();
             }
             else if (GGSim.Player.action == GGSim.ACTION.PLANT) {
                 console.log("you need to click an empty field");
             }
+            GGSim.Simulation.update();
         }
         shrink() {
             //

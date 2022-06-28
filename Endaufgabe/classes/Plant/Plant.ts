@@ -1,7 +1,8 @@
 namespace GGSim {
+
     export class Plant {
 
-        waterLevel: number = 50;
+        waterLevel: number = 4;
         fertilizeLevel: number = 0;
         pesticideAmount: number = 0;
         age: number = 0;
@@ -12,6 +13,7 @@ namespace GGSim {
         color: string = "green";
         pests: Pest[] = [];
         ready: boolean = false;
+        dryColor: string[] = ["brown", "red", "orange", "yellow", "green"];
 
         constructor(_fieldX: number, _fieldY: number) {
             this.fieldX = _fieldX;
@@ -20,34 +22,47 @@ namespace GGSim {
 
         timeUpdate(_action: TIMEACTION): void {
             if (_action == TIMEACTION.GROW) {
+                if (this.waterLevel > 0) {
                 if (this.age < 15) {
-                console.log("grow");
-                this.age ++;
-                this.scaleX = this.scaleX + 0.1;
-                this.scaleY = this.scaleY + 0.1;
+                    console.log("grow");
+                    this.age++;
+                    this.scaleX = this.scaleX + 0.1;
+                    this.scaleY = this.scaleY + 0.1;
                 }
                 else {
-                    this.color = "red";
+                    this.color = "blue";
                     this.ready = true;
+                }
                 }
             }
             else if (_action == TIMEACTION.DRY) {
+                if (this.ready == false && this.waterLevel > 0) {
                 console.log("dry");
+                this.waterLevel --;
+                this.color = this.dryColor[this.waterLevel];
+                }
+                if (this.waterLevel == 0) {
+                    console.log("dry");
+                    
+                }
             }
             Simulation.update();
         }
 
         playerUpdate(_plant: Plant): void {
             if (Player.action == ACTION.WATER) {
-                this.waterLevel ++;
+                if (this.waterLevel < 4) {
+                this.waterLevel++;
+                this.color = this.dryColor[this.waterLevel];
                 console.log("you waterd");
+                }
             }
             else if (Player.action == ACTION.FERTILIZE) {
                 if (player.fertilizer > 0) {
-                this.fertilizeLevel ++;
-                player.fertilizer --;
-                console.log("you fertilized");
-                
+                    this.fertilizeLevel++;
+                    player.fertilizer--;
+                    console.log("you fertilized");
+
                 }
                 else {
                     console.log("you have no fertilizer to fertilize me, buy some in the shop");
@@ -55,9 +70,9 @@ namespace GGSim {
             }
             else if (Player.action == ACTION.PESTICIDE) {
                 if (player.pesticides > 0) {
-                this.pesticideAmount --;
-                player.pesticides --;
-                console.log("you pesticided");
+                    this.pesticideAmount--;
+                    player.pesticides--;
+                    console.log("you pesticided");
                 }
                 else {
                     console.log("you have no pesticides to pesticide me, buy some in the shop");
@@ -66,17 +81,17 @@ namespace GGSim {
             else if (Player.action == ACTION.HARVEST) {
                 console.log("harvested plant need to add wich type and amount of money");
                 if (this.ready == true) {
-                Player.money = Player.money + 2;
+                    Player.money = Player.money + 2;
                 }
                 else {
                     console.log("this plant is not ready its worth nothing");
-                    
+
                 }
-                Simulation.update();
             }
             else if (Player.action == ACTION.PLANT) {
                 console.log("you need to click an empty field");
             }
+            Simulation.update();
         }
 
         shrink(): void {
@@ -103,6 +118,6 @@ namespace GGSim {
             ctx.fillStyle = this.color;
             ctx.fillRect(25, 25, 5, 5);
         }
-        
+
     }
 }
