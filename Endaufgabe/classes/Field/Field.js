@@ -16,11 +16,12 @@ var GGSim;
             if (_x < this.positionX && _x > this.positionX - 50 && _y < this.positionY && _y > this.positionY - 50) {
                 console.log("Spalte: " + this.positionX / 50, "Zeile: " + this.positionY / 50);
                 if (this.empty == true) {
-                    if (GGSim.Player.action == GGSim.ACTION.PLANT) {
+                    if (GGSim.Player.action == GGSim.ACTION.PLANT && GGSim.Player.money > 0) {
                         GGSim.plants.push(new GGSim.Plant(this.positionX / 50, this.positionY / 50));
                         this.plant = GGSim.plants[GGSim.plants.length - 1];
-                        GGSim.plants[GGSim.plants.length - 1].draw();
                         this.empty = false;
+                        GGSim.Player.money--;
+                        GGSim.Simulation.update();
                         console.log("Plflanze gepflanzt");
                     }
                 }

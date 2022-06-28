@@ -33,10 +33,8 @@ function handleLoad(): void {
     }
     }
  
+    Simulation.run();
     Simulation.update();
-
-
-
 
     currentActionVis = document.getElementById("currentActionVis");
     const fertilizeBtn: HTMLElement = document.getElementById("fertilizeBtn");

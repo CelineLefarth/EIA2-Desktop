@@ -25,6 +25,7 @@ var GGSim;
                 GGSim.fields.push(new GGSim.Field(i, j));
             }
         }
+        GGSim.Simulation.run();
         GGSim.Simulation.update();
         GGSim.currentActionVis = document.getElementById("currentActionVis");
         const fertilizeBtn = document.getElementById("fertilizeBtn");

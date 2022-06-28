@@ -18,11 +18,12 @@ namespace GGSim {
             if (_x < this.positionX && _x > this.positionX - 50 && _y < this.positionY && _y > this.positionY - 50) {
                 console.log("Spalte: " + this.positionX / 50, "Zeile: " + this.positionY / 50);
                 if (this.empty == true) {
-                    if (Player.action == ACTION.PLANT) {
+                    if (Player.action == ACTION.PLANT && Player.money > 0) {
                         plants.push(new Plant(this.positionX / 50, this.positionY / 50));
                         this.plant = plants[plants.length - 1];
-                        plants[plants.length - 1].draw();
                         this.empty = false;
+                        Player.money --;
+                        Simulation.update();
                         console.log("Plflanze gepflanzt");
                     }
                 }
