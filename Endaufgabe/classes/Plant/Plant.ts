@@ -11,8 +11,8 @@ namespace GGSim {
         scaleX: number = 1;
         scaleY: number = 1;
         color: string = "green";
-        pests: Pest[] = [];
         ready: boolean = false;
+        pests: Pest[] = [];
         dryColor: string[] = ["brown", "red", "orange", "yellow", "green"];
 
         constructor(_fieldX: number, _fieldY: number) {
@@ -22,7 +22,7 @@ namespace GGSim {
 
         timeUpdate(_action: TIMEACTION): void {
             if (_action == TIMEACTION.GROW) {
-                if (this.waterLevel > 0) {
+                if (this.waterLevel > 0 && this.pests.length == 0) {
                 if (this.age < 15) {
                     console.log("grow");
                     this.age++;
@@ -46,11 +46,14 @@ namespace GGSim {
                     
                 }
             }
+            else if (_action == TIMEACTION.PEST) {
+                this.pests.push(new Pest(this.fieldX, this.fieldY));
+            }
             Simulation.update();
         }
 
         playerUpdate(_plant: Plant): void {
-            if (Player.action == ACTION.WATER) {
+            if (Player.action == ACTION.WATER && this.pests.length == 0) {
                 if (this.waterLevel < 4 && this.ready == false) {
                 this.waterLevel++;
                 this.color = this.dryColor[this.waterLevel];
@@ -58,8 +61,9 @@ namespace GGSim {
                 }
             }
             else if (Player.action == ACTION.FERTILIZE) {
-                if (Player.fertilizer > 0 && this.fertilizeLevel < 4) {
+                if (Player.fertilizer > 0 && this.fertilizeLevel < 4 && this.pests.length == 0) {
                     this.fertilizeLevel++;
+                    this.age = this.age + 3;
                     Player.fertilizer--;
                     console.log("you fertilized");
 
@@ -69,9 +73,10 @@ namespace GGSim {
                 }
             }
             else if (Player.action == ACTION.PESTICIDE) {
-                if (Player.pesticides > 0) {
+                if (Player.pesticides > 0 && this.pests.length > 0) {
                     this.pesticideAmount--;
                     Player.pesticides--;
+                    this.pests = [];
                     console.log("you pesticided");
                 }
                 else {

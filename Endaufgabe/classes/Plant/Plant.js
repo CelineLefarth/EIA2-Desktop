@@ -10,8 +10,8 @@ var GGSim;
         scaleX = 1;
         scaleY = 1;
         color = "green";
-        pests = [];
         ready = false;
+        pests = [];
         dryColor = ["brown", "red", "orange", "yellow", "green"];
         constructor(_fieldX, _fieldY) {
             this.fieldX = _fieldX;
@@ -19,7 +19,7 @@ var GGSim;
         }
         timeUpdate(_action) {
             if (_action == GGSim.TIMEACTION.GROW) {
-                if (this.waterLevel > 0) {
+                if (this.waterLevel > 0 && this.pests.length == 0) {
                     if (this.age < 15) {
                         console.log("grow");
                         this.age++;
@@ -42,10 +42,13 @@ var GGSim;
                     console.log("dry");
                 }
             }
+            else if (_action == GGSim.TIMEACTION.PEST) {
+                this.pests.push(new GGSim.Pest(this.fieldX, this.fieldY));
+            }
             GGSim.Simulation.update();
         }
         playerUpdate(_plant) {
-            if (GGSim.Player.action == GGSim.ACTION.WATER) {
+            if (GGSim.Player.action == GGSim.ACTION.WATER && this.pests.length == 0) {
                 if (this.waterLevel < 4 && this.ready == false) {
                     this.waterLevel++;
                     this.color = this.dryColor[this.waterLevel];
@@ -53,8 +56,9 @@ var GGSim;
                 }
             }
             else if (GGSim.Player.action == GGSim.ACTION.FERTILIZE) {
-                if (GGSim.Player.fertilizer > 0 && this.fertilizeLevel < 4) {
+                if (GGSim.Player.fertilizer > 0 && this.fertilizeLevel < 4 && this.pests.length == 0) {
                     this.fertilizeLevel++;
+                    this.age = this.age + 3;
                     GGSim.Player.fertilizer--;
                     console.log("you fertilized");
                 }
@@ -63,9 +67,10 @@ var GGSim;
                 }
             }
             else if (GGSim.Player.action == GGSim.ACTION.PESTICIDE) {
-                if (GGSim.Player.pesticides > 0) {
+                if (GGSim.Player.pesticides > 0 && this.pests.length > 0) {
                     this.pesticideAmount--;
                     GGSim.Player.pesticides--;
+                    this.pests = [];
                     console.log("you pesticided");
                 }
                 else {

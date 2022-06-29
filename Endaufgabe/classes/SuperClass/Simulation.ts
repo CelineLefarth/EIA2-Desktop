@@ -8,7 +8,8 @@ namespace GGSim {
         PEST
     }
 
-    let timeActions: TIMEACTION[] = [TIMEACTION.GROW, TIMEACTION.DRY];
+    //Array of all possible Actions with their probabillity
+    let timeActions: TIMEACTION[] = [TIMEACTION.GROW, TIMEACTION.DRY, TIMEACTION.GROW, TIMEACTION.GROW, TIMEACTION.GROW, TIMEACTION.GROW,  TIMEACTION.DRY,  TIMEACTION.DRY,  TIMEACTION.GROW,  TIMEACTION.PEST];
     let randomAction: TIMEACTION;
 
 
@@ -20,15 +21,15 @@ namespace GGSim {
             //
         }
         static run(): void {
-            setInterval(this.timer, 1000);
+            setInterval(this.timer, 5000);
         }
 
         static timer(): void {
             time++;
-    
             for (let plant of plants) {
-                randomAction = timeActions[Math.round(Math.random())] ;
+                randomAction = timeActions[Math.round(Math.random() * 10)] ;
                 plant.timeUpdate(randomAction);
+
             }
         }
 
@@ -40,7 +41,11 @@ namespace GGSim {
             }
             for (let plant of plants) {
                 plant.draw();
+                for (let pest of plant.pests) {
+                pest.draw(plant.fieldX, plant.fieldY);
+                }
             }
+
             document.getElementById("moneyCount").innerHTML = Player.money + "$";
             document.getElementById("fertiCount").innerHTML = Player.fertilizer + "F";
             document.getElementById("pestiCount").innerHTML = Player.pesticides + "P";

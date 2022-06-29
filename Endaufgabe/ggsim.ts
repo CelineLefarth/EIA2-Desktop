@@ -6,6 +6,8 @@ export let ctx: CanvasRenderingContext2D;
 export let mouseX: number;
 export let mouseY: number;
 
+let shop: boolean = false;
+
 export let currentActionVis: HTMLElement;
 export enum ACTION {
     FERTILIZE,
@@ -47,6 +49,9 @@ function handleLoad(): void {
     plantBtn.addEventListener("click", player.plant);
     const pesticideBtn: HTMLElement = document.getElementById("pesticideBtn");
     pesticideBtn.addEventListener("click", player.pesticide);
+    
+    const shopBtn: HTMLElement = document.getElementById("shopBtn");
+    shopBtn.addEventListener("click", toggleShop);
 
     canvas.addEventListener("click", (e) => getMousePos(canvas, e));
 
@@ -65,7 +70,9 @@ function getMousePos(_canvas: HTMLCanvasElement, _evt: MouseEvent): void {
     
   }
 
-
+function toggleShop(): void {
+    if (shop == false)
+}
 
 
 }

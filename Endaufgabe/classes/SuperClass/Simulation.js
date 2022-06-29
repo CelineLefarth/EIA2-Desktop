@@ -7,7 +7,8 @@ var GGSim;
         TIMEACTION[TIMEACTION["DRY"] = 1] = "DRY";
         TIMEACTION[TIMEACTION["PEST"] = 2] = "PEST";
     })(TIMEACTION = GGSim.TIMEACTION || (GGSim.TIMEACTION = {}));
-    let timeActions = [TIMEACTION.GROW, TIMEACTION.DRY];
+    //Array of all possible Actions with their probabillity
+    let timeActions = [TIMEACTION.GROW, TIMEACTION.DRY, TIMEACTION.GROW, TIMEACTION.GROW, TIMEACTION.GROW, TIMEACTION.GROW, TIMEACTION.DRY, TIMEACTION.DRY, TIMEACTION.GROW, TIMEACTION.PEST];
     let randomAction;
     class Simulation {
         static timeAction;
@@ -15,12 +16,12 @@ var GGSim;
             //
         }
         static run() {
-            setInterval(this.timer, 1000);
+            setInterval(this.timer, 5000);
         }
         static timer() {
             GGSim.time++;
             for (let plant of GGSim.plants) {
-                randomAction = timeActions[Math.round(Math.random())];
+                randomAction = timeActions[Math.round(Math.random() * 10)];
                 plant.timeUpdate(randomAction);
             }
         }
@@ -32,6 +33,9 @@ var GGSim;
             }
             for (let plant of GGSim.plants) {
                 plant.draw();
+                for (let pest of plant.pests) {
+                    pest.draw(plant.fieldX, plant.fieldY);
+                }
             }
             document.getElementById("moneyCount").innerHTML = GGSim.Player.money + "$";
             document.getElementById("fertiCount").innerHTML = GGSim.Player.fertilizer + "F";
