@@ -56,7 +56,7 @@ var GGSim;
                 }
             }
             else if (GGSim.Player.action == GGSim.ACTION.FERTILIZE) {
-                if (GGSim.Player.fertilizer > 0 && this.fertilizeLevel < 4 && this.pests.length == 0) {
+                if (GGSim.Player.fertilizer > 0 && this.fertilizeLevel < 4 && this.pests.length == 0 && this.age < 15) {
                     this.fertilizeLevel++;
                     this.age = this.age + 3;
                     GGSim.Player.fertilizer--;
@@ -80,7 +80,10 @@ var GGSim;
             else if (GGSim.Player.action == GGSim.ACTION.HARVEST) {
                 console.log("harvested plant need to add wich type and amount of money");
                 if (this.ready == true) {
-                    GGSim.Player.money = GGSim.Player.money + 2 + 1 * this.fertilizeLevel;
+                    GGSim.Player.money = GGSim.Player.money + Math.round(GGSim.Market.price.cost) + 1 * this.fertilizeLevel;
+                    if (GGSim.Player.money < 0) {
+                        GGSim.Player.money = 0;
+                    }
                 }
                 else {
                     console.log("this plant is not ready its worth nothing");

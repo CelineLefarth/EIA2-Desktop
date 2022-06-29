@@ -1,6 +1,13 @@
 
 canvas{
-    background-color: rosybrown;
+    background-color:seagreen;
+}
+#market_canvas{
+    position: absolute;
+    left: 300px;
+    border: 2px;
+    border-color: black;
+    border-style: solid;
 }
 body{
     background-color: black;

@@ -61,7 +61,7 @@ namespace GGSim {
                 }
             }
             else if (Player.action == ACTION.FERTILIZE) {
-                if (Player.fertilizer > 0 && this.fertilizeLevel < 4 && this.pests.length == 0) {
+                if (Player.fertilizer > 0 && this.fertilizeLevel < 4 && this.pests.length == 0 && this.age < 15) {
                     this.fertilizeLevel++;
                     this.age = this.age + 3;
                     Player.fertilizer--;
@@ -86,7 +86,10 @@ namespace GGSim {
             else if (Player.action == ACTION.HARVEST) {
                 console.log("harvested plant need to add wich type and amount of money");
                 if (this.ready == true) {
-                    Player.money = Player.money + 2 + 1 * this.fertilizeLevel;
+                    Player.money = Player.money + Math.round(Market.price.cost) + 1 * this.fertilizeLevel;
+                    if (Player.money < 0) {
+                        Player.money = 0;
+                    }
                 }
                 else {
                     console.log("this plant is not ready its worth nothing");

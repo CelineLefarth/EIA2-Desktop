@@ -3,6 +3,8 @@ window.addEventListener("load", handleLoad);
 
 export let canvas: HTMLCanvasElement;
 export let ctx: CanvasRenderingContext2D;
+export let canvasM: HTMLCanvasElement;
+export let ctxM: CanvasRenderingContext2D;
 export let mouseX: number;
 export let mouseY: number;
 
@@ -27,9 +29,13 @@ export let fields: Field[] = [];
 function handleLoad(): void {
     console.log("GGSim");
     canvas = <HTMLCanvasElement>document.getElementById("field_canvas");
+    canvasM = <HTMLCanvasElement>document.getElementById("market_canvas");
     canvas.width = 50.5 * 10;
     canvas.height = 51 * 4;
+    canvasM.width = 200;
+    canvasM.height = 150;
     ctx = canvas.getContext("2d");
+    ctxM = canvasM.getContext("2d");
     for (let j: number = 0; j < 4; j ++) {
     for (let i: number = 0; i < 10; i++) {
     fields.push(new Field(i, j));
@@ -37,6 +43,7 @@ function handleLoad(): void {
     }
  
     Simulation.run();
+    Market.draw();
     Simulation.update();
 
     currentActionVis = document.getElementById("currentActionVis");

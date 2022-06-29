@@ -19,15 +19,20 @@ var GGSim;
     function handleLoad() {
         console.log("GGSim");
         GGSim.canvas = document.getElementById("field_canvas");
+        GGSim.canvasM = document.getElementById("market_canvas");
         GGSim.canvas.width = 50.5 * 10;
         GGSim.canvas.height = 51 * 4;
+        GGSim.canvasM.width = 200;
+        GGSim.canvasM.height = 150;
         GGSim.ctx = GGSim.canvas.getContext("2d");
+        GGSim.ctxM = GGSim.canvasM.getContext("2d");
         for (let j = 0; j < 4; j++) {
             for (let i = 0; i < 10; i++) {
                 GGSim.fields.push(new GGSim.Field(i, j));
             }
         }
         GGSim.Simulation.run();
+        GGSim.Market.draw();
         GGSim.Simulation.update();
         GGSim.currentActionVis = document.getElementById("currentActionVis");
         const fertilizeBtn = document.getElementById("fertilizeBtn");
