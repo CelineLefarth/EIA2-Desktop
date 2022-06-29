@@ -6,7 +6,8 @@ export let ctx: CanvasRenderingContext2D;
 export let mouseX: number;
 export let mouseY: number;
 
-let shop: boolean = false;
+let shopOpen: boolean = false;
+let shop: HTMLElement;
 
 export let currentActionVis: HTMLElement;
 export enum ACTION {
@@ -50,6 +51,7 @@ function handleLoad(): void {
     const pesticideBtn: HTMLElement = document.getElementById("pesticideBtn");
     pesticideBtn.addEventListener("click", player.pesticide);
     
+    shop = document.getElementById("shop");
     const shopBtn: HTMLElement = document.getElementById("shopBtn");
     shopBtn.addEventListener("click", toggleShop);
 
@@ -70,9 +72,55 @@ function getMousePos(_canvas: HTMLCanvasElement, _evt: MouseEvent): void {
     
   }
 
+
+
+
 function toggleShop(): void {
-    if (shop == false)
+    if (shopOpen == false) {
+        shopOpen = true;
+        const buyPesticides: HTMLButtonElement = document.createElement("button");
+        const buyFertilizers: HTMLButtonElement = document.createElement("button");
+        const buySeeds: HTMLButtonElement = document.createElement("button");
+        buyPesticides.innerHTML = "Buy Pesticides";
+        buyFertilizers.innerHTML = "Buy Fertilizers";
+        buySeeds.innerHTML = "Buy Seeds";
+        buyPesticides.addEventListener("click", boughtPesticides);
+        buyFertilizers.addEventListener("click", boughtFertilizers);
+        buySeeds.addEventListener("click", boughtSeeds);
+        shop.appendChild(buyPesticides);
+        shop.appendChild(buyFertilizers);
+        shop.appendChild(buySeeds);
+    }
+    else if (shopOpen == true) {
+        shopOpen = false;
+        while (shop.firstChild) {
+            shop.removeChild(shop.firstChild);
+        }
+    }
 }
 
+function boughtPesticides(): void {
+    if (Player.money > 0) {
+    Player.money --;
+    Player.pesticides ++;
+    Simulation.update();
+    }
+}
+
+function boughtFertilizers(): void {
+    if (Player.money > 0) {
+    Player.money --;
+    Player.fertilizer ++;
+    Simulation.update();
+    }
+}
+
+function boughtSeeds(): void {
+    if (Player.money > 0) {
+    Player.money --;
+    //Player.seeds ++;
+    Simulation.update();
+    }
+}
 
 }

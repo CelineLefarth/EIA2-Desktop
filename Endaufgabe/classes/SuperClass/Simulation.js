@@ -24,6 +24,10 @@ var GGSim;
                 randomAction = timeActions[Math.round(Math.random() * 10)];
                 plant.timeUpdate(randomAction);
             }
+            if (GGSim.plants.length == 0 && GGSim.Player.money == 0) {
+                alert("Du hast kein Geld mehr, um dir neue Pflanzen zu Kaufen und auch keine Pflanzen auf dem Feld, die dir Geld einbringen könnten! Alle Hoffnung ist verloren. Was tust du da??");
+                location.reload();
+            }
         }
         static update() {
             GGSim.ctx.clearRect(0, 0, GGSim.canvas.width, GGSim.canvas.height);

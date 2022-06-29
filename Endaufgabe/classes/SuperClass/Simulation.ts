@@ -29,7 +29,10 @@ namespace GGSim {
             for (let plant of plants) {
                 randomAction = timeActions[Math.round(Math.random() * 10)] ;
                 plant.timeUpdate(randomAction);
-
+            }
+            if(plants.length == 0 && Player.money == 0) {
+                alert("Du hast kein Geld mehr, um dir neue Pflanzen zu Kaufen und auch keine Pflanzen auf dem Feld, die dir Geld einbringen könnten! Alle Hoffnung ist verloren. Was tust du da??")
+                location.reload();
             }
         }
 

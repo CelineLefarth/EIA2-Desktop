@@ -1,7 +1,8 @@
 var GGSim;
 (function (GGSim) {
     window.addEventListener("load", handleLoad);
-    let shop = false;
+    let shopOpen = false;
+    let shop;
     let ACTION;
     (function (ACTION) {
         ACTION[ACTION["FERTILIZE"] = 0] = "FERTILIZE";
@@ -39,6 +40,7 @@ var GGSim;
         plantBtn.addEventListener("click", GGSim.player.plant);
         const pesticideBtn = document.getElementById("pesticideBtn");
         pesticideBtn.addEventListener("click", GGSim.player.pesticide);
+        shop = document.getElementById("shop");
         const shopBtn = document.getElementById("shopBtn");
         shopBtn.addEventListener("click", toggleShop);
         GGSim.canvas.addEventListener("click", (e) => getMousePos(GGSim.canvas, e));
@@ -54,8 +56,48 @@ var GGSim;
         }
     }
     function toggleShop() {
-        if (shop == false)
-            ;
+        if (shopOpen == false) {
+            shopOpen = true;
+            const buyPesticides = document.createElement("button");
+            const buyFertilizers = document.createElement("button");
+            const buySeeds = document.createElement("button");
+            buyPesticides.innerHTML = "Buy Pesticides";
+            buyFertilizers.innerHTML = "Buy Fertilizers";
+            buySeeds.innerHTML = "Buy Seeds";
+            buyPesticides.addEventListener("click", boughtPesticides);
+            buyFertilizers.addEventListener("click", boughtFertilizers);
+            buySeeds.addEventListener("click", boughtSeeds);
+            shop.appendChild(buyPesticides);
+            shop.appendChild(buyFertilizers);
+            shop.appendChild(buySeeds);
+        }
+        else if (shopOpen == true) {
+            shopOpen = false;
+            while (shop.firstChild) {
+                shop.removeChild(shop.firstChild);
+            }
+        }
+    }
+    function boughtPesticides() {
+        if (GGSim.Player.money > 0) {
+            GGSim.Player.money--;
+            GGSim.Player.pesticides++;
+            GGSim.Simulation.update();
+        }
+    }
+    function boughtFertilizers() {
+        if (GGSim.Player.money > 0) {
+            GGSim.Player.money--;
+            GGSim.Player.fertilizer++;
+            GGSim.Simulation.update();
+        }
+    }
+    function boughtSeeds() {
+        if (GGSim.Player.money > 0) {
+            GGSim.Player.money--;
+            //Player.seeds ++;
+            GGSim.Simulation.update();
+        }
     }
 })(GGSim || (GGSim = {}));
 //# sourceMappingURL=ggsim.js.map
