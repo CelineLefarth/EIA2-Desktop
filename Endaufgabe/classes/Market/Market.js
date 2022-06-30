@@ -7,7 +7,6 @@ var GGSim;
         static lastTime = 0;
         fluctuation;
         static draw() {
-            console.log(GGSim.time);
             GGSim.ctxM.resetTransform();
             if (GGSim.time % 20 === 0 || GGSim.time == 0) {
                 GGSim.ctxM.clearRect(0, 0, GGSim.canvasM.width, GGSim.canvasM.height);

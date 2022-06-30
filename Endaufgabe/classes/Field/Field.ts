@@ -18,14 +18,37 @@ namespace GGSim {
             if (_x < this.positionX && _x > this.positionX - 50 && _y < this.positionY && _y > this.positionY - 50) {
                 console.log("Spalte: " + this.positionX / 50, "Zeile: " + this.positionY / 50);
                 if (this.empty == true) {
-                    if (Player.action == ACTION.PLANT && Player.money > 0) {
-                        plants.push(new Plant(this.positionX / 50, this.positionY / 50));
+                    if (Player.action == ACTION.PILLOW && Player.money > 0) {
+                        plants.push(new Pillow(this.positionX / 50, this.positionY / 50));
                         this.plant = plants[plants.length - 1];
                         this.empty = false;
                         Player.money --;
-                        Simulation.update();
-                        console.log("Plflanze gepflanzt");
                     }
+                    else if (Player.action == ACTION.TEDDY && Player.money > 0) {
+                        plants.push(new Teddy(this.positionX / 50, this.positionY / 50));
+                        this.plant = plants[plants.length - 1];
+                        this.empty = false;
+                        Player.money --;
+                    }
+                    else if (Player.action == ACTION.SCARF && Player.money > 0) {
+                        plants.push(new Scarf(this.positionX / 50, this.positionY / 50));
+                        this.plant = plants[plants.length - 1];
+                        this.empty = false;
+                        Player.money --;
+                    }
+                    else if (Player.action == ACTION.BLANKET && Player.money > 0) {
+                        plants.push(new Blanket(this.positionX / 50, this.positionY / 50));
+                        this.plant = plants[plants.length - 1];
+                        this.empty = false;
+                        Player.money --;
+                    }
+                    else if (Player.action == ACTION.SOCK && Player.money > 0) {
+                        plants.push(new Sock(this.positionX / 50, this.positionY / 50));
+                        this.plant = plants[plants.length - 1];
+                        this.empty = false;
+                        Player.money --;
+                    }
+                    Simulation.update();
                 }
                 else if (Player.action == ACTION.HARVEST) {
                     this.plant.playerUpdate(this.plant);

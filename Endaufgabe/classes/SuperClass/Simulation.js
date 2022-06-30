@@ -8,7 +8,16 @@ var GGSim;
         TIMEACTION[TIMEACTION["PEST"] = 2] = "PEST";
     })(TIMEACTION = GGSim.TIMEACTION || (GGSim.TIMEACTION = {}));
     //Array of all possible Actions with their probabillity by sum of their appearence
-    let timeActions = [TIMEACTION.GROW, TIMEACTION.DRY, TIMEACTION.GROW, TIMEACTION.GROW, TIMEACTION.GROW, TIMEACTION.PEST, TIMEACTION.GROW, TIMEACTION.DRY, TIMEACTION.DRY, TIMEACTION.GROW, TIMEACTION.GROW, TIMEACTION.GROW, TIMEACTION.GROW, TIMEACTION.GROW, TIMEACTION.GROW, TIMEACTION.GROW, TIMEACTION.GROW, TIMEACTION.GROW, TIMEACTION.GROW, TIMEACTION.GROW];
+    let timeActions = [];
+    for (let i = 0; i < 2; i++) {
+        for (let k = 0; k < 20; k++) {
+            timeActions.push(TIMEACTION.GROW);
+        }
+        for (let j = 0; j < 2; j++) {
+            timeActions.push(TIMEACTION.DRY);
+        }
+        timeActions.push(TIMEACTION.PEST);
+    }
     let randomAction;
     class Simulation {
         static timeAction;
@@ -22,13 +31,11 @@ var GGSim;
             GGSim.Market.lastTime = GGSim.time;
             GGSim.time++;
             for (let plant of GGSim.plants) {
-                randomAction = timeActions[Math.round(Math.random() * 20)];
+                randomAction = timeActions[Math.round(Math.random() * timeActions.length - 1)];
                 plant.timeUpdate(randomAction);
             }
             GGSim.Market.lastPrice = GGSim.Market.price.cost;
             GGSim.Market.price.cost = (Math.random() * (Math.sin(GGSim.time) + Math.sin(GGSim.time) * 5));
-            console.log("akt " + GGSim.Market.price.cost);
-            console.log("Last_ " + GGSim.Market.lastPrice);
             GGSim.Market.draw();
             Simulation.update();
             if (GGSim.plants.length == 0 && GGSim.Player.money == 0) {

@@ -10,7 +10,7 @@ namespace GGSim {
         static money: number = 10;
         static fertilizer: number = 20;
         static pesticides: number = 20;
-        static seeds: Seed[];
+        static seeds: Seed[] = [{type: "pillow", amount: 0}, {type: "teddy", amount: 0}, {type: "scarf", amount: 0}, {type: "blanket", amount: 0}, {type: "sock", amount: 0}];
         
 
         constructor() {
@@ -32,10 +32,24 @@ namespace GGSim {
             console.log(Player.action);
         }
 
-        plant(): void {
+        plant(_value: string): void {
             console.log("plant");
-            Player.action = ACTION.PLANT;
-            currentActionVis.innerHTML = "plant";
+            if (_value == "pillow") {
+                Player.action = ACTION.PILLOW;
+            }
+            else if (_value == "teddy") {
+                Player.action = ACTION.TEDDY;
+            }
+            else if (_value == "blanket") {
+                Player.action = ACTION.BLANKET;
+            }
+            else if (_value == "scarf") {
+                Player.action = ACTION.SCARF;
+            }
+            else if (_value == "sock") {
+                Player.action = ACTION.SOCK;
+            }
+            currentActionVis.innerHTML = _value;
             console.log(Player.action);
         }
 

@@ -5,7 +5,7 @@ var GGSim;
         static money = 10;
         static fertilizer = 20;
         static pesticides = 20;
-        static seeds;
+        static seeds = [{ type: "pillow", amount: 0 }, { type: "teddy", amount: 0 }, { type: "scarf", amount: 0 }, { type: "blanket", amount: 0 }, { type: "sock", amount: 0 }];
         constructor() {
             //
         }
@@ -21,10 +21,24 @@ var GGSim;
             GGSim.currentActionVis.innerHTML = "water";
             console.log(Player.action);
         }
-        plant() {
+        plant(_value) {
             console.log("plant");
-            Player.action = GGSim.ACTION.PLANT;
-            GGSim.currentActionVis.innerHTML = "plant";
+            if (_value == "pillow") {
+                Player.action = GGSim.ACTION.PILLOW;
+            }
+            else if (_value == "teddy") {
+                Player.action = GGSim.ACTION.TEDDY;
+            }
+            else if (_value == "blanket") {
+                Player.action = GGSim.ACTION.BLANKET;
+            }
+            else if (_value == "scarf") {
+                Player.action = GGSim.ACTION.SCARF;
+            }
+            else if (_value == "sock") {
+                Player.action = GGSim.ACTION.SOCK;
+            }
+            GGSim.currentActionVis.innerHTML = _value;
             console.log(Player.action);
         }
         pesticide() {

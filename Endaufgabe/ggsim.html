@@ -12,6 +12,11 @@
     <script src="classes/Market/Market.js"></script>
     <script src="classes/Pest/Pest.js"></script>
     <script src="classes/Plant/Plant.js"></script>
+    <script src="classes/plants/Pillow.js"></script>  
+    <script src="classes/plants/Teddy.js"></script>  
+    <script src="classes/plants/Scarf.js"></script>  
+    <script src="classes/plants/Blanket.js"></script>  
+    <script src="classes/plants/Sock.js"></script>  
     <script src="ggsim.js"></script>
 
 </head>
@@ -50,7 +55,13 @@
     <footer>
         <div id="hotbar">
             Hotbar <br>
-            <button id="plantBtn">Plant</button>
+            <select name="plantBtn" id="plantBtn">
+                <option value="pillow">Pillow Plant</option>
+                <option value="teddy">Teddy Plant</option>
+                <option value="scarf">Scarf Plant</option>
+                <option value="blanket">Blanket Plant</option>
+                <option value="sock">Sock Plant</option>
+            </select>
             <button id="fertilizeBtn">Fertilize</button>
             <button id="waterBtn">Water</button>
             <button id="pesticideBtn">Pesticide</button>

@@ -1,7 +1,7 @@
 namespace GGSim {
 
     export let time: number = 0;
-    
+
     export enum TIMEACTION {
         GROW,
         DRY,
@@ -9,7 +9,17 @@ namespace GGSim {
     }
 
     //Array of all possible Actions with their probabillity by sum of their appearence
-    let timeActions: TIMEACTION[] = [TIMEACTION.GROW, TIMEACTION.DRY, TIMEACTION.GROW, TIMEACTION.GROW, TIMEACTION.GROW,  TIMEACTION.PEST, TIMEACTION.GROW,  TIMEACTION.DRY,  TIMEACTION.DRY,  TIMEACTION.GROW, TIMEACTION.GROW, TIMEACTION.GROW, TIMEACTION.GROW, TIMEACTION.GROW, TIMEACTION.GROW, TIMEACTION.GROW, TIMEACTION.GROW, TIMEACTION.GROW, TIMEACTION.GROW, TIMEACTION.GROW];
+    let timeActions: TIMEACTION[] = [];
+    for (let i: number = 0; i < 2; i++) {
+        for (let k: number = 0; k < 20; k++) {
+            timeActions.push(TIMEACTION.GROW);
+        }
+        for (let j: number = 0; j < 2; j++) {
+            timeActions.push(TIMEACTION.DRY);
+        }
+        timeActions.push(TIMEACTION.PEST);
+    }
+
     let randomAction: TIMEACTION;
 
 
@@ -28,13 +38,11 @@ namespace GGSim {
             Market.lastTime = time;
             time++;
             for (let plant of plants) {
-                randomAction = timeActions[Math.round(Math.random() * 20)] ;
+                randomAction = timeActions[Math.round(Math.random() * timeActions.length - 1)];
                 plant.timeUpdate(randomAction);
             }
             Market.lastPrice = Market.price.cost;
             Market.price.cost = (Math.random() * (Math.sin(time) + Math.sin(time) * 5));
-            console.log("akt " + Market.price.cost);
-            console.log("Last_ " + Market.lastPrice);
             Market.draw();
             Simulation.update();
 
@@ -53,7 +61,7 @@ namespace GGSim {
             for (let plant of plants) {
                 plant.draw();
                 for (let pest of plant.pests) {
-                pest.draw(plant.fieldX, plant.fieldY);
+                    pest.draw(plant.fieldX, plant.fieldY);
                 }
             }
             document.getElementById("moneyCount").innerHTML = Player.money + "$";

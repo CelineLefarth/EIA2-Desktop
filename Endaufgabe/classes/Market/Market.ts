@@ -16,8 +16,6 @@ namespace GGSim {
 
 
         static draw(): void {
-
-            console.log(time);
             ctxM.resetTransform();
             if (time % 20 === 0 || time == 0) {
                 ctxM.clearRect(0, 0, canvasM.width, canvasM.height);

@@ -16,7 +16,11 @@ export enum ACTION {
     FERTILIZE,
     HARVEST,
     WATER,
-    PLANT,
+    PILLOW,
+    TEDDY,
+    SCARF,
+    BLANKET,
+    SOCK,
     PESTICIDE,
     CLICK
 } 
@@ -53,8 +57,9 @@ function handleLoad(): void {
     harvestBtn.addEventListener("click", player.harvest);
     const waterBtn: HTMLElement = document.getElementById("waterBtn");
     waterBtn.addEventListener("click", player.water);
-    const plantBtn: HTMLElement = document.getElementById("plantBtn");
-    plantBtn.addEventListener("click", player.plant);
+    let plantBtn: HTMLInputElement;
+    plantBtn = <HTMLInputElement>document.getElementById("plantBtn");
+    plantBtn.addEventListener("click", () => {player.plant(plantBtn.value); });
     const pesticideBtn: HTMLElement = document.getElementById("pesticideBtn");
     pesticideBtn.addEventListener("click", player.pesticide);
     

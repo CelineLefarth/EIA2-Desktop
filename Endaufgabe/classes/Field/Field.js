@@ -16,14 +16,37 @@ var GGSim;
             if (_x < this.positionX && _x > this.positionX - 50 && _y < this.positionY && _y > this.positionY - 50) {
                 console.log("Spalte: " + this.positionX / 50, "Zeile: " + this.positionY / 50);
                 if (this.empty == true) {
-                    if (GGSim.Player.action == GGSim.ACTION.PLANT && GGSim.Player.money > 0) {
-                        GGSim.plants.push(new GGSim.Plant(this.positionX / 50, this.positionY / 50));
+                    if (GGSim.Player.action == GGSim.ACTION.PILLOW && GGSim.Player.money > 0) {
+                        GGSim.plants.push(new GGSim.Pillow(this.positionX / 50, this.positionY / 50));
                         this.plant = GGSim.plants[GGSim.plants.length - 1];
                         this.empty = false;
                         GGSim.Player.money--;
-                        GGSim.Simulation.update();
-                        console.log("Plflanze gepflanzt");
                     }
+                    else if (GGSim.Player.action == GGSim.ACTION.TEDDY && GGSim.Player.money > 0) {
+                        GGSim.plants.push(new GGSim.Teddy(this.positionX / 50, this.positionY / 50));
+                        this.plant = GGSim.plants[GGSim.plants.length - 1];
+                        this.empty = false;
+                        GGSim.Player.money--;
+                    }
+                    else if (GGSim.Player.action == GGSim.ACTION.SCARF && GGSim.Player.money > 0) {
+                        GGSim.plants.push(new GGSim.Scarf(this.positionX / 50, this.positionY / 50));
+                        this.plant = GGSim.plants[GGSim.plants.length - 1];
+                        this.empty = false;
+                        GGSim.Player.money--;
+                    }
+                    else if (GGSim.Player.action == GGSim.ACTION.BLANKET && GGSim.Player.money > 0) {
+                        GGSim.plants.push(new GGSim.Blanket(this.positionX / 50, this.positionY / 50));
+                        this.plant = GGSim.plants[GGSim.plants.length - 1];
+                        this.empty = false;
+                        GGSim.Player.money--;
+                    }
+                    else if (GGSim.Player.action == GGSim.ACTION.SOCK && GGSim.Player.money > 0) {
+                        GGSim.plants.push(new GGSim.Sock(this.positionX / 50, this.positionY / 50));
+                        this.plant = GGSim.plants[GGSim.plants.length - 1];
+                        this.empty = false;
+                        GGSim.Player.money--;
+                    }
+                    GGSim.Simulation.update();
                 }
                 else if (GGSim.Player.action == GGSim.ACTION.HARVEST) {
                     this.plant.playerUpdate(this.plant);
