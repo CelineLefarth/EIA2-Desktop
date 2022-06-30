@@ -1,5 +1,6 @@
 namespace GGSim {
 
+
     export abstract class Plant {
 
         fieldX: number;
@@ -19,6 +20,8 @@ namespace GGSim {
         abstract isReady: boolean;
         abstract pests: Pest[];
         abstract dryColor: string[];
+        images: HTMLImageElement[] = [Asset.defaultPlant, Asset.finishedPlant];
+        image: HTMLImageElement = this.images[0];
 
         constructor(_fieldX: number, _fieldY: number) {
             this.fieldX = _fieldX;
@@ -100,7 +103,7 @@ namespace GGSim {
                     this.scaleY = this.scaleY + 0.1;
                 }
                 else {
-                    this.color = "blue";
+                    this.image = this.images[1];
                     this.isReady = true;
                 }
             }
@@ -120,10 +123,9 @@ namespace GGSim {
         draw(): void {
             ctx.resetTransform();
             ctx.translate(Field.size / 2 + Field.size * this.fieldX, Field.size / 2 + Field.size * this.fieldY);
-            ctx.scale(this.scaleX + 1 * this.fertilizeLevel, this.scaleY + 1 * this.fertilizeLevel);
+            ctx.scale(this.scaleX + 0.2 * this.fertilizeLevel, this.scaleY + 0.2 * this.fertilizeLevel);
             ctx.translate((- Field.size / 2) - this.scaleX, (- Field.size / 2) - this.scaleY);
-            ctx.fillStyle = this.color;
-            ctx.fillRect(Field.size / 2, Field.size / 2, Field.size / 10, Field.size / 10);
+            ctx.drawImage(this.image, this.scaleX + Field.size / 4, this.scaleY);
         }
 
     }

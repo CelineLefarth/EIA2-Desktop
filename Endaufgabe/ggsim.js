@@ -11,6 +11,7 @@ var GGSim;
     GGSim.fields = [];
     function handleLoad() {
         console.log("GGSim");
+        GGSim.Asset.load();
         GGSim.canvas = document.getElementById("field_canvas");
         GGSim.canvasM = document.getElementById("market_canvas");
         GGSim.canvas.width = 50.5 * 10;

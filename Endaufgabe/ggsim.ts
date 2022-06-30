@@ -21,8 +21,10 @@ export let market: Market = new Market;
 export let plants: Plant[] = [];
 export let fields: Field[] = [];
 
+
 function handleLoad(): void {
     console.log("GGSim");
+    Asset.load();
     canvas = <HTMLCanvasElement>document.getElementById("field_canvas");
     canvasM = <HTMLCanvasElement>document.getElementById("market_canvas");
     canvas.width = 50.5 * 10;

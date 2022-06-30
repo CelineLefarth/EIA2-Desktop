@@ -3,6 +3,8 @@ var GGSim;
     class Plant {
         fieldX;
         fieldY;
+        images = [GGSim.Asset.defaultPlant, GGSim.Asset.finishedPlant];
+        image = this.images[0];
         constructor(_fieldX, _fieldY) {
             this.fieldX = _fieldX;
             this.fieldY = _fieldY;
@@ -76,7 +78,7 @@ var GGSim;
                     this.scaleY = this.scaleY + 0.1;
                 }
                 else {
-                    this.color = "blue";
+                    this.image = this.images[1];
                     this.isReady = true;
                 }
             }
@@ -93,10 +95,9 @@ var GGSim;
         draw() {
             GGSim.ctx.resetTransform();
             GGSim.ctx.translate(GGSim.Field.size / 2 + GGSim.Field.size * this.fieldX, GGSim.Field.size / 2 + GGSim.Field.size * this.fieldY);
-            GGSim.ctx.scale(this.scaleX + 1 * this.fertilizeLevel, this.scaleY + 1 * this.fertilizeLevel);
+            GGSim.ctx.scale(this.scaleX + 0.2 * this.fertilizeLevel, this.scaleY + 0.2 * this.fertilizeLevel);
             GGSim.ctx.translate((-GGSim.Field.size / 2) - this.scaleX, (-GGSim.Field.size / 2) - this.scaleY);
-            GGSim.ctx.fillStyle = this.color;
-            GGSim.ctx.fillRect(GGSim.Field.size / 2, GGSim.Field.size / 2, GGSim.Field.size / 10, GGSim.Field.size / 10);
+            GGSim.ctx.drawImage(this.image, this.scaleX + GGSim.Field.size / 4, this.scaleY);
         }
     }
     GGSim.Plant = Plant;
