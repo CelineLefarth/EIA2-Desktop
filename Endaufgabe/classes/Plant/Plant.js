@@ -92,11 +92,11 @@ var GGSim;
         }
         draw() {
             GGSim.ctx.resetTransform();
-            GGSim.ctx.translate(25 + 50 * this.fieldX, 25 + 50 * this.fieldY);
+            GGSim.ctx.translate(GGSim.Field.size / 2 + GGSim.Field.size * this.fieldX, GGSim.Field.size / 2 + GGSim.Field.size * this.fieldY);
             GGSim.ctx.scale(this.scaleX + 1 * this.fertilizeLevel, this.scaleY + 1 * this.fertilizeLevel);
-            GGSim.ctx.translate(-24 - this.scaleX, -24 - this.scaleY);
+            GGSim.ctx.translate((-GGSim.Field.size / 2) - this.scaleX, (-GGSim.Field.size / 2) - this.scaleY);
             GGSim.ctx.fillStyle = this.color;
-            GGSim.ctx.fillRect(25, 25, 5, 5);
+            GGSim.ctx.fillRect(GGSim.Field.size / 2, GGSim.Field.size / 2, GGSim.Field.size / 10, GGSim.Field.size / 10);
         }
     }
     GGSim.Plant = Plant;

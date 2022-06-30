@@ -1,40 +1,42 @@
 namespace GGSim {
     export class Field {
+        static size: number = 50;
         time: number;
         positionX: number;
         positionY: number;
         isEmpty: boolean = true;
         plant: Plant;
 
+
         constructor(_positionX: number, _positionY: number) {
-            this.positionX = _positionX * 50;
-            this.positionY = _positionY * 50;
+            this.positionX = _positionX;
+            this.positionY = _positionY;
         }
 
         clicked(_x: number, _y: number): void {
-            _x = _x - 50;
-            _y = _y - 50;
+            _x = _x - Field.size;
+            _y = _y - Field.size;
 
-            if (_x < this.positionX && _x > this.positionX - 50 && _y < this.positionY && _y > this.positionY - 50) {
+            if (_x < this.positionX * Field.size && _x > this.positionX * Field.size - Field.size && _y < this.positionY * Field.size && _y > this.positionY * Field.size - Field.size) {
                 if (this.isEmpty == true) {
                     if (Player.action == ACTION.PLANT) {
                         for (let seed of Player.seeds) {
                             if (Player.plantAction == seed.type && seed.amount > 0) {
                                 switch (Player.plantAction) {
                                     case PLANTACTION.PILLOW:
-                                        plants.push(new Pillow(this.positionX / 50, this.positionY / 50));
+                                        plants.push(new Pillow(this.positionX, this.positionY));
                                         break;
                                     case PLANTACTION.SCARF:
-                                        plants.push(new Scarf(this.positionX / 50, this.positionY / 50));
+                                        plants.push(new Scarf(this.positionX, this.positionY));
                                         break;
                                     case PLANTACTION.TEDDY:
-                                        plants.push(new Teddy(this.positionX / 50, this.positionY / 50));
+                                        plants.push(new Teddy(this.positionX, this.positionY));
                                         break;
                                     case PLANTACTION.BLANKET:
-                                        plants.push(new Blanket(this.positionX / 50, this.positionY / 50));
+                                        plants.push(new Blanket(this.positionX, this.positionY));
                                         break;
                                     case PLANTACTION.SOCK:
-                                        plants.push(new Sock(this.positionX / 50, this.positionY / 50));
+                                        plants.push(new Sock(this.positionX, this.positionY));
                                         break;
                                 }
                                 this.plant = plants[plants.length - 1];
@@ -64,9 +66,9 @@ namespace GGSim {
 
         draw(): void {
             ctx.resetTransform();
-            ctx.translate(this.positionX, this.positionY);
+            ctx.translate(this.positionX * Field.size, this.positionY * Field.size);
             ctx.fillStyle = "black";
-            ctx.fillRect(5, 5, 45, 45);
+            ctx.fillRect(Field.size / 10, Field.size / 10, Field.size - Field.size / 10, Field.size - Field.size / 10);
         }
 
     }

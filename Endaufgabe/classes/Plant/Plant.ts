@@ -119,11 +119,11 @@ namespace GGSim {
 
         draw(): void {
             ctx.resetTransform();
-            ctx.translate(25 + 50 * this.fieldX, 25 + 50 * this.fieldY);
+            ctx.translate(Field.size / 2 + Field.size * this.fieldX, Field.size / 2 + Field.size * this.fieldY);
             ctx.scale(this.scaleX + 1 * this.fertilizeLevel, this.scaleY + 1 * this.fertilizeLevel);
-            ctx.translate(-24 - this.scaleX, -24 - this.scaleY);
+            ctx.translate((- Field.size / 2) - this.scaleX, (- Field.size / 2) - this.scaleY);
             ctx.fillStyle = this.color;
-            ctx.fillRect(25, 25, 5, 5);
+            ctx.fillRect(Field.size / 2, Field.size / 2, Field.size / 10, Field.size / 10);
         }
 
     }

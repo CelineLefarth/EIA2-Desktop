@@ -23,9 +23,9 @@ namespace GGSim {
 
         draw(_fieldX: number, _fieldY: number): void {
             ctx.resetTransform();
-            ctx.translate(50 * _fieldX, 50 * _fieldY);
+            ctx.translate(Field.size * _fieldX, Field.size * _fieldY);
             ctx.fillStyle = "white";
-            ctx.fillRect(25, 25, 5, 5);
+            ctx.fillRect(Field.size / 3, Field.size / 3, Field.size / 10, Field.size / 10);
         }
 
     }

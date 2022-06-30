@@ -19,9 +19,9 @@ var GGSim;
         }
         draw(_fieldX, _fieldY) {
             GGSim.ctx.resetTransform();
-            GGSim.ctx.translate(50 * _fieldX, 50 * _fieldY);
+            GGSim.ctx.translate(GGSim.Field.size * _fieldX, GGSim.Field.size * _fieldY);
             GGSim.ctx.fillStyle = "white";
-            GGSim.ctx.fillRect(25, 25, 5, 5);
+            GGSim.ctx.fillRect(GGSim.Field.size / 3, GGSim.Field.size / 3, GGSim.Field.size / 10, GGSim.Field.size / 10);
         }
     }
     GGSim.Pest = Pest;
