@@ -70,16 +70,32 @@ var GGSim;
             shopOpen = true;
             const buyPesticides = document.createElement("button");
             const buyFertilizers = document.createElement("button");
-            const buySeeds = document.createElement("button");
+            const buyPillow = document.createElement("button");
+            const buyTeddy = document.createElement("button");
+            const buyBlanket = document.createElement("button");
+            const buyScarf = document.createElement("button");
+            const buySock = document.createElement("button");
             buyPesticides.innerHTML = "Buy Pesticides";
             buyFertilizers.innerHTML = "Buy Fertilizers";
-            buySeeds.innerHTML = "Buy Seeds";
+            buyPillow.innerHTML = "Buy Pillow";
+            buyTeddy.innerHTML = "Buy Teddy";
+            buyBlanket.innerHTML = "Buy Blanket";
+            buyScarf.innerHTML = "Buy Scarf";
+            buySock.innerHTML = "Buy Sock";
             buyPesticides.addEventListener("click", boughtPesticides);
             buyFertilizers.addEventListener("click", boughtFertilizers);
-            buySeeds.addEventListener("click", boughtSeeds);
+            buyPillow.addEventListener("click", boughtPillow);
+            buyTeddy.addEventListener("click", boughtTeddy);
+            buyBlanket.addEventListener("click", boughtBlanket);
+            buyScarf.addEventListener("click", boughtScarf);
+            buySock.addEventListener("click", boughtSock);
             shop.appendChild(buyPesticides);
             shop.appendChild(buyFertilizers);
-            shop.appendChild(buySeeds);
+            shop.appendChild(buyPillow);
+            shop.appendChild(buyTeddy);
+            shop.appendChild(buyBlanket);
+            shop.appendChild(buyScarf);
+            shop.appendChild(buySock);
         }
         else if (shopOpen == true) {
             shopOpen = false;
@@ -102,10 +118,38 @@ var GGSim;
             GGSim.Simulation.update();
         }
     }
-    function boughtSeeds() {
+    function boughtPillow() {
         if (GGSim.Player.money > 0) {
+            GGSim.Player.seeds[0].amount++;
             GGSim.Player.money--;
-            //Player.seeds ++;
+            GGSim.Simulation.update();
+        }
+    }
+    function boughtTeddy() {
+        if (GGSim.Player.money > 0) {
+            GGSim.Player.seeds[1].amount++;
+            GGSim.Player.money--;
+            GGSim.Simulation.update();
+        }
+    }
+    function boughtScarf() {
+        if (GGSim.Player.money > 0) {
+            GGSim.Player.seeds[2].amount++;
+            GGSim.Player.money--;
+            GGSim.Simulation.update();
+        }
+    }
+    function boughtBlanket() {
+        if (GGSim.Player.money > 0) {
+            GGSim.Player.seeds[3].amount++;
+            GGSim.Player.money--;
+            GGSim.Simulation.update();
+        }
+    }
+    function boughtSock() {
+        if (GGSim.Player.money > 0) {
+            GGSim.Player.seeds[4].amount++;
+            GGSim.Player.money--;
             GGSim.Simulation.update();
         }
     }

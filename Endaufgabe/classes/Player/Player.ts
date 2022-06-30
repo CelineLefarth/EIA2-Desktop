@@ -11,7 +11,6 @@ namespace GGSim {
         static fertilizer: number = 20;
         static pesticides: number = 20;
         static seeds: Seed[] = [{type: "pillow", amount: 0}, {type: "teddy", amount: 0}, {type: "scarf", amount: 0}, {type: "blanket", amount: 0}, {type: "sock", amount: 0}];
-        
 
         constructor() {
             //

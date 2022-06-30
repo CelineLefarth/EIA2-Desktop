@@ -92,16 +92,32 @@ function toggleShop(): void {
         shopOpen = true;
         const buyPesticides: HTMLButtonElement = document.createElement("button");
         const buyFertilizers: HTMLButtonElement = document.createElement("button");
-        const buySeeds: HTMLButtonElement = document.createElement("button");
+        const buyPillow: HTMLButtonElement = document.createElement("button");
+        const buyTeddy: HTMLButtonElement = document.createElement("button");
+        const buyBlanket: HTMLButtonElement = document.createElement("button");
+        const buyScarf: HTMLButtonElement = document.createElement("button");
+        const buySock: HTMLButtonElement = document.createElement("button");
         buyPesticides.innerHTML = "Buy Pesticides";
         buyFertilizers.innerHTML = "Buy Fertilizers";
-        buySeeds.innerHTML = "Buy Seeds";
+        buyPillow.innerHTML = "Buy Pillow";
+        buyTeddy.innerHTML = "Buy Teddy";
+        buyBlanket.innerHTML = "Buy Blanket";
+        buyScarf.innerHTML = "Buy Scarf";
+        buySock.innerHTML = "Buy Sock";
         buyPesticides.addEventListener("click", boughtPesticides);
         buyFertilizers.addEventListener("click", boughtFertilizers);
-        buySeeds.addEventListener("click", boughtSeeds);
+        buyPillow.addEventListener("click", boughtPillow);
+        buyTeddy.addEventListener("click", boughtTeddy);
+        buyBlanket.addEventListener("click", boughtBlanket);
+        buyScarf.addEventListener("click", boughtScarf);
+        buySock.addEventListener("click", boughtSock);
         shop.appendChild(buyPesticides);
         shop.appendChild(buyFertilizers);
-        shop.appendChild(buySeeds);
+        shop.appendChild(buyPillow);
+        shop.appendChild(buyTeddy);
+        shop.appendChild(buyBlanket);
+        shop.appendChild(buyScarf);
+        shop.appendChild(buySock);
     }
     else if (shopOpen == true) {
         shopOpen = false;
@@ -127,10 +143,42 @@ function boughtFertilizers(): void {
     }
 }
 
-function boughtSeeds(): void {
+function boughtPillow(): void {
     if (Player.money > 0) {
+    Player.seeds[0].amount ++;
     Player.money --;
-    //Player.seeds ++;
+    Simulation.update();
+    }
+}
+
+function boughtTeddy(): void {
+    if (Player.money > 0) {
+    Player.seeds[1].amount ++;
+    Player.money --;
+    Simulation.update();
+    }
+}
+
+function boughtScarf(): void {
+    if (Player.money > 0) {
+    Player.seeds[2].amount ++;
+    Player.money --;
+    Simulation.update();
+    }
+}
+
+function boughtBlanket(): void {
+    if (Player.money > 0) {
+    Player.seeds[3].amount ++;
+    Player.money --;
+    Simulation.update();
+    }
+}
+
+function boughtSock(): void {
+    if (Player.money > 0) {
+    Player.seeds[4].amount ++;
+    Player.money --;
     Simulation.update();
     }
 }
