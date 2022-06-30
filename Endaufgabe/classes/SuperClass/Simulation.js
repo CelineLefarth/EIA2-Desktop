@@ -55,11 +55,11 @@ var GGSim;
             document.getElementById("moneyCount").innerHTML = GGSim.Player.money + "$";
             document.getElementById("fertiCount").innerHTML = GGSim.Player.fertilizer + "F";
             document.getElementById("pestiCount").innerHTML = GGSim.Player.pesticides + "P";
-            document.getElementById("seedsCount").innerHTML = GGSim.Player.seeds[0].type + " seeds: " + GGSim.Player.seeds[0].amount + "S" + "<br>";
-            document.getElementById("seedsCount").innerHTML += GGSim.Player.seeds[1].type + " seeds: " + GGSim.Player.seeds[1].amount + "S" + "<br>";
-            document.getElementById("seedsCount").innerHTML += GGSim.Player.seeds[2].type + " seeds: " + GGSim.Player.seeds[2].amount + "S" + "<br>";
-            document.getElementById("seedsCount").innerHTML += GGSim.Player.seeds[3].type + " seeds: " + GGSim.Player.seeds[3].amount + "S" + "<br>";
-            document.getElementById("seedsCount").innerHTML += GGSim.Player.seeds[4].type + " seeds: " + GGSim.Player.seeds[4].amount + "S";
+            document.getElementById("seedsCount").innerHTML = "Pillow seeds: " + GGSim.Player.seeds[0].amount + "S" + "<br>";
+            document.getElementById("seedsCount").innerHTML += "Teddy seeds: " + GGSim.Player.seeds[1].amount + "S" + "<br>";
+            document.getElementById("seedsCount").innerHTML += "Scarf seeds: " + GGSim.Player.seeds[2].amount + "S" + "<br>";
+            document.getElementById("seedsCount").innerHTML += "Blanket seeds: " + GGSim.Player.seeds[3].amount + "S" + "<br>";
+            document.getElementById("seedsCount").innerHTML += "Sock seeds: " + GGSim.Player.seeds[4].amount + "S";
             document.getElementById("marketPriceCost").innerHTML = "MwSt Erlöse: " + (GGSim.Market.price.cost).toFixed(2) + "$";
         }
     }

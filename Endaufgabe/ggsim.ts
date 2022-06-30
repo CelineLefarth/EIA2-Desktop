@@ -15,18 +15,6 @@ let shopOpen: boolean = false;
 let shop: HTMLElement;
 
 export let currentActionVis: HTMLElement;
-export enum ACTION {
-    FERTILIZE,
-    HARVEST,
-    WATER,
-    PILLOW,
-    TEDDY,
-    SCARF,
-    BLANKET,
-    SOCK,
-    PESTICIDE,
-    CLICK
-} 
 export let player: Player = new Player;
 export let market: Market = new Market;
 

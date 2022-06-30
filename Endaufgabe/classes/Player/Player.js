@@ -1,57 +1,77 @@
 var GGSim;
 (function (GGSim) {
+    let ACTION;
+    (function (ACTION) {
+        ACTION[ACTION["FERTILIZE"] = 0] = "FERTILIZE";
+        ACTION[ACTION["HARVEST"] = 1] = "HARVEST";
+        ACTION[ACTION["WATER"] = 2] = "WATER";
+        ACTION[ACTION["PLANT"] = 3] = "PLANT";
+        ACTION[ACTION["PESTICIDE"] = 4] = "PESTICIDE";
+        ACTION[ACTION["CLICK"] = 5] = "CLICK";
+    })(ACTION = GGSim.ACTION || (GGSim.ACTION = {}));
+    let PLANTACTION;
+    (function (PLANTACTION) {
+        PLANTACTION[PLANTACTION["PILLOW"] = 0] = "PILLOW";
+        PLANTACTION[PLANTACTION["TEDDY"] = 1] = "TEDDY";
+        PLANTACTION[PLANTACTION["SCARF"] = 2] = "SCARF";
+        PLANTACTION[PLANTACTION["BLANKET"] = 3] = "BLANKET";
+        PLANTACTION[PLANTACTION["SOCK"] = 4] = "SOCK";
+    })(PLANTACTION = GGSim.PLANTACTION || (GGSim.PLANTACTION = {}));
     class Player {
         static action;
+        static plantAction;
         static money = 10;
         static fertilizer = 20;
         static pesticides = 20;
-        static seeds = [{ type: "pillow", amount: 0 }, { type: "teddy", amount: 0 }, { type: "scarf", amount: 0 }, { type: "blanket", amount: 0 }, { type: "sock", amount: 0 }];
+        static seeds = [{ type: PLANTACTION.PILLOW, amount: 0 }, { type: PLANTACTION.TEDDY, amount: 0 }, { type: PLANTACTION.SCARF, amount: 0 }, { type: PLANTACTION.BLANKET, amount: 0 }, { type: PLANTACTION.SOCK, amount: 0 }];
         constructor() {
             //
         }
         fertilize() {
-            console.log("fertilize");
-            Player.action = GGSim.ACTION.FERTILIZE;
-            GGSim.currentActionVis.innerHTML = "fertilize";
-            console.log(Player.action);
+            if (Player.fertilizer > 0) {
+                Player.action = ACTION.FERTILIZE;
+                GGSim.currentActionVis.innerHTML = "fertilize";
+            }
         }
         water() {
-            console.log("water");
-            Player.action = GGSim.ACTION.WATER;
+            Player.action = ACTION.WATER;
             GGSim.currentActionVis.innerHTML = "water";
-            console.log(Player.action);
         }
         plant(_value) {
             console.log("plant");
             if (_value == "pillow") {
-                Player.action = GGSim.ACTION.PILLOW;
+                Player.action = ACTION.PLANT;
+                Player.plantAction = PLANTACTION.PILLOW;
             }
             else if (_value == "teddy") {
-                Player.action = GGSim.ACTION.TEDDY;
+                Player.action = ACTION.PLANT;
+                Player.plantAction = PLANTACTION.TEDDY;
             }
             else if (_value == "blanket") {
-                Player.action = GGSim.ACTION.BLANKET;
+                Player.action = ACTION.PLANT;
+                Player.plantAction = PLANTACTION.BLANKET;
             }
             else if (_value == "scarf") {
-                Player.action = GGSim.ACTION.SCARF;
+                Player.action = ACTION.PLANT;
+                Player.plantAction = PLANTACTION.SCARF;
             }
             else if (_value == "sock") {
-                Player.action = GGSim.ACTION.SOCK;
+                Player.action = ACTION.PLANT;
+                Player.plantAction = PLANTACTION.SOCK;
             }
             GGSim.currentActionVis.innerHTML = _value;
-            console.log(Player.action);
         }
         pesticide() {
-            console.log("pesticide");
-            Player.action = GGSim.ACTION.PESTICIDE;
-            GGSim.currentActionVis.innerHTML = "pesticide";
-            console.log(Player.action);
+            if (Player.pesticides > 0) {
+                console.log("pesticide");
+                Player.action = ACTION.PESTICIDE;
+                GGSim.currentActionVis.innerHTML = "pesticide";
+            }
         }
         harvest() {
             console.log("harvest");
-            Player.action = GGSim.ACTION.HARVEST;
+            Player.action = ACTION.HARVEST;
             GGSim.currentActionVis.innerHTML = "harvest";
-            console.log(Player.action);
         }
     }
     GGSim.Player = Player;

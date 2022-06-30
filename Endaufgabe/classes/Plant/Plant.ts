@@ -5,13 +5,18 @@ namespace GGSim {
         fieldX: number;
         fieldY: number;
         abstract waterLevel: number;
+        abstract maxWaterlevel: number;
         abstract fertilizeLevel: number;
+        abstract maxFertilizeLevel: number;
+        abstract fertilizeSteps: number;
         abstract pesticideAmount: number;
         abstract age: number;
+        abstract maxAge: number;
         abstract scaleX: number;
         abstract scaleY: number;
         abstract color: string;
-        abstract ready: boolean;
+        abstract priceValue: number;
+        abstract isReady: boolean;
         abstract pests: Pest[];
         abstract dryColor: string[];
 
@@ -20,19 +25,106 @@ namespace GGSim {
             this.fieldY = _fieldY;
         }
 
-        abstract timeUpdate(_action: TIMEACTION): void;
+        timeUpdate(_action: TIMEACTION): void {
+            switch (_action) {
+                case TIMEACTION.GROW:
+                    this.grow();
+                    break;
+                case TIMEACTION.DRY:
+                    this.dry();
+                    break;
+                case TIMEACTION.PEST:
+                    this.shrink();
+                    break;
+            }
+            Simulation.update();
+        }
 
-        abstract playerUpdate(_plant: Plant): void;
+        playerUpdate(): void {
+            switch (Player.action) {
+                case ACTION.WATER:
+                    this.getWaterd();
+                    break;
+                case ACTION.FERTILIZE:
+                    this.getFertilized();
+                    break;
+                case ACTION.PESTICIDE:
+                    this.getPesticided();
+                    break;
+                case ACTION.HARVEST:
+                    this.getHarvested();
+                    break;
+            }
+            Simulation.update();
+        }
 
-        abstract shrink(): void;
+        getWaterd(): void {
+            if (this.pests.length == 0) {
+                if (this.waterLevel < this.maxWaterlevel && this.isReady == false) {
+                    this.waterLevel++;
+                    this.color = this.dryColor[this.waterLevel];
+                }
+            }
+        }
 
-        abstract grow(): void;
+        getFertilized(): void {
+            if (this.fertilizeLevel < this.maxFertilizeLevel && this.pests.length == 0 && this.age < this.maxAge) {
+                this.fertilizeLevel++;
+                this.age = this.age + this.fertilizeSteps;
+                Player.fertilizer--;
+            }
+        }
 
-        abstract dry(): void;
+        getPesticided(): void {
+            if (this.pests.length > 0) {
+                this.pesticideAmount--;
+                Player.pesticides--;
+                this.pests = [];
+            }
+        }
 
-        abstract die(_plant: Plant): void;
+        getHarvested(): void {
+            if (this.isReady == true) {
+                Player.money = Player.money + Math.round(Market.price.cost) + this.priceValue * this.fertilizeLevel;
+                if (Player.money < 0) {
+                    Player.money = 0;
+                }
+            }
+        }
 
-        abstract draw(): void;
+        grow(): void {
+            if (this.waterLevel > 0 && this.pests.length == 0) {
+                if (this.age < this.maxAge) {
+                    this.age++;
+                    this.scaleX = this.scaleX + 0.1;
+                    this.scaleY = this.scaleY + 0.1;
+                }
+                else {
+                    this.color = "blue";
+                    this.isReady = true;
+                }
+            }
+        }
+
+        shrink(): void {
+            this.pests.push(new Pest(this.fieldX, this.fieldY));
+        }
+
+        dry(): void {
+            if (this.isReady == false && this.waterLevel > 0) {
+                this.waterLevel--;
+                this.color = this.dryColor[this.waterLevel];
+            }
+        }
+
+        draw(): void {
+            ctx.resetTransform();
+            ctx.translate(25 + 50 * this.fieldX, 25 + 50 * this.fieldY);
+            ctx.scale(this.scaleX + 1 * this.fertilizeLevel, this.scaleY + 1 * this.fertilizeLevel);
+            ctx.translate(-24 - this.scaleX, -24 - this.scaleY);
+            ctx.fillStyle = this.color;
+            ctx.fillRect(25, 25, 5, 5);
+        }
 
     }
 }

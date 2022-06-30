@@ -1,69 +1,88 @@
 namespace GGSim {
 
+    export enum ACTION {
+        FERTILIZE,
+        HARVEST,
+        WATER,
+        PLANT,
+        PESTICIDE,
+        CLICK
+    } 
+    
+    export enum PLANTACTION {
+        PILLOW,
+        TEDDY,
+        SCARF,
+        BLANKET,
+        SOCK
+    }
+
     export interface Seed {
-        type: string;
+        type: PLANTACTION;
         amount: number;
     }
 
     export class Player {
         static action: ACTION;
+        static plantAction: PLANTACTION;
         static money: number = 10;
         static fertilizer: number = 20;
         static pesticides: number = 20;
-        static seeds: Seed[] = [{type: "pillow", amount: 0}, {type: "teddy", amount: 0}, {type: "scarf", amount: 0}, {type: "blanket", amount: 0}, {type: "sock", amount: 0}];
+        static seeds: Seed[] = [{type: PLANTACTION.PILLOW, amount: 0}, {type: PLANTACTION.TEDDY, amount: 0}, {type: PLANTACTION.SCARF, amount: 0}, {type: PLANTACTION.BLANKET, amount: 0}, {type: PLANTACTION.SOCK, amount: 0}];
 
         constructor() {
             //
         }
 
         fertilize(): void {
-            console.log("fertilize");
+            if (Player.fertilizer > 0) { 
             Player.action = ACTION.FERTILIZE;
             currentActionVis.innerHTML = "fertilize";
-            console.log(Player.action);
-            
+            }
         }
 
         water(): void {
-            console.log("water");
             Player.action = ACTION.WATER;
             currentActionVis.innerHTML = "water";
-            console.log(Player.action);
         }
 
         plant(_value: string): void {
             console.log("plant");
             if (_value == "pillow") {
-                Player.action = ACTION.PILLOW;
+                Player.action = ACTION.PLANT ;
+                Player.plantAction = PLANTACTION.PILLOW;
             }
             else if (_value == "teddy") {
-                Player.action = ACTION.TEDDY;
+                Player.action = ACTION.PLANT ;
+                Player.plantAction = PLANTACTION.TEDDY;
             }
             else if (_value == "blanket") {
-                Player.action = ACTION.BLANKET;
+                Player.action = ACTION.PLANT ;
+                Player.plantAction = PLANTACTION.BLANKET;
             }
             else if (_value == "scarf") {
-                Player.action = ACTION.SCARF;
+                Player.action = ACTION.PLANT ;
+                Player.plantAction = PLANTACTION.SCARF;
             }
             else if (_value == "sock") {
-                Player.action = ACTION.SOCK;
+                Player.action = ACTION.PLANT ;
+                Player.plantAction = PLANTACTION.SOCK;
             }
             currentActionVis.innerHTML = _value;
-            console.log(Player.action);
         }
 
         pesticide(): void {
+            if(Player.pesticides > 0) {
             console.log("pesticide");
             Player.action = ACTION.PESTICIDE;
             currentActionVis.innerHTML = "pesticide";
-            console.log(Player.action);
+            }
         }
 
         harvest(): void {
             console.log("harvest");
             Player.action = ACTION.HARVEST;
             currentActionVis.innerHTML = "harvest";
-            console.log(Player.action);
         }
     }
 }
