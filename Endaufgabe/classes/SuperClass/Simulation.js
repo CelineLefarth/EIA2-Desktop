@@ -21,9 +21,6 @@ var GGSim;
     let randomAction;
     class Simulation {
         static timeAction;
-        constructor() {
-            //
-        }
         static run() {
             setInterval(this.timer, 1000);
         }
@@ -35,7 +32,7 @@ var GGSim;
                 plant.timeUpdate(randomAction);
             }
             GGSim.Market.lastPrice = GGSim.Market.price.cost;
-            GGSim.Market.price.cost = (Math.random() * (Math.sin(GGSim.time) + Math.sin(GGSim.time) * 5));
+            GGSim.Market.price.cost = (Math.random() * (Math.sin(GGSim.time) + Math.sin(GGSim.time) * GGSim.Market.fluctuation));
             GGSim.Market.draw();
             Simulation.update();
             if (GGSim.plants.length == 0 && GGSim.Player.money == 0) {

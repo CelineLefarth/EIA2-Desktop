@@ -5,7 +5,26 @@ var GGSim;
         static price = { type: "all", amount: 1, cost: 1 };
         static lastPrice = 0;
         static lastTime = 0;
-        fluctuation;
+        static fluctuation = 5;
+        static manipulate() {
+            const marketFluctPlus = document.createElement("button");
+            const marketFluctVis = document.createElement("span");
+            const marketFluctMinus = document.createElement("button");
+            marketFluctPlus.innerHTML = "Marketflucuation: +";
+            marketFluctVis.innerHTML = "MF: " + Market.fluctuation;
+            marketFluctMinus.innerHTML = "Marketflucuation: -";
+            marketFluctMinus.addEventListener("click", () => { if (Market.fluctuation > 0) {
+                Market.fluctuation--;
+                marketFluctVis.innerHTML = "MF: " + Market.fluctuation;
+            } });
+            marketFluctPlus.addEventListener("click", () => { if (Market.fluctuation < 10) {
+                Market.fluctuation++;
+                marketFluctVis.innerHTML = "MF: " + Market.fluctuation;
+            } });
+            GGSim.settings.appendChild(marketFluctMinus);
+            GGSim.settings.appendChild(marketFluctVis);
+            GGSim.settings.appendChild(marketFluctPlus);
+        }
         static draw() {
             GGSim.ctxM.resetTransform();
             if (GGSim.time % 20 === 0 || GGSim.time == 0) {

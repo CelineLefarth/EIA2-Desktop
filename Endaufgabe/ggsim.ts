@@ -8,6 +8,8 @@ export let ctxM: CanvasRenderingContext2D;
 export let mouseX: number;
 export let mouseY: number;
 
+let settingsOpen: boolean = false;
+export let settings: HTMLElement;
 let shopOpen: boolean = false;
 let shop: HTMLElement;
 
@@ -66,6 +68,9 @@ function handleLoad(): void {
     shop = document.getElementById("shop");
     const shopBtn: HTMLElement = document.getElementById("shopBtn");
     shopBtn.addEventListener("click", toggleShop);
+    settings = document.getElementById("settings");
+    const settingsBtn: HTMLElement = document.getElementById("settingsBtn");
+    settingsBtn.addEventListener("click", toggleSettings);
 
     canvas.addEventListener("click", (e) => getMousePos(canvas, e));
 
@@ -84,6 +89,18 @@ function getMousePos(_canvas: HTMLCanvasElement, _evt: MouseEvent): void {
     
   }
 
+function toggleSettings(): void {
+    if (settingsOpen == false) {
+        settingsOpen = true;
+        Market.manipulate();
+    }
+    else if (settingsOpen == true) {
+        settingsOpen = false;
+        while (settings.firstChild) {
+            settings.removeChild(settings.firstChild);
+        }
+    }
+}
 
 
 

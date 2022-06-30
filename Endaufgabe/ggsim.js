@@ -1,6 +1,7 @@
 var GGSim;
 (function (GGSim) {
     window.addEventListener("load", handleLoad);
+    let settingsOpen = false;
     let shopOpen = false;
     let shop;
     let ACTION;
@@ -53,6 +54,9 @@ var GGSim;
         shop = document.getElementById("shop");
         const shopBtn = document.getElementById("shopBtn");
         shopBtn.addEventListener("click", toggleShop);
+        GGSim.settings = document.getElementById("settings");
+        const settingsBtn = document.getElementById("settingsBtn");
+        settingsBtn.addEventListener("click", toggleSettings);
         GGSim.canvas.addEventListener("click", (e) => getMousePos(GGSim.canvas, e));
     }
     //https://stackoverflow.com/questions/17130395/real-mouse-position-in-canvas/17130415#17130415
@@ -63,6 +67,18 @@ var GGSim;
         console.log(GGSim.mouseX, GGSim.mouseY);
         for (let field of GGSim.fields) {
             field.clicked(GGSim.mouseX, GGSim.mouseY);
+        }
+    }
+    function toggleSettings() {
+        if (settingsOpen == false) {
+            settingsOpen = true;
+            GGSim.Market.manipulate();
+        }
+        else if (settingsOpen == true) {
+            settingsOpen = false;
+            while (GGSim.settings.firstChild) {
+                GGSim.settings.removeChild(GGSim.settings.firstChild);
+            }
         }
     }
     function toggleShop() {

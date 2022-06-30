@@ -27,9 +27,6 @@ namespace GGSim {
 
         static timeAction: TIMEACTION;
 
-        constructor() {
-            //
-        }
         static run(): void {
             setInterval(this.timer, 1000);
         }
@@ -42,7 +39,7 @@ namespace GGSim {
                 plant.timeUpdate(randomAction);
             }
             Market.lastPrice = Market.price.cost;
-            Market.price.cost = (Math.random() * (Math.sin(time) + Math.sin(time) * 5));
+            Market.price.cost = (Math.random() * (Math.sin(time) + Math.sin(time) * Market.fluctuation));
             Market.draw();
             Simulation.update();
 

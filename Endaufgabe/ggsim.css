@@ -5,6 +5,7 @@ canvas{
 #market_canvas{
     position: absolute;
     left: 300px;
+    top: 39px;
     border: 2px;
     border-color: black;
     border-style: solid;
