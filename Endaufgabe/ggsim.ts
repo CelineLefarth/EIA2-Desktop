@@ -8,8 +8,9 @@ export let ctxM: CanvasRenderingContext2D;
 export let mouseX: number;
 export let mouseY: number;
 
-let settingsOpen: boolean = false;
 export let settings: HTMLElement;
+let settingsOpen: boolean = false;
+let inventoryOpen: boolean = false;
 let shopOpen: boolean = false;
 let shop: HTMLElement;
 
@@ -71,6 +72,8 @@ function handleLoad(): void {
     settings = document.getElementById("settings");
     const settingsBtn: HTMLElement = document.getElementById("settingsBtn");
     settingsBtn.addEventListener("click", toggleSettings);
+    const inventoryBtn: HTMLElement = document.getElementById("inventoryBtn");
+    inventoryBtn.addEventListener("click", toggleInventory);
 
     canvas.addEventListener("click", (e) => getMousePos(canvas, e));
 
@@ -102,7 +105,16 @@ function toggleSettings(): void {
     }
 }
 
-
+function toggleInventory(): void {
+    if (inventoryOpen == false) {
+        inventoryOpen = true;
+        document.getElementById("inventory").style.visibility = "visible";
+    }
+    else if (inventoryOpen == true) {
+        inventoryOpen = false;
+        document.getElementById("inventory").style.visibility = "hidden";
+    }
+}
 
 function toggleShop(): void {
     if (shopOpen == false) {
