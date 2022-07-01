@@ -1,7 +1,7 @@
 var GGSim;
 (function (GGSim) {
     class Field {
-        static size = 50;
+        static size = 100;
         time;
         positionX;
         positionY;
@@ -61,7 +61,7 @@ var GGSim;
         draw() {
             GGSim.ctx.resetTransform();
             GGSim.ctx.translate(this.positionX * Field.size, this.positionY * Field.size);
-            GGSim.ctx.fillStyle = "black";
+            GGSim.ctx.fillStyle = "peru";
             GGSim.ctx.fillRect(Field.size / 10, Field.size / 10, Field.size - Field.size / 10, Field.size - Field.size / 10);
         }
     }

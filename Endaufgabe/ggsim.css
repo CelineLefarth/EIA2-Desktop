@@ -1,6 +1,7 @@
 
 canvas{
     background-color:seagreen;
+    image-rendering: pixelated;
 }
 #market_canvas{
     position: absolute;

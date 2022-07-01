@@ -1,6 +1,6 @@
 namespace GGSim {
     export class Field {
-        static size: number = 50;
+        static size: number = 100;
         time: number;
         positionX: number;
         positionY: number;
@@ -67,7 +67,7 @@ namespace GGSim {
         draw(): void {
             ctx.resetTransform();
             ctx.translate(this.positionX * Field.size, this.positionY * Field.size);
-            ctx.fillStyle = "black";
+            ctx.fillStyle = "peru";
             ctx.fillRect(Field.size / 10, Field.size / 10, Field.size - Field.size / 10, Field.size - Field.size / 10);
         }
 

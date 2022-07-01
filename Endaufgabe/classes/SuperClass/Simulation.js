@@ -41,6 +41,7 @@ var GGSim;
             }
         }
         static update() {
+            GGSim.ctx.fillRect(0, 0, GGSim.canvas.width, GGSim.canvas.height);
             GGSim.ctx.clearRect(0, 0, GGSim.canvas.width, GGSim.canvas.height);
             GGSim.ctx.resetTransform();
             for (let field of GGSim.fields) {

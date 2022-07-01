@@ -16,6 +16,8 @@ var GGSim;
         isReady = false;
         pests = [];
         dryColor = ["brown", "red", "orange", "yellow", "green"];
+        images = [GGSim.Asset.blanketPlantSeed, GGSim.Asset.blanketPlantSappling, GGSim.Asset.blanketPlantPlant];
+        image = this.images[0];
         constructor(_fieldX, _fieldY) {
             super(_fieldX, _fieldY);
         }

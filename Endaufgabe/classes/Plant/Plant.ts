@@ -20,8 +20,8 @@ namespace GGSim {
         abstract isReady: boolean;
         abstract pests: Pest[];
         abstract dryColor: string[];
-        images: HTMLImageElement[] = [Asset.defaultPlant, Asset.finishedPlant];
-        image: HTMLImageElement = this.images[0];
+        abstract images: HTMLImageElement[];
+        abstract image: HTMLImageElement;
 
         constructor(_fieldX: number, _fieldY: number) {
             this.fieldX = _fieldX;
@@ -99,11 +99,12 @@ namespace GGSim {
             if (this.waterLevel > 0 && this.pests.length == 0) {
                 if (this.age < this.maxAge) {
                     this.age++;
-                    this.scaleX = this.scaleX + 0.1;
-                    this.scaleY = this.scaleY + 0.1;
+                    if (this.age == Math.round(this.maxAge / 2)) {
+                        this.image = this.images[1];
+                    }
                 }
                 else {
-                    this.image = this.images[1];
+                    this.image = this.images[2];
                     this.isReady = true;
                 }
             }
@@ -123,9 +124,9 @@ namespace GGSim {
         draw(): void {
             ctx.resetTransform();
             ctx.translate(Field.size / 2 + Field.size * this.fieldX, Field.size / 2 + Field.size * this.fieldY);
-            ctx.scale(this.scaleX + 0.2 * this.fertilizeLevel, this.scaleY + 0.2 * this.fertilizeLevel);
-            ctx.translate((- Field.size / 2) - this.scaleX, (- Field.size / 2) - this.scaleY);
-            ctx.drawImage(this.image, this.scaleX + Field.size / 4, this.scaleY);
+            ctx.translate((- Field.size / 2), (- Field.size / 2));
+            ctx.scale(2, 2)
+            ctx.drawImage(this.image, (- Field.size / 20), (- Field.size / 3));
         }
 
     }

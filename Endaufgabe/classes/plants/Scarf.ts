@@ -17,6 +17,8 @@ namespace GGSim {
         isReady: boolean = false;
         pests: Pest[] = [];
         dryColor: string[] = ["brown", "red", "orange", "yellow", "green"];
+        images: HTMLImageElement[] = [Asset.scarfPlantSeed, Asset.scarfPlantSappling, Asset.scarfPlantPlant];
+        image: HTMLImageElement = this.images[0];
 
         constructor(_fieldX: number, _fieldY: number) {
             super(_fieldX, _fieldY);

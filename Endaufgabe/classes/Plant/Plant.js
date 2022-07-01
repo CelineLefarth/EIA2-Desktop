@@ -3,8 +3,6 @@ var GGSim;
     class Plant {
         fieldX;
         fieldY;
-        images = [GGSim.Asset.defaultPlant, GGSim.Asset.finishedPlant];
-        image = this.images[0];
         constructor(_fieldX, _fieldY) {
             this.fieldX = _fieldX;
             this.fieldY = _fieldY;
@@ -74,11 +72,12 @@ var GGSim;
             if (this.waterLevel > 0 && this.pests.length == 0) {
                 if (this.age < this.maxAge) {
                     this.age++;
-                    this.scaleX = this.scaleX + 0.1;
-                    this.scaleY = this.scaleY + 0.1;
+                    if (this.age == Math.round(this.maxAge / 2)) {
+                        this.image = this.images[1];
+                    }
                 }
                 else {
-                    this.image = this.images[1];
+                    this.image = this.images[2];
                     this.isReady = true;
                 }
             }
@@ -95,9 +94,9 @@ var GGSim;
         draw() {
             GGSim.ctx.resetTransform();
             GGSim.ctx.translate(GGSim.Field.size / 2 + GGSim.Field.size * this.fieldX, GGSim.Field.size / 2 + GGSim.Field.size * this.fieldY);
-            GGSim.ctx.scale(this.scaleX + 0.2 * this.fertilizeLevel, this.scaleY + 0.2 * this.fertilizeLevel);
-            GGSim.ctx.translate((-GGSim.Field.size / 2) - this.scaleX, (-GGSim.Field.size / 2) - this.scaleY);
-            GGSim.ctx.drawImage(this.image, this.scaleX + GGSim.Field.size / 4, this.scaleY);
+            GGSim.ctx.translate((-GGSim.Field.size / 2), (-GGSim.Field.size / 2));
+            GGSim.ctx.scale(2, 2);
+            GGSim.ctx.drawImage(this.image, (-GGSim.Field.size / 20), (-GGSim.Field.size / 3));
         }
     }
     GGSim.Plant = Plant;
