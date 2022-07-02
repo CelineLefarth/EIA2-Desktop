@@ -15,13 +15,15 @@ namespace GGSim {
         abstract maxAge: number;
         abstract scaleX: number;
         abstract scaleY: number;
-        abstract color: string;
         abstract priceValue: number;
         abstract isReady: boolean;
         abstract pests: Pest[];
+        pest: Pest;
         abstract dryColor: string[];
         abstract images: HTMLImageElement[];
         abstract image: HTMLImageElement;
+        waterLevelImages: HTMLImageElement[] = [Asset.empty, Asset.needWaterOne, Asset.needWaterTwo, Asset.needWaterThree];
+        waterLevelImage: HTMLImageElement = this.waterLevelImages[0];
 
         constructor(_fieldX: number, _fieldY: number) {
             this.fieldX = _fieldX;
@@ -42,6 +44,8 @@ namespace GGSim {
             }
             Simulation.update();
         }
+
+        abstract priceUpdate(): void;
 
         playerUpdate(): void {
             switch (Player.action) {
@@ -65,7 +69,15 @@ namespace GGSim {
             if (this.pests.length == 0) {
                 if (this.waterLevel < this.maxWaterlevel && this.isReady == false) {
                     this.waterLevel++;
-                    this.color = this.dryColor[this.waterLevel];
+                    if (this.waterLevel == Math.round(this.maxWaterlevel / 4)) {
+                        this.waterLevelImage = this.waterLevelImages[2];
+                    }
+                    else if (this.waterLevel == this.maxWaterlevel - 1) {
+                        this.waterLevelImage = this.waterLevelImages[1];
+                    }
+                    else if (this.waterLevel == this.maxWaterlevel) {
+                        this.waterLevelImage = this.waterLevelImages[0];
+                    }
                 }
             }
         }
@@ -88,7 +100,10 @@ namespace GGSim {
 
         getHarvested(): void {
             if (this.isReady == true) {
-                Player.money = Player.money + Math.round(Market.price.cost) + this.priceValue * this.fertilizeLevel;
+                this.priceUpdate();
+                Player.money = Player.money + Math.round(this.priceValue) + 1 * this.fertilizeLevel;
+                console.log(this.priceValue);
+                
                 if (Player.money < 0) {
                     Player.money = 0;
                 }
@@ -108,6 +123,16 @@ namespace GGSim {
                     this.isReady = true;
                 }
             }
+            else if (this.age > 0 && this.pests.length > 0) {
+                this.isReady = false;
+                this.age--;
+                if (this.age == this.maxAge - 1) {
+                    this.image = this.images[1];
+                }
+                else if (this.age == 0) {
+                    this.image = this.images[0];
+                }
+            }
         }
 
         shrink(): void {
@@ -115,9 +140,18 @@ namespace GGSim {
         }
 
         dry(): void {
-            if (this.isReady == false && this.waterLevel > 0) {
+            if (this.isReady == false && this.waterLevel > 0 && this.isReady == false) {
                 this.waterLevel--;
-                this.color = this.dryColor[this.waterLevel];
+
+                if (this.waterLevel == this.maxWaterlevel / 4) {
+                    this.waterLevelImage = this.waterLevelImages[1];
+                }
+                else if (this.waterLevel == Math.round(this.maxWaterlevel / 2)) {
+                    this.waterLevelImage = this.waterLevelImages[2];
+                }
+                else if (this.waterLevel == 0) {
+                    this.waterLevelImage = this.waterLevelImages[3];
+                }
             }
         }
 
@@ -125,8 +159,8 @@ namespace GGSim {
             ctx.resetTransform();
             ctx.translate(Field.size / 2 + Field.size * this.fieldX, Field.size / 2 + Field.size * this.fieldY);
             ctx.translate((- Field.size / 2), (- Field.size / 2));
-            ctx.scale(2, 2)
-            ctx.drawImage(this.image, (- Field.size / 20), (- Field.size / 3));
+            ctx.drawImage(this.image, Field.size / 4, 0);
+            ctx.drawImage(this.waterLevelImage, Field.size / 4, Field.size / 4);
         }
 
     }

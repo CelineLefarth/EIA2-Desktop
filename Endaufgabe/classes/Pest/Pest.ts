@@ -1,4 +1,5 @@
 namespace GGSim {
+
     export class Pest {
         fieldX: number;
         fieldY: number;
@@ -23,9 +24,9 @@ namespace GGSim {
 
         draw(_fieldX: number, _fieldY: number): void {
             ctx.resetTransform();
-            ctx.translate(Field.size * _fieldX, Field.size * _fieldY);
-            ctx.fillStyle = "white";
-            ctx.fillRect(Field.size / 3, Field.size / 3, Field.size / 10, Field.size / 10);
+            ctx.translate(Field.size * _fieldX + Field.size / 2, Field.size * _fieldY + Field.size / 2);
+            ctx.rotate(-animationTime);
+            ctx.drawImage(Asset.moth, 0, 0);
         }
 
     }

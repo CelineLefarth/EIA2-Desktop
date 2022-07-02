@@ -19,9 +19,9 @@ var GGSim;
         }
         draw(_fieldX, _fieldY) {
             GGSim.ctx.resetTransform();
-            GGSim.ctx.translate(GGSim.Field.size * _fieldX, GGSim.Field.size * _fieldY);
-            GGSim.ctx.fillStyle = "white";
-            GGSim.ctx.fillRect(GGSim.Field.size / 3, GGSim.Field.size / 3, GGSim.Field.size / 10, GGSim.Field.size / 10);
+            GGSim.ctx.translate(GGSim.Field.size * _fieldX + GGSim.Field.size / 2, GGSim.Field.size * _fieldY + GGSim.Field.size / 2);
+            GGSim.ctx.rotate(-GGSim.animationTime);
+            GGSim.ctx.drawImage(GGSim.Asset.moth, 0, 0);
         }
     }
     GGSim.Pest = Pest;

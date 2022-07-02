@@ -10,7 +10,7 @@ export let mouseY: number;
 
 export let settings: HTMLElement;
 let settingsOpen: boolean = false;
-let inventoryOpen: boolean = false;
+let inventoryOpen: boolean = true;
 let shopOpen: boolean = false;
 let shop: HTMLElement;
 
@@ -29,8 +29,8 @@ function handleLoad(): void {
     canvasM = <HTMLCanvasElement>document.getElementById("market_canvas");
     canvas.width = 1010;
     canvas.height = 410;
-    canvasM.width = 200;
-    canvasM.height = 150;
+    canvasM.width = 400;
+    canvasM.height = 300;
     ctx = canvas.getContext("2d");
     ctxM = canvasM.getContext("2d");
     for (let j: number = 0; j < 4; j ++) {
@@ -148,7 +148,7 @@ function toggleShop(): void {
 
 function boughtPesticides(): void {
     if (Player.money > 0) {
-    Player.money --;
+    Player.money = Player.money - Math.round(Market.price.costPesticides);
     Player.pesticides ++;
     Simulation.update();
     }
@@ -156,7 +156,7 @@ function boughtPesticides(): void {
 
 function boughtFertilizers(): void {
     if (Player.money > 0) {
-    Player.money --;
+    Player.money = Player.money - Math.round(Market.price.costFertilizer);
     Player.fertilizer ++;
     Simulation.update();
     }

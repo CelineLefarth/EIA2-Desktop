@@ -1,6 +1,7 @@
 namespace GGSim {
 
     export let time: number = 0;
+    export let animationTime: number = 0;
 
     export enum TIMEACTION {
         GROW,
@@ -29,6 +30,7 @@ namespace GGSim {
 
         static run(): void {
             setInterval(this.timer, 1000);
+            setInterval(this.updateAnimation, 30);
         }
 
         static timer(): void {
@@ -38,19 +40,35 @@ namespace GGSim {
                 randomAction = timeActions[Math.round(Math.random() * timeActions.length - 1)];
                 plant.timeUpdate(randomAction);
             }
-            Market.lastPrice = Market.price.cost;
-            Market.price.cost = (Math.random() * (Math.sin(time) + Math.sin(time) * Market.fluctuation));
+            Market.lastPrice.costPillow = Market.price.costPillow;
+            Market.price.costPillow = (Math.random() * (Math.sin(time) + Math.sin(time + Math.random() * 10) * Market.fluctuation));
+            Market.lastPrice.costBlanket = Market.price.costBlanket;
+            Market.price.costBlanket = (Math.random() * (Math.sin(time + Math.random() * 100) + Math.sin(time + Math.random() * 100) * Market.fluctuation / 4) + 1);
+            Market.lastPrice.costScarf = Market.price.costScarf;
+            Market.price.costScarf = (Math.random() * (Math.sin(time + Math.random() * 100) + Math.sin(time + Math.random() * 100) * Market.fluctuation / 4) + 2);
+            Market.lastPrice.costTeddy = Market.price.costTeddy;
+            Market.price.costTeddy = (Math.random() * (Math.sin(time + Math.random() * 100) + Math.sin(time + Math.random() * 100) * Market.fluctuation / 2) - 1);
+            Market.lastPrice.costSocks = Market.price.costSocks;
+            Market.price.costSocks = (Math.random() * (Math.sin(time + Math.random() * 100) + Math.sin(time + Math.random() * 100) * Market.fluctuation / 2) - 2);
+            Market.lastPrice.costFertilizer = Market.price.costFertilizer;
+            Market.price.costFertilizer = (Math.random() * (Math.sin(time + Math.random() * 100) + Math.sin(time + Math.random() * 100) * Market.fluctuation / 3) + 4);
+            Market.lastPrice.costPesticides = Market.price.costPesticides;
+            Market.price.costPesticides = (Math.random() * (Math.sin(time + Math.random() * 100) + Math.sin(time + Math.random() * 100) * Market.fluctuation / 3) + 4);
             Market.draw();
-            Simulation.update();
+        }
 
-            if (plants.length == 0 && Player.money == 0) {
-                alert("Du hast kein Geld mehr, um dir neue Pflanzen zu Kaufen und auch keine Pflanzen auf dem Feld, die dir Geld einbringen könnten! Alle Hoffnung ist verloren. Was tust du da??")
-                location.reload();
+        static updateAnimation(): void {
+            animationTime ++;
+            for (let plant of plants) {
+                for (let pest of plant.pests) {
+                    pest.draw(plant.fieldX, plant.fieldY);
+                    pest.fly();
+                }
             }
+            Simulation.update();
         }
 
         static update(): void {
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.resetTransform();
             for (let field of fields) {
@@ -60,6 +78,7 @@ namespace GGSim {
                 plant.draw();
                 for (let pest of plant.pests) {
                     pest.draw(plant.fieldX, plant.fieldY);
+                    pest.fly();
                 }
             }
             document.getElementById("moneyCount").innerHTML = Player.money + "$";
@@ -70,7 +89,13 @@ namespace GGSim {
             document.getElementById("seedsCount").innerHTML += "Scarf seeds: " + Player.seeds[2].amount + "S" + "<br>";
             document.getElementById("seedsCount").innerHTML += "Blanket seeds: " + Player.seeds[3].amount + "S" + "<br>";
             document.getElementById("seedsCount").innerHTML += "Sock seeds: " + Player.seeds[4].amount + "S";
-            document.getElementById("marketPriceCost").innerHTML = "MwSt Erlöse: " + (Market.price.cost).toFixed(2) + "$";
+            document.getElementById("marketPricePillow").innerHTML = "Sell Pillow: " + (Market.price.costPillow).toFixed(2) + "$";
+            document.getElementById("marketPriceTeddy").innerHTML = "Sell Teddy: " + (Market.price.costTeddy).toFixed(2) + "$";
+            document.getElementById("marketPriceBlanket").innerHTML = "Sell Blanket: " + (Market.price.costBlanket).toFixed(2) + "$";
+            document.getElementById("marketPriceScarf").innerHTML = "Sell Scarf: " + (Market.price.costScarf).toFixed(2) + "$";
+            document.getElementById("marketPriceSocks").innerHTML = "Sell Socks: " + (Market.price.costSocks).toFixed(2) + "$";
+            document.getElementById("marketPriceFertilizer").innerHTML = "Price Fertilizers: " + (Market.price.costFertilizer).toFixed(2) + "$";
+            document.getElementById("marketPricePesticides").innerHTML = "Price Pesticides: " + (Market.price.costPesticides).toFixed(2) + "$";
         }
     }
 

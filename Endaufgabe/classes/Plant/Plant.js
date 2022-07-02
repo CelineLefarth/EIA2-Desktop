@@ -3,6 +3,9 @@ var GGSim;
     class Plant {
         fieldX;
         fieldY;
+        pest;
+        waterLevelImages = [GGSim.Asset.empty, GGSim.Asset.needWaterOne, GGSim.Asset.needWaterTwo, GGSim.Asset.needWaterThree];
+        waterLevelImage = this.waterLevelImages[0];
         constructor(_fieldX, _fieldY) {
             this.fieldX = _fieldX;
             this.fieldY = _fieldY;
@@ -42,7 +45,15 @@ var GGSim;
             if (this.pests.length == 0) {
                 if (this.waterLevel < this.maxWaterlevel && this.isReady == false) {
                     this.waterLevel++;
-                    this.color = this.dryColor[this.waterLevel];
+                    if (this.waterLevel == Math.round(this.maxWaterlevel / 4)) {
+                        this.waterLevelImage = this.waterLevelImages[2];
+                    }
+                    else if (this.waterLevel == this.maxWaterlevel - 1) {
+                        this.waterLevelImage = this.waterLevelImages[1];
+                    }
+                    else if (this.waterLevel == this.maxWaterlevel) {
+                        this.waterLevelImage = this.waterLevelImages[0];
+                    }
                 }
             }
         }
@@ -62,7 +73,9 @@ var GGSim;
         }
         getHarvested() {
             if (this.isReady == true) {
-                GGSim.Player.money = GGSim.Player.money + Math.round(GGSim.Market.price.cost) + this.priceValue * this.fertilizeLevel;
+                this.priceUpdate();
+                GGSim.Player.money = GGSim.Player.money + Math.round(this.priceValue) + 1 * this.fertilizeLevel;
+                console.log(this.priceValue);
                 if (GGSim.Player.money < 0) {
                     GGSim.Player.money = 0;
                 }
@@ -81,22 +94,40 @@ var GGSim;
                     this.isReady = true;
                 }
             }
+            else if (this.age > 0 && this.pests.length > 0) {
+                this.isReady = false;
+                this.age--;
+                if (this.age == this.maxAge - 1) {
+                    this.image = this.images[1];
+                }
+                else if (this.age == 0) {
+                    this.image = this.images[0];
+                }
+            }
         }
         shrink() {
             this.pests.push(new GGSim.Pest(this.fieldX, this.fieldY));
         }
         dry() {
-            if (this.isReady == false && this.waterLevel > 0) {
+            if (this.isReady == false && this.waterLevel > 0 && this.isReady == false) {
                 this.waterLevel--;
-                this.color = this.dryColor[this.waterLevel];
+                if (this.waterLevel == this.maxWaterlevel / 4) {
+                    this.waterLevelImage = this.waterLevelImages[1];
+                }
+                else if (this.waterLevel == Math.round(this.maxWaterlevel / 2)) {
+                    this.waterLevelImage = this.waterLevelImages[2];
+                }
+                else if (this.waterLevel == 0) {
+                    this.waterLevelImage = this.waterLevelImages[3];
+                }
             }
         }
         draw() {
             GGSim.ctx.resetTransform();
             GGSim.ctx.translate(GGSim.Field.size / 2 + GGSim.Field.size * this.fieldX, GGSim.Field.size / 2 + GGSim.Field.size * this.fieldY);
             GGSim.ctx.translate((-GGSim.Field.size / 2), (-GGSim.Field.size / 2));
-            GGSim.ctx.scale(2, 2);
-            GGSim.ctx.drawImage(this.image, (-GGSim.Field.size / 20), (-GGSim.Field.size / 3));
+            GGSim.ctx.drawImage(this.image, GGSim.Field.size / 4, 0);
+            GGSim.ctx.drawImage(this.waterLevelImage, GGSim.Field.size / 4, GGSim.Field.size / 4);
         }
     }
     GGSim.Plant = Plant;

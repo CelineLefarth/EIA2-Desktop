@@ -4,9 +4,10 @@ canvas{
     image-rendering: pixelated;
 }
 #market_canvas{
+    background-color:rgb(192, 171, 171);
     position: absolute;
-    left: 300px;
-    top: 70px;
+    left: 610px;
+    top: 10px;
     border: 2px;
     border-color: black;
     border-style: solid;
@@ -39,7 +40,7 @@ footer{
     background-color:slateblue;
 }
 #inventory{
-    visibility: hidden;
+    visibility: visible;
 }
 img{
     visibility: hidden;

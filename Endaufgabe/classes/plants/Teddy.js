@@ -8,10 +8,9 @@ var GGSim;
         fertilizeSteps = 3;
         pesticideAmount = 0;
         age = 0;
-        maxAge = 15;
+        maxAge = 2;
         scaleX = 1;
         scaleY = 1;
-        color = "green";
         priceValue = 1;
         isReady = false;
         pests = [];
@@ -20,6 +19,9 @@ var GGSim;
         image = this.images[0];
         constructor(_fieldX, _fieldY) {
             super(_fieldX, _fieldY);
+        }
+        priceUpdate() {
+            this.priceValue = GGSim.Market.price.costTeddy;
         }
     }
     GGSim.Teddy = Teddy;

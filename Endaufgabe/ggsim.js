@@ -2,7 +2,7 @@ var GGSim;
 (function (GGSim) {
     window.addEventListener("load", handleLoad);
     let settingsOpen = false;
-    let inventoryOpen = false;
+    let inventoryOpen = true;
     let shopOpen = false;
     let shop;
     GGSim.player = new GGSim.Player;
@@ -16,8 +16,8 @@ var GGSim;
         GGSim.canvasM = document.getElementById("market_canvas");
         GGSim.canvas.width = 1010;
         GGSim.canvas.height = 410;
-        GGSim.canvasM.width = 200;
-        GGSim.canvasM.height = 150;
+        GGSim.canvasM.width = 400;
+        GGSim.canvasM.height = 300;
         GGSim.ctx = GGSim.canvas.getContext("2d");
         GGSim.ctxM = GGSim.canvasM.getContext("2d");
         for (let j = 0; j < 4; j++) {
@@ -123,14 +123,14 @@ var GGSim;
     }
     function boughtPesticides() {
         if (GGSim.Player.money > 0) {
-            GGSim.Player.money--;
+            GGSim.Player.money = GGSim.Player.money - Math.round(GGSim.Market.price.costPesticides);
             GGSim.Player.pesticides++;
             GGSim.Simulation.update();
         }
     }
     function boughtFertilizers() {
         if (GGSim.Player.money > 0) {
-            GGSim.Player.money--;
+            GGSim.Player.money = GGSim.Player.money - Math.round(GGSim.Market.price.costFertilizer);
             GGSim.Player.fertilizer++;
             GGSim.Simulation.update();
         }

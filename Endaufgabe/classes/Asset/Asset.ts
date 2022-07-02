@@ -2,6 +2,8 @@ namespace GGSim {
 
     export class Asset {
 
+        static empty: HTMLImageElement;
+
         static pillowPlantSeed: HTMLImageElement;
         static pillowPlantSappling: HTMLImageElement;
         static pillowPlantPlant: HTMLImageElement;
@@ -22,11 +24,20 @@ namespace GGSim {
         static sockPlantSappling: HTMLImageElement;
         static sockPlantPlant: HTMLImageElement;
 
+        static needWaterOne: HTMLImageElement;
+        static needWaterTwo: HTMLImageElement;
+        static needWaterThree: HTMLImageElement;
+
+        static moth: HTMLImageElement;
+
         constructor() {
             //
         }
 
         static load(): void {
+
+            Asset.empty = <HTMLImageElement>document.getElementById("Empty");
+
             Asset.pillowPlantSeed = <HTMLImageElement>document.getElementById("PillowPlantSeed");
             Asset.pillowPlantSappling = <HTMLImageElement>document.getElementById("PillowPlantSappling");
             Asset.pillowPlantPlant = <HTMLImageElement>document.getElementById("PillowPlantPlant");
@@ -46,6 +57,13 @@ namespace GGSim {
             Asset.sockPlantSeed = <HTMLImageElement>document.getElementById("SockPlantSeed");
             Asset.sockPlantSappling = <HTMLImageElement>document.getElementById("SockPlantSappling");
             Asset.sockPlantPlant = <HTMLImageElement>document.getElementById("SockPlantPlant");
+
+            Asset.needWaterOne = <HTMLImageElement>document.getElementById("NeedWaterOne");
+            Asset.needWaterTwo = <HTMLImageElement>document.getElementById("NeedWaterTwo");
+            Asset.needWaterThree = <HTMLImageElement>document.getElementById("NeedWaterThree");
+
+            Asset.moth = <HTMLImageElement>document.getElementById("Moth");
+
         }
 
     }
