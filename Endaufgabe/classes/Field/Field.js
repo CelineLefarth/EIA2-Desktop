@@ -61,8 +61,7 @@ var GGSim;
         draw() {
             GGSim.ctx.resetTransform();
             GGSim.ctx.translate(this.positionX * Field.size, this.positionY * Field.size);
-            GGSim.ctx.fillStyle = "peru";
-            GGSim.ctx.fillRect(Field.size / 10, Field.size / 10, Field.size - Field.size / 10, Field.size - Field.size / 10);
+            GGSim.ctx.drawImage(GGSim.Asset.field, 0, 0);
         }
     }
     GGSim.Field = Field;

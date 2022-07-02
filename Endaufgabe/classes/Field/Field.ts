@@ -67,8 +67,7 @@ namespace GGSim {
         draw(): void {
             ctx.resetTransform();
             ctx.translate(this.positionX * Field.size, this.positionY * Field.size);
-            ctx.fillStyle = "peru";
-            ctx.fillRect(Field.size / 10, Field.size / 10, Field.size - Field.size / 10, Field.size - Field.size / 10);
+            ctx.drawImage(Asset.field, 0, 0);
         }
 
     }

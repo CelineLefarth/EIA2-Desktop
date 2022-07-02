@@ -1,43 +1,18 @@
-
+body{
+    background-image: url(.//assets/Backgound.png);
+}
 canvas{
-    background-color:seagreen;
+    background-color: rgba(00, 00, 00, 0);
     image-rendering: pixelated;
 }
 #market_canvas{
-    background-color:rgb(192, 171, 171);
+    background-color: rgba(00, 00, 00, 0);
     position: absolute;
     left: 610px;
     top: 10px;
     border: 2px;
     border-color: black;
     border-style: solid;
-}
-body{
-    background-color: black;
-}
-head{
-    background-color:brown;
-}
-main{
-    background-color:teal;
-}
-footer{
-    background-color:tomato;
-}
-#field{
-    background-color: khaki;
-}
-#money{
-    background-color: seagreen;
-}
-#market{
-    background-color:violet
-}
-#buttons{
-    background-color:royalblue
-}
-#hotbar{
-    background-color:slateblue;
 }
 #inventory{
     visibility: visible;

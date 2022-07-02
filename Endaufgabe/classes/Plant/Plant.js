@@ -55,14 +55,25 @@ var GGSim;
                         this.waterLevelImage = this.waterLevelImages[0];
                     }
                 }
+                else if (this.waterLevel == this.maxWaterlevel || this.waterLevel > this.maxWaterlevel) {
+                    console.log("mucho");
+                    this.isReady = false;
+                    this.waterLevel++;
+                    this.age--;
+                }
             }
         }
         getFertilized() {
             if (this.fertilizeLevel < this.maxFertilizeLevel && this.pests.length == 0 && this.age < this.maxAge) {
                 this.fertilizeLevel++;
                 this.age = this.age + this.fertilizeSteps;
-                GGSim.Player.fertilizer--;
             }
+            else if (this.fertilizeLevel >= this.maxFertilizeLevel) {
+                this.isReady = false;
+                this.fertilizeLevel++;
+                this.age = this.age - this.fertilizeSteps;
+            }
+            GGSim.Player.fertilizer--;
         }
         getPesticided() {
             if (this.pests.length > 0) {
@@ -126,7 +137,7 @@ var GGSim;
             GGSim.ctx.resetTransform();
             GGSim.ctx.translate(GGSim.Field.size / 2 + GGSim.Field.size * this.fieldX, GGSim.Field.size / 2 + GGSim.Field.size * this.fieldY);
             GGSim.ctx.translate((-GGSim.Field.size / 2), (-GGSim.Field.size / 2));
-            GGSim.ctx.drawImage(this.image, GGSim.Field.size / 4, 0);
+            GGSim.ctx.drawImage(this.image, 0, 0);
             GGSim.ctx.drawImage(this.waterLevelImage, GGSim.Field.size / 4, GGSim.Field.size / 4);
         }
     }

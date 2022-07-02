@@ -79,6 +79,13 @@ namespace GGSim {
                         this.waterLevelImage = this.waterLevelImages[0];
                     }
                 }
+                else if (this.waterLevel == this.maxWaterlevel || this.waterLevel > this.maxWaterlevel ) {
+                    console.log("mucho");
+                    this.isReady = false;
+                    this.waterLevel++;
+                    this.age--;
+                    
+                }
             }
         }
 
@@ -86,8 +93,13 @@ namespace GGSim {
             if (this.fertilizeLevel < this.maxFertilizeLevel && this.pests.length == 0 && this.age < this.maxAge) {
                 this.fertilizeLevel++;
                 this.age = this.age + this.fertilizeSteps;
-                Player.fertilizer--;
             }
+            else if (this.fertilizeLevel >= this.maxFertilizeLevel ) {
+                this.isReady = false;
+                this.fertilizeLevel ++;
+                this.age = this.age - this.fertilizeSteps;
+            }
+            Player.fertilizer--;
         }
 
         getPesticided(): void {
@@ -159,7 +171,7 @@ namespace GGSim {
             ctx.resetTransform();
             ctx.translate(Field.size / 2 + Field.size * this.fieldX, Field.size / 2 + Field.size * this.fieldY);
             ctx.translate((- Field.size / 2), (- Field.size / 2));
-            ctx.drawImage(this.image, Field.size / 4, 0);
+            ctx.drawImage(this.image, 0, 0);
             ctx.drawImage(this.waterLevelImage, Field.size / 4, Field.size / 4);
         }
 

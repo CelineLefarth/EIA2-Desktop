@@ -2,6 +2,7 @@ var GGSim;
 (function (GGSim) {
     class Asset {
         static empty;
+        static field;
         static pillowPlantSeed;
         static pillowPlantSappling;
         static pillowPlantPlant;
@@ -26,6 +27,7 @@ var GGSim;
         }
         static load() {
             Asset.empty = document.getElementById("Empty");
+            Asset.field = document.getElementById("Field");
             Asset.pillowPlantSeed = document.getElementById("PillowPlantSeed");
             Asset.pillowPlantSappling = document.getElementById("PillowPlantSappling");
             Asset.pillowPlantPlant = document.getElementById("PillowPlantPlant");

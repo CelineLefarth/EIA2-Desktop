@@ -3,6 +3,7 @@ namespace GGSim {
     export class Asset {
 
         static empty: HTMLImageElement;
+        static field: HTMLImageElement;
 
         static pillowPlantSeed: HTMLImageElement;
         static pillowPlantSappling: HTMLImageElement;
@@ -37,6 +38,7 @@ namespace GGSim {
         static load(): void {
 
             Asset.empty = <HTMLImageElement>document.getElementById("Empty");
+            Asset.field = <HTMLImageElement>document.getElementById("Field");
 
             Asset.pillowPlantSeed = <HTMLImageElement>document.getElementById("PillowPlantSeed");
             Asset.pillowPlantSappling = <HTMLImageElement>document.getElementById("PillowPlantSappling");

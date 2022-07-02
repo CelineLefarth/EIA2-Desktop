@@ -27,8 +27,8 @@ function handleLoad(): void {
     Asset.load();
     canvas = <HTMLCanvasElement>document.getElementById("field_canvas");
     canvasM = <HTMLCanvasElement>document.getElementById("market_canvas");
-    canvas.width = 1010;
-    canvas.height = 410;
+    canvas.width = 1100;
+    canvas.height = 400;
     canvasM.width = 400;
     canvasM.height = 300;
     ctx = canvas.getContext("2d");
