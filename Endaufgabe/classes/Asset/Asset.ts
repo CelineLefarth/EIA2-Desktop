@@ -31,10 +31,6 @@ namespace GGSim {
 
         static moth: HTMLImageElement;
 
-        constructor() {
-            //
-        }
-
         static load(): void {
 
             Asset.empty = <HTMLImageElement>document.getElementById("Empty");

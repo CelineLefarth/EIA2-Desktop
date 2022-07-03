@@ -9,12 +9,9 @@ var GGSim;
         pesticideAmount = 0;
         age = 0;
         maxAge = 5;
-        scaleX = 1;
-        scaleY = 1;
         priceValue = 1;
         isReady = false;
         pests = [];
-        dryColor = ["brown", "red", "orange", "yellow", "green"];
         images = [GGSim.Asset.scarfPlantSeed, GGSim.Asset.scarfPlantSappling, GGSim.Asset.scarfPlantPlant];
         image = this.images[0];
         constructor(_fieldX, _fieldY) {

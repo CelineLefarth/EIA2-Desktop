@@ -13,15 +13,12 @@ namespace GGSim {
         abstract pesticideAmount: number;
         abstract age: number;
         abstract maxAge: number;
-        abstract scaleX: number;
-        abstract scaleY: number;
         abstract priceValue: number;
         abstract isReady: boolean;
         abstract pests: Pest[];
-        pest: Pest;
-        abstract dryColor: string[];
         abstract images: HTMLImageElement[];
         abstract image: HTMLImageElement;
+        pest: Pest;
         waterLevelImages: HTMLImageElement[] = [Asset.empty, Asset.needWaterOne, Asset.needWaterTwo, Asset.needWaterThree];
         waterLevelImage: HTMLImageElement = this.waterLevelImages[0];
         plant: Plant;
@@ -30,6 +27,8 @@ namespace GGSim {
             this.fieldX = _fieldX;
             this.fieldY = _fieldY;
         }
+
+        abstract priceUpdate(): void;
 
         timeUpdate(_action: TIMEACTION): void {
             switch (_action) {
@@ -45,8 +44,6 @@ namespace GGSim {
             }
             Simulation.update();
         }
-
-        abstract priceUpdate(): void;
 
         playerUpdate(_plant: Plant): void {
             this.plant = _plant;

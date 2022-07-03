@@ -22,9 +22,6 @@ var GGSim;
         static needWaterTwo;
         static needWaterThree;
         static moth;
-        constructor() {
-            //
-        }
         static load() {
             Asset.empty = document.getElementById("Empty");
             Asset.field = document.getElementById("Field");

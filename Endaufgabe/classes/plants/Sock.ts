@@ -10,12 +10,9 @@ namespace GGSim {
         pesticideAmount: number = 0;
         age: number = 0;
         maxAge: number = 4;
-        scaleX: number = 1;
-        scaleY: number = 1;
         priceValue: number = 1;
         isReady: boolean = false;
         pests: Pest[] = [];
-        dryColor: string[] = ["brown", "red", "orange", "yellow", "green"];
         images: HTMLImageElement[] = [Asset.sockPlantSeed, Asset.sockPlantSappling, Asset.sockPlantPlant];
         image: HTMLImageElement = this.images[0];
 

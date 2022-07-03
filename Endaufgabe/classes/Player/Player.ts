@@ -5,8 +5,7 @@ namespace GGSim {
         HARVEST,
         WATER,
         PLANT,
-        PESTICIDE,
-        CLICK
+        PESTICIDE
     } 
     
     export enum PLANTACTION {
@@ -25,14 +24,10 @@ namespace GGSim {
     export class Player {
         static action: ACTION;
         static plantAction: PLANTACTION;
-        static money: number = 0;
+        static money: number;
         static fertilizer: number = 20;
         static pesticides: number = 20;
         static seeds: Seed[] = [{type: PLANTACTION.PILLOW, amount: 0}, {type: PLANTACTION.TEDDY, amount: 0}, {type: PLANTACTION.SCARF, amount: 0}, {type: PLANTACTION.BLANKET, amount: 0}, {type: PLANTACTION.SOCK, amount: 0}];
-
-        constructor() {
-            //
-        }
 
         fertilize(): void {
             if (Player.fertilizer > 0) { 
@@ -46,8 +41,19 @@ namespace GGSim {
             document.querySelector("body").style.cursor = "url(../Endaufgabe/assets/CursorWater.png) 50 50, auto";
         }
 
+        pesticide(): void {
+            if (Player.pesticides > 0) {
+            Player.action = ACTION.PESTICIDE;
+            document.querySelector("body").style.cursor = "url(../Endaufgabe/assets/CursorPesticide.png) 50 50, auto";
+            }
+        }
+
+        harvest(): void {
+            Player.action = ACTION.HARVEST;
+            document.querySelector("body").style.cursor = "url(../Endaufgabe/assets/CursorHarvest.png) 50 50, auto";
+        }
+
         plant(_value: string): void {
-            console.log("plant");
             if (_value == "pillow") {
                 Player.action = ACTION.PLANT ;
                 Player.plantAction = PLANTACTION.PILLOW;
@@ -71,18 +77,5 @@ namespace GGSim {
             document.querySelector("body").style.cursor = "url(../Endaufgabe/assets/CursorPlant.png) 50 50, auto";
         }
 
-        pesticide(): void {
-            if(Player.pesticides > 0) {
-            console.log("pesticide");
-            Player.action = ACTION.PESTICIDE;
-            document.querySelector("body").style.cursor = "url(../Endaufgabe/assets/CursorPesticide.png) 50 50, auto";
-            }
-        }
-
-        harvest(): void {
-            console.log("harvest");
-            Player.action = ACTION.HARVEST;
-            document.querySelector("body").style.cursor = "url(../Endaufgabe/assets/CursorHarvest.png) 50 50, auto";
-        }
     }
 }

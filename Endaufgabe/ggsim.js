@@ -43,7 +43,6 @@ var GGSim;
         GGSim.Simulation.run();
         GGSim.Market.draw();
         GGSim.Simulation.update();
-        GGSim.currentActionVis = document.getElementById("currentActionVis");
         const fertilizeBtn = document.getElementById("fertilizeBtn");
         fertilizeBtn.addEventListener("click", GGSim.player.fertilize);
         const harvestBtn = document.getElementById("harvestBtn");
@@ -100,89 +99,67 @@ var GGSim;
     function toggleShop() {
         if (shopOpen == false) {
             shopOpen = true;
-            const buyPesticides = document.createElement("button");
-            const buyFertilizers = document.createElement("button");
-            const buyPillow = document.createElement("button");
-            const buyTeddy = document.createElement("button");
-            const buyBlanket = document.createElement("button");
-            const buyScarf = document.createElement("button"); //Ich benutze noch den aus EIA1
-            const buySock = document.createElement("button"); // tslint:disable-next-line: quotemark
-            buyPesticides.innerHTML = '<img class="visImg" src="../Endaufgabe/assets/Pesticide.png" width="100px" height="100px">'; // tslint:disable-next-line: quotemark
-            buyFertilizers.innerHTML = '<img class="visImg" src="../Endaufgabe/assets/Fertilizer.png" width="100px" height="100px">'; // tslint:disable-next-line: quotemark
-            buyPillow.innerHTML = '<img class="visImg" src="../Endaufgabe/assets/PillowImg.png" width="100px" height="100px">'; // tslint:disable-next-line: quotemark
-            buyTeddy.innerHTML = '<img class="visImg" src="../Endaufgabe/assets/TeddyImg.png" width="100px" height="100px">'; // tslint:disable-next-line: quotemark
-            buyBlanket.innerHTML = '<img class="visImg" src="../Endaufgabe/assets/BlanketImg.png" width="100px" height="100px">'; // tslint:disable-next-line: quotemark
-            buyScarf.innerHTML = '<img class="visImg" src="../Endaufgabe/assets/ScarfImg.png" width="100px" height="100px">'; // tslint:disable-next-line: quotemark
-            buySock.innerHTML = '<img class="visImg" src="../Endaufgabe/assets/SockImg.png" width="100px" height="100px">'; // tslint:disable-next-line: quotemark
-            buyPesticides.addEventListener("click", boughtPesticides);
-            buyFertilizers.addEventListener("click", boughtFertilizers);
-            buyPillow.addEventListener("click", boughtPillow);
-            buyTeddy.addEventListener("click", boughtTeddy);
-            buyBlanket.addEventListener("click", boughtBlanket);
-            buyScarf.addEventListener("click", boughtScarf);
-            buySock.addEventListener("click", boughtSock);
-            shop.appendChild(buyPesticides);
-            shop.appendChild(buyFertilizers);
-            shop.appendChild(buyPillow);
-            shop.appendChild(buyTeddy);
-            shop.appendChild(buyBlanket);
-            shop.appendChild(buyScarf);
-            shop.appendChild(buySock);
+            // tslint:disable-next-line: quotemark
+            let shopItemImages = ['<img class="visImg" src="../Endaufgabe/assets/Pesticide.png" width="100px" height="100px">', '<img class="visImg" src="../Endaufgabe/assets/Fertilizer.png" width="100px" height="100px">', '<img class="visImg" src="../Endaufgabe/assets/PillowImg.png" width="100px" height="100px">', '<img class="visImg" src="../Endaufgabe/assets/TeddyImg.png" width="100px" height="100px">', '<img class="visImg" src="../Endaufgabe/assets/BlanketImg.png" width="100px" height="100px">', '<img class="visImg" src="../Endaufgabe/assets/ScarfImg.png" width="100px" height="100px">', '<img class="visImg" src="../Endaufgabe/assets/SockImg.png" width="100px" height="100px">'];
+            for (let currentShopItem = 0; currentShopItem < 7; currentShopItem++) {
+                let shopItem = document.createElement("button");
+                shopItem.innerHTML = shopItemImages[currentShopItem];
+                shopItem.addEventListener("click", () => { boughtItem(currentShopItem); });
+                shop.appendChild(shopItem);
+            }
+            function boughtItem(_currentShopItem) {
+                switch (_currentShopItem) {
+                    case 0:
+                        if (GGSim.Player.money - Math.round(GGSim.Market.price.costPesticides) >= 0) {
+                            GGSim.Player.money = GGSim.Player.money - Math.round(GGSim.Market.price.costPesticides);
+                            GGSim.Player.pesticides++;
+                        }
+                        break;
+                    case 1:
+                        if (GGSim.Player.money - Math.round(GGSim.Market.price.costFertilizer) >= 0) {
+                            GGSim.Player.money = GGSim.Player.money - Math.round(GGSim.Market.price.costFertilizer);
+                            GGSim.Player.fertilizer++;
+                        }
+                        break;
+                    case 2:
+                        if (GGSim.Player.money - Math.round(GGSim.Market.price.costPillow) >= 0) {
+                            GGSim.Player.money = GGSim.Player.money - Math.round(GGSim.Market.price.costPillow);
+                            GGSim.Player.seeds[0].amount++;
+                        }
+                        break;
+                    case 3:
+                        if (GGSim.Player.money - Math.round(GGSim.Market.price.costTeddy) >= 0) {
+                            GGSim.Player.money = GGSim.Player.money - Math.round(GGSim.Market.price.costTeddy);
+                            GGSim.Player.seeds[1].amount++;
+                        }
+                        break;
+                    case 4:
+                        if (GGSim.Player.money - Math.round(GGSim.Market.price.costScarf) >= 0) {
+                            GGSim.Player.money = GGSim.Player.money - Math.round(GGSim.Market.price.costScarf);
+                            GGSim.Player.seeds[2].amount++;
+                        }
+                        break;
+                    case 5:
+                        if (GGSim.Player.money - Math.round(GGSim.Market.price.costBlanket) >= 0) {
+                            GGSim.Player.money = GGSim.Player.money - Math.round(GGSim.Market.price.costBlanket);
+                            GGSim.Player.seeds[3].amount++;
+                        }
+                        break;
+                    case 6:
+                        if (GGSim.Player.money - Math.round(GGSim.Market.price.costSocks) >= 0) {
+                            GGSim.Player.money = GGSim.Player.money - Math.round(GGSim.Market.price.costSocks);
+                            GGSim.Player.seeds[4].amount++;
+                        }
+                        break;
+                }
+                GGSim.Simulation.update();
+            }
         }
         else if (shopOpen == true) {
             shopOpen = false;
             while (shop.firstChild) {
                 shop.removeChild(shop.firstChild);
             }
-        }
-    }
-    function boughtPesticides() {
-        if (GGSim.Player.money - Math.round(GGSim.Market.price.costPesticides) >= 0) {
-            GGSim.Player.money = GGSim.Player.money - Math.round(GGSim.Market.price.costPesticides);
-            GGSim.Player.pesticides++;
-            GGSim.Simulation.update();
-        }
-    }
-    function boughtFertilizers() {
-        if (GGSim.Player.money - Math.round(GGSim.Market.price.costFertilizer) >= 0) {
-            GGSim.Player.money = GGSim.Player.money - Math.round(GGSim.Market.price.costFertilizer);
-            GGSim.Player.fertilizer++;
-            GGSim.Simulation.update();
-        }
-    }
-    function boughtPillow() {
-        if (GGSim.Player.money - Math.round(GGSim.Market.price.costPillow / 2) >= 0) {
-            GGSim.Player.seeds[0].amount++;
-            GGSim.Player.money = GGSim.Player.money - Math.round(GGSim.Market.price.costPillow / 2);
-            GGSim.Simulation.update();
-        }
-    }
-    function boughtTeddy() {
-        if (GGSim.Player.money - Math.round(GGSim.Market.price.costTeddy / 2) >= 0) {
-            GGSim.Player.seeds[1].amount++;
-            GGSim.Player.money = GGSim.Player.money - Math.round(GGSim.Market.price.costTeddy / 2);
-            GGSim.Simulation.update();
-        }
-    }
-    function boughtScarf() {
-        if (GGSim.Player.money - Math.round(GGSim.Market.price.costScarf / 2) >= 0) {
-            GGSim.Player.seeds[2].amount++;
-            GGSim.Player.money = GGSim.Player.money - Math.round(GGSim.Market.price.costScarf / 2);
-            GGSim.Simulation.update();
-        }
-    }
-    function boughtBlanket() {
-        if (GGSim.Player.money - Math.round(GGSim.Market.price.costBlanket / 2) >= 0) {
-            GGSim.Player.seeds[3].amount++;
-            GGSim.Player.money = GGSim.Player.money - Math.round(GGSim.Market.price.costBlanket / 2);
-            GGSim.Simulation.update();
-        }
-    }
-    function boughtSock() {
-        if (GGSim.Player.money - Math.round(GGSim.Market.price.costSocks / 2) >= 0) {
-            GGSim.Player.seeds[4].amount++;
-            GGSim.Player.money = GGSim.Player.money - Math.round(GGSim.Market.price.costSocks / 2);
-            GGSim.Simulation.update();
         }
     }
 })(GGSim || (GGSim = {}));

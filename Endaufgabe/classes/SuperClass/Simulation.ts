@@ -84,11 +84,7 @@ namespace GGSim {
             document.getElementById("moneyCount").innerHTML = Player.money + "$";
             document.getElementById("fertiCount").innerHTML = Player.fertilizer + "F";
             document.getElementById("pestiCount").innerHTML = Player.pesticides + "P";
-            document.getElementById("seedsCount").innerHTML = "Pillow seeds: " + Player.seeds[0].amount + "S" + "<br>";
-            document.getElementById("seedsCount").innerHTML += "Teddy seeds: " + Player.seeds[1].amount + "S" + "<br>";
-            document.getElementById("seedsCount").innerHTML += "Scarf seeds: " + Player.seeds[2].amount + "S" + "<br>";
-            document.getElementById("seedsCount").innerHTML += "Blanket seeds: " + Player.seeds[3].amount + "S" + "<br>";
-            document.getElementById("seedsCount").innerHTML += "Sock seeds: " + Player.seeds[4].amount + "S";
+            document.getElementById("seedsCount").innerHTML = "Pillow seeds: " + Player.seeds[0].amount + "S" + "<br>" + "Teddy seeds: " + Player.seeds[1].amount + "S" + "<br>" + "Scarf seeds: " + Player.seeds[2].amount + "S" + "<br>" + "Blanket seeds: " + Player.seeds[3].amount + "S" + "<br>" + "Sock seeds: " + Player.seeds[4].amount + "S";
             document.getElementById("marketPricePillow").innerHTML = "Sell Pillow: " + (Market.price.costPillow).toFixed(2) + "$";
             document.getElementById("marketPriceTeddy").innerHTML = "Sell Teddy: " + (Market.price.costTeddy).toFixed(2) + "$";
             document.getElementById("marketPriceBlanket").innerHTML = "Sell Blanket: " + (Market.price.costBlanket).toFixed(2) + "$";
