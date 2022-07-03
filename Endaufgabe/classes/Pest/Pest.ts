@@ -26,6 +26,7 @@ namespace GGSim {
             ctx.resetTransform();
             ctx.translate(Field.size * _fieldX + Field.size / 2, Field.size * _fieldY + Field.size / 2);
             ctx.rotate(-animationTime);
+            ctx.scale(0.3, 0.3);
             ctx.drawImage(Asset.moth, 0, 0);
         }
 

@@ -21,6 +21,7 @@ var GGSim;
             GGSim.ctx.resetTransform();
             GGSim.ctx.translate(GGSim.Field.size * _fieldX + GGSim.Field.size / 2, GGSim.Field.size * _fieldY + GGSim.Field.size / 2);
             GGSim.ctx.rotate(-GGSim.animationTime);
+            GGSim.ctx.scale(0.3, 0.3);
             GGSim.ctx.drawImage(GGSim.Asset.moth, 0, 0);
         }
     }

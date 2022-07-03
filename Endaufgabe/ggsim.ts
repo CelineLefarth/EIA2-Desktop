@@ -113,9 +113,6 @@ namespace GGSim {
         }
     }
 
-
-
-
     function toggleInventory(): void {
         if (inventoryOpen == false) {
             inventoryOpen = true;
@@ -128,20 +125,12 @@ namespace GGSim {
     }
 
 
-
-
-
-
-
-
-
-
     function toggleShop(): void {
         if (shopOpen == false) {
             shopOpen = true;
 
             // tslint:disable-next-line: quotemark
-            let shopItemImages: string[] = ['<img class="visImg" src="../Endaufgabe/assets/Pesticide.png" width="100px" height="100px">', '<img class="visImg" src="../Endaufgabe/assets/Fertilizer.png" width="100px" height="100px">', '<img class="visImg" src="../Endaufgabe/assets/PillowImg.png" width="100px" height="100px">', '<img class="visImg" src="../Endaufgabe/assets/TeddyImg.png" width="100px" height="100px">', '<img class="visImg" src="../Endaufgabe/assets/BlanketImg.png" width="100px" height="100px">', '<img class="visImg" src="../Endaufgabe/assets/ScarfImg.png" width="100px" height="100px">', '<img class="visImg" src="../Endaufgabe/assets/SockImg.png" width="100px" height="100px">'];
+            let shopItemImages: string[] = ['<img class="visImg" src="../Endaufgabe/assets/Pesticide.png" width="100px" height="100px">', '<img class="visImg" src="../Endaufgabe/assets/Fertilizer.png" width="100px" height="100px">', '<img class="visImg" src="../Endaufgabe/assets/PillowImg.png" width="100px" height="100px">', '<img class="visImg" src="../Endaufgabe/assets/TeddyImg.png" width="100px" height="100px">', '<img class="visImg" src="../Endaufgabe/assets/ScarfImg.png" width="100px" height="100px">', '<img class="visImg" src="../Endaufgabe/assets/BlanketImg.png" width="100px" height="100px">', '<img class="visImg" src="../Endaufgabe/assets/SockImg.png" width="100px" height="100px">'];
             for (let currentShopItem: number = 0; currentShopItem < 7; currentShopItem++) {
                 let shopItem: HTMLButtonElement = document.createElement("button");
                 shopItem.innerHTML = shopItemImages[currentShopItem];
