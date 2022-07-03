@@ -1,4 +1,4 @@
-namespace GGSim{
+namespace GGSim {
 window.addEventListener("load", handleLoad);
 
 export let canvas: HTMLCanvasElement;
@@ -114,15 +114,15 @@ function toggleShop(): void {
         const buyPillow: HTMLButtonElement = document.createElement("button");
         const buyTeddy: HTMLButtonElement = document.createElement("button");
         const buyBlanket: HTMLButtonElement = document.createElement("button");
-        const buyScarf: HTMLButtonElement = document.createElement("button");
-        const buySock: HTMLButtonElement = document.createElement("button");
-        buyPesticides.innerHTML = "Buy Pesticides";
-        buyFertilizers.innerHTML = "Buy Fertilizers";
-        buyPillow.innerHTML = "Buy Pillow";
-        buyTeddy.innerHTML = "Buy Teddy";
-        buyBlanket.innerHTML = "Buy Blanket";
-        buyScarf.innerHTML = "Buy Scarf";
-        buySock.innerHTML = "Buy Sock";
+        const buyScarf: HTMLButtonElement = document.createElement("button");                                                               //Ich benutze noch den aus EIA1
+        const buySock: HTMLButtonElement = document.createElement("button");                                                                // tslint:disable-next-line: quotemark
+        buyPesticides.innerHTML = '<img class="visImg" src="../Endaufgabe/assets/Pesticide.png" width="100px" height="100px">';             // tslint:disable-next-line: quotemark
+        buyFertilizers.innerHTML = '<img class="visImg" src="../Endaufgabe/assets/Fertilizer.png" width="100px" height="100px">';           // tslint:disable-next-line: quotemark
+        buyPillow.innerHTML = '<img class="visImg" src="../Endaufgabe/assets/PillowImg.png" width="100px" height="100px">';                 // tslint:disable-next-line: quotemark
+        buyTeddy.innerHTML = '<img class="visImg" src="../Endaufgabe/assets/TeddyImg.png" width="100px" height="100px">';                   // tslint:disable-next-line: quotemark
+        buyBlanket.innerHTML = '<img class="visImg" src="../Endaufgabe/assets/BlanketImg.png" width="100px" height="100px">';               // tslint:disable-next-line: quotemark
+        buyScarf.innerHTML = '<img class="visImg" src="../Endaufgabe/assets/ScarfImg.png" width="100px" height="100px">';                   // tslint:disable-next-line: quotemark
+        buySock.innerHTML = '<img class="visImg" src="../Endaufgabe/assets/SockImg.png" width="100px" height="100px">';                     // tslint:disable-next-line: quotemark
         buyPesticides.addEventListener("click", boughtPesticides);
         buyFertilizers.addEventListener("click", boughtFertilizers);
         buyPillow.addEventListener("click", boughtPillow);
@@ -147,7 +147,7 @@ function toggleShop(): void {
 }
 
 function boughtPesticides(): void {
-    if (Player.money > 0) {
+    if (Player.money - Math.round(Market.price.costPesticides) >= 0) {
     Player.money = Player.money - Math.round(Market.price.costPesticides);
     Player.pesticides ++;
     Simulation.update();
@@ -155,7 +155,7 @@ function boughtPesticides(): void {
 }
 
 function boughtFertilizers(): void {
-    if (Player.money > 0) {
+    if (Player.money - Math.round(Market.price.costFertilizer) >= 0) {
     Player.money = Player.money - Math.round(Market.price.costFertilizer);
     Player.fertilizer ++;
     Simulation.update();

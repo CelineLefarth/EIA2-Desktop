@@ -52,7 +52,7 @@ var GGSim;
             GGSim.ctxM.lineTo(GGSim.time * Market.canvasScaleFactor, -Market.price.costPillow * Market.canvasScaleFactor);
             GGSim.ctxM.stroke();
             GGSim.ctxM.closePath();
-            GGSim.ctxM.strokeStyle = "brown";
+            GGSim.ctxM.strokeStyle = "purple";
             GGSim.ctxM.beginPath();
             GGSim.ctxM.moveTo(this.lastTime * Market.canvasScaleFactor, -Market.lastPrice.costTeddy * Market.canvasScaleFactor);
             GGSim.ctxM.lineTo(GGSim.time * Market.canvasScaleFactor, -Market.price.costTeddy * Market.canvasScaleFactor);

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,56 +13,58 @@
     <script src="classes/Market/Market.js"></script>
     <script src="classes/Pest/Pest.js"></script>
     <script src="classes/Plant/Plant.js"></script>
-    <script src="classes/plants/Pillow.js"></script>  
-    <script src="classes/plants/Teddy.js"></script>  
-    <script src="classes/plants/Scarf.js"></script>  
-    <script src="classes/plants/Blanket.js"></script>  
-    <script src="classes/plants/Sock.js"></script>  
+    <script src="classes/plants/Pillow.js"></script>
+    <script src="classes/plants/Teddy.js"></script>
+    <script src="classes/plants/Scarf.js"></script>
+    <script src="classes/plants/Blanket.js"></script>
+    <script src="classes/plants/Sock.js"></script>
     <script src="classes/Asset/Asset.js"></script>
     <script src="ggsim.js"></script>
 
 </head>
+
 <body>
+
     <head>
-        <div id="market">
-            <span id="marketPricePillow"></span> <br>
-            <span id="marketPriceTeddy"></span> <br>
-            <span id="marketPriceBlanket"></span> <br>
-            <span id="marketPriceScarf"></span> <br>
-            <span id="marketPriceSocks"></span> <br>
+        <div id="marketCount">
             <span id="marketPriceFertilizer"></span> <br>
             <span id="marketPricePesticides"></span> <br>
-            <canvas id="market_canvas"></canvas>
+            <span id="marketPricePillow"></span> <br>
+            <span id="marketPriceScarf"></span> <br>
+            <span id="marketPriceBlanket"></span> <br>
+            <span id="marketPriceTeddy"></span> <br>
+            <span id="marketPriceSocks"></span> <br>
         </div>
-        
-        <div id="money">
-            Money 
-            <span id="moneyCount"></span><br>
-        </div>
+        <canvas id="market_canvas"></canvas>
+
         <div id="buttons">
             <button id="inventoryBtn">Inventory</button> <br>
             <div id="inventory">
-                Fertilizer 
+                Fertilizer
                 <span id="fertiCount"></span><br>
-                Pesticides 
+                Pesticides
                 <span id="pestiCount"></span><br>
                 <span id="seedsCount"></span><br>
             </div>
-            <button id="shopBtn">Shop</button>
-            <div id="shop"></div>
-            <button id="settingsBtn">Settings</button>
-            <div id="settings"></div>
+            <div id="shopContainer">
+                <span id="moneyCount"></span><br>
+                <button id="shopBtn"><img class="visImg" src="../Endaufgabe/assets/Shop.png" width="100px"
+                        height="100px"></button>
+                <div id="shop"></div>
+            </div>
+            <div id="settingsContainer">
+                <button id="settingsBtn">Settings</button>
+                <div id="settings"></div>
+            </div>
         </div>
     </head>
     <main>
         <div id="field">
-            Field <br>
             <canvas id="field_canvas"></canvas>
         </div>
     </main>
     <footer>
         <div id="hotbar">
-            Hotbar <br>
             <select name="plantBtn" id="plantBtn">
                 <option value="pillow">Pillow Plant</option>
                 <option value="teddy">Teddy Plant</option>
@@ -69,11 +72,14 @@
                 <option value="blanket">Blanket Plant</option>
                 <option value="sock">Sock Plant</option>
             </select>
-            <button id="fertilizeBtn">Fertilize</button>
-            <button id="waterBtn">Water</button>
-            <button id="pesticideBtn">Pesticide</button>
-            <button id="harvestBtn">Harvest</button>
-            <span id="currentActionVis">Action</span>
+            <button id="fertilizeBtn"><img class="visImg" src="../Endaufgabe/assets/Fertilizer.png" width="100px"
+                    height="100px"></button>
+            <button id="waterBtn"><img class="visImg" src="../Endaufgabe/assets/Water.png" width="100px"
+                    height="100px"></button>
+            <button id="pesticideBtn"><img class="visImg" src="../Endaufgabe/assets/Pesticide.png" width="100px"
+                    height="100px"></button>
+            <button id="harvestBtn"><img class="visImg" src="../Endaufgabe/assets/HArvest.png" width="100px"
+                    height="100px"></button>
         </div>
     </footer>
 
@@ -110,4 +116,5 @@
     </div>
 
 </body>
+
 </html>

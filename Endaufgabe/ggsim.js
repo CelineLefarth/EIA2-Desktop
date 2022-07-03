@@ -90,15 +90,15 @@ var GGSim;
             const buyPillow = document.createElement("button");
             const buyTeddy = document.createElement("button");
             const buyBlanket = document.createElement("button");
-            const buyScarf = document.createElement("button");
-            const buySock = document.createElement("button");
-            buyPesticides.innerHTML = "Buy Pesticides";
-            buyFertilizers.innerHTML = "Buy Fertilizers";
-            buyPillow.innerHTML = "Buy Pillow";
-            buyTeddy.innerHTML = "Buy Teddy";
-            buyBlanket.innerHTML = "Buy Blanket";
-            buyScarf.innerHTML = "Buy Scarf";
-            buySock.innerHTML = "Buy Sock";
+            const buyScarf = document.createElement("button"); //Ich benutze noch den aus EIA1
+            const buySock = document.createElement("button"); // tslint:disable-next-line: quotemark
+            buyPesticides.innerHTML = '<img class="visImg" src="../Endaufgabe/assets/Pesticide.png" width="100px" height="100px">'; // tslint:disable-next-line: quotemark
+            buyFertilizers.innerHTML = '<img class="visImg" src="../Endaufgabe/assets/Fertilizer.png" width="100px" height="100px">'; // tslint:disable-next-line: quotemark
+            buyPillow.innerHTML = '<img class="visImg" src="../Endaufgabe/assets/PillowImg.png" width="100px" height="100px">'; // tslint:disable-next-line: quotemark
+            buyTeddy.innerHTML = '<img class="visImg" src="../Endaufgabe/assets/TeddyImg.png" width="100px" height="100px">'; // tslint:disable-next-line: quotemark
+            buyBlanket.innerHTML = '<img class="visImg" src="../Endaufgabe/assets/BlanketImg.png" width="100px" height="100px">'; // tslint:disable-next-line: quotemark
+            buyScarf.innerHTML = '<img class="visImg" src="../Endaufgabe/assets/ScarfImg.png" width="100px" height="100px">'; // tslint:disable-next-line: quotemark
+            buySock.innerHTML = '<img class="visImg" src="../Endaufgabe/assets/SockImg.png" width="100px" height="100px">'; // tslint:disable-next-line: quotemark
             buyPesticides.addEventListener("click", boughtPesticides);
             buyFertilizers.addEventListener("click", boughtFertilizers);
             buyPillow.addEventListener("click", boughtPillow);
@@ -122,14 +122,14 @@ var GGSim;
         }
     }
     function boughtPesticides() {
-        if (GGSim.Player.money > 0) {
+        if (GGSim.Player.money - Math.round(GGSim.Market.price.costPesticides) >= 0) {
             GGSim.Player.money = GGSim.Player.money - Math.round(GGSim.Market.price.costPesticides);
             GGSim.Player.pesticides++;
             GGSim.Simulation.update();
         }
     }
     function boughtFertilizers() {
-        if (GGSim.Player.money > 0) {
+        if (GGSim.Player.money - Math.round(GGSim.Market.price.costFertilizer) >= 0) {
             GGSim.Player.money = GGSim.Player.money - Math.round(GGSim.Market.price.costFertilizer);
             GGSim.Player.fertilizer++;
             GGSim.Simulation.update();

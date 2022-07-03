@@ -45,18 +45,19 @@ var GGSim;
                     GGSim.Simulation.update();
                 }
                 else if (GGSim.Player.action == GGSim.ACTION.HARVEST) {
-                    this.clear();
+                    this.clear(this.plant);
                 }
                 else {
-                    this.plant.playerUpdate();
+                    this.plant.playerUpdate(this.plant);
                 }
             }
         }
-        clear() {
-            this.plant.playerUpdate();
-            GGSim.plants.splice(GGSim.plants.findIndex((e) => e == this.plant), 1);
+        clear(_plant) {
+            this.plant.playerUpdate(this.plant);
+            GGSim.plants.splice(GGSim.plants.findIndex((_plant) => _plant == this.plant), 1);
             this.isEmpty = true;
             GGSim.Simulation.update();
+            console.log(this.positionX, this.positionY);
         }
         draw() {
             GGSim.ctx.resetTransform();

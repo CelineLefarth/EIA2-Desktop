@@ -1,5 +1,7 @@
 body{
     background-image: url(.//assets/Backgound.png);
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
 }
 canvas{
     background-color: rgba(00, 00, 00, 0);
@@ -13,6 +15,70 @@ canvas{
     border: 2px;
     border-color: black;
     border-style: solid;
+}
+#shopContainer{
+    position: absolute;
+    left: 1100px;
+    top: 100px;
+}
+#hotbar{
+    position: absolute;
+    top: 290px;
+}
+#settingsContainer{
+    position: absolute;
+    top: 210px;
+}
+#moneyCount{
+    font-size: 70px;
+    font-family: 'Times New Roman', Times, serif;
+}
+button{
+    background-color: rgba(00, 00, 00, 0);
+    border: none;
+    font-size: 30px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+button :hover{
+    cursor: pointer;
+    opacity: 70%;
+}
+
+.visImg{
+    visibility: visible;
+}
+
+
+#marketCount{
+    position: absolute;
+    left: 400px;
+    top: 90px;
+}
+#field{
+    position: absolute;
+    top: 400px;
+}
+#marketPricePillow{
+    color: blue;
+}
+#marketPriceTeddy{
+    color: purple;
+}
+#marketPriceBlanket{
+    color: green;
+}
+#marketPriceScarf{
+    color: red;
+}
+#marketPriceSocks{
+    color: yellow;
+}
+#marketPriceFertilizer{
+    color: white;
+}
+#marketPricePesticides{
+    color: black;
 }
 #inventory{
     visibility: visible;

@@ -37,13 +37,13 @@ namespace GGSim {
         fertilize(): void {
             if (Player.fertilizer > 0) { 
             Player.action = ACTION.FERTILIZE;
-            currentActionVis.innerHTML = "fertilize";
+            document.querySelector("body").style.cursor = "url(../Endaufgabe/assets/CursorFertilize.png) 50 50, auto";
             }
         }
 
         water(): void {
             Player.action = ACTION.WATER;
-            currentActionVis.innerHTML = "water";
+            document.querySelector("body").style.cursor = "url(../Endaufgabe/assets/CursorWater.png) 50 50, auto";
         }
 
         plant(_value: string): void {
@@ -68,21 +68,21 @@ namespace GGSim {
                 Player.action = ACTION.PLANT ;
                 Player.plantAction = PLANTACTION.SOCK;
             }
-            currentActionVis.innerHTML = _value;
+            document.querySelector("body").style.cursor = "url(../Endaufgabe/assets/CursorPlant.png) 50 50, auto";
         }
 
         pesticide(): void {
             if(Player.pesticides > 0) {
             console.log("pesticide");
             Player.action = ACTION.PESTICIDE;
-            currentActionVis.innerHTML = "pesticide";
+            document.querySelector("body").style.cursor = "url(../Endaufgabe/assets/CursorPesticide.png) 50 50, auto";
             }
         }
 
         harvest(): void {
             console.log("harvest");
             Player.action = ACTION.HARVEST;
-            currentActionVis.innerHTML = "harvest";
+            document.querySelector("body").style.cursor = "url(../Endaufgabe/assets/CursorHarvest.png) 50 50, auto";
         }
     }
 }

@@ -63,7 +63,7 @@ namespace GGSim {
             ctxM.lineTo(time * Market.canvasScaleFactor, - Market.price.costPillow * Market.canvasScaleFactor);
             ctxM.stroke();
             ctxM.closePath();
-            ctxM.strokeStyle = "brown";
+            ctxM.strokeStyle = "purple";
             ctxM.beginPath();           
             ctxM.moveTo(this.lastTime * Market.canvasScaleFactor, - Market.lastPrice.costTeddy * Market.canvasScaleFactor);
             ctxM.lineTo(time * Market.canvasScaleFactor, - Market.price.costTeddy * Market.canvasScaleFactor);

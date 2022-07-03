@@ -30,12 +30,12 @@ var GGSim;
         fertilize() {
             if (Player.fertilizer > 0) {
                 Player.action = ACTION.FERTILIZE;
-                GGSim.currentActionVis.innerHTML = "fertilize";
+                document.querySelector("body").style.cursor = "url(../Endaufgabe/assets/CursorFertilize.png) 50 50, auto";
             }
         }
         water() {
             Player.action = ACTION.WATER;
-            GGSim.currentActionVis.innerHTML = "water";
+            document.querySelector("body").style.cursor = "url(../Endaufgabe/assets/CursorWater.png) 50 50, auto";
         }
         plant(_value) {
             console.log("plant");
@@ -59,19 +59,19 @@ var GGSim;
                 Player.action = ACTION.PLANT;
                 Player.plantAction = PLANTACTION.SOCK;
             }
-            GGSim.currentActionVis.innerHTML = _value;
+            document.querySelector("body").style.cursor = "url(../Endaufgabe/assets/CursorPlant.png) 50 50, auto";
         }
         pesticide() {
             if (Player.pesticides > 0) {
                 console.log("pesticide");
                 Player.action = ACTION.PESTICIDE;
-                GGSim.currentActionVis.innerHTML = "pesticide";
+                document.querySelector("body").style.cursor = "url(../Endaufgabe/assets/CursorPesticide.png) 50 50, auto";
             }
         }
         harvest() {
             console.log("harvest");
             Player.action = ACTION.HARVEST;
-            GGSim.currentActionVis.innerHTML = "harvest";
+            document.querySelector("body").style.cursor = "url(../Endaufgabe/assets/CursorHarvest.png) 50 50, auto";
         }
     }
     GGSim.Player = Player;

@@ -49,19 +49,21 @@ namespace GGSim {
                     
                 }
                 else if (Player.action == ACTION.HARVEST) {
-                    this.clear();
+                    this.clear(this.plant);
                 }
                 else {
-                    this.plant.playerUpdate();
+                    this.plant.playerUpdate(this.plant);
                 }
             }
         }
 
-        clear(): void {
-            this.plant.playerUpdate();
-            plants.splice(plants.findIndex((e) => e == this.plant), 1);
+        clear(_plant: Plant): void {
+            this.plant.playerUpdate(this.plant);
+            plants.splice(plants.findIndex((_plant) => _plant == this.plant), 1);
             this.isEmpty = true;
             Simulation.update();
+            console.log(this.positionX, this.positionY);
+            
         }
 
         draw(): void {
