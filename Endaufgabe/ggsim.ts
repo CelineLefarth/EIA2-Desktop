@@ -9,6 +9,7 @@ export let mouseX: number;
 export let mouseY: number;
 
 export let settings: HTMLElement;
+export let startMoney: HTMLInputElement;
 let settingsOpen: boolean = false;
 let inventoryOpen: boolean = true;
 let shopOpen: boolean = false;
@@ -23,6 +24,22 @@ export let fields: Field[] = [];
 
 
 function handleLoad(): void {
+    document.getElementById("startBtn").addEventListener("click", handleStart);
+    settings = document.getElementById("settings");
+    toggleSettings();
+}
+
+function handleStart(): void {
+    if (startMoney.value && !isNaN(parseInt(startMoney.value))) {
+        Player.money = parseInt(startMoney.value);
+    }
+    else {
+        alert("Please fill in the start money amount!");
+        return;
+    }
+    while (document.getElementById("settingsContainer").firstChild) {
+        document.getElementById("settingsContainer").removeChild(document.getElementById("settingsContainer").firstChild);
+    }
     console.log("GGSim");
     Asset.load();
     canvas = <HTMLCanvasElement>document.getElementById("field_canvas");
@@ -59,15 +76,12 @@ function handleLoad(): void {
     shop = document.getElementById("shop");
     const shopBtn: HTMLElement = document.getElementById("shopBtn");
     shopBtn.addEventListener("click", toggleShop);
-    settings = document.getElementById("settings");
-    const settingsBtn: HTMLElement = document.getElementById("settingsBtn");
-    settingsBtn.addEventListener("click", toggleSettings);
     const inventoryBtn: HTMLElement = document.getElementById("inventoryBtn");
     inventoryBtn.addEventListener("click", toggleInventory);
 
     canvas.addEventListener("click", (e) => getMousePos(canvas, e));
-
 }
+
 
 //https://stackoverflow.com/questions/17130395/real-mouse-position-in-canvas/17130415#17130415
 function getMousePos(_canvas: HTMLCanvasElement, _evt: MouseEvent): void {
@@ -86,6 +100,9 @@ function toggleSettings(): void {
     if (settingsOpen == false) {
         settingsOpen = true;
         Market.manipulate();
+        startMoney = document.createElement("input");
+        startMoney.setAttribute("placeholder", "Set start Money");
+        settings.appendChild(startMoney);
     }
     else if (settingsOpen == true) {
         settingsOpen = false;
@@ -163,41 +180,41 @@ function boughtFertilizers(): void {
 }
 
 function boughtPillow(): void {
-    if (Player.money > 0) {
+    if (Player.money - Math.round(Market.price.costPillow / 2) >= 0) {
     Player.seeds[0].amount ++;
-    Player.money --;
+    Player.money = Player.money - Math.round(Market.price.costPillow / 2);
     Simulation.update();
     }
 }
 
 function boughtTeddy(): void {
-    if (Player.money > 0) {
+    if (Player.money - Math.round(Market.price.costTeddy / 2) >= 0) {
     Player.seeds[1].amount ++;
-    Player.money --;
+    Player.money = Player.money - Math.round(Market.price.costTeddy / 2);
     Simulation.update();
     }
 }
 
 function boughtScarf(): void {
-    if (Player.money > 0) {
+    if (Player.money - Math.round(Market.price.costScarf / 2) >= 0) {
     Player.seeds[2].amount ++;
-    Player.money --;
+    Player.money = Player.money - Math.round(Market.price.costScarf / 2);
     Simulation.update();
     }
 }
 
 function boughtBlanket(): void {
-    if (Player.money > 0) {
+    if (Player.money - Math.round(Market.price.costBlanket / 2) >= 0) {
     Player.seeds[3].amount ++;
-    Player.money --;
+    Player.money = Player.money - Math.round(Market.price.costBlanket / 2);
     Simulation.update();
     }
 }
 
 function boughtSock(): void {
-    if (Player.money > 0) {
+    if (Player.money - Math.round(Market.price.costSocks / 2) >= 0) {
     Player.seeds[4].amount ++;
-    Player.money --;
+    Player.money = Player.money - Math.round(Market.price.costSocks / 2);
     Simulation.update();
     }
 }

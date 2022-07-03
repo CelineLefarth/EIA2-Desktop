@@ -25,7 +25,7 @@ namespace GGSim {
     export class Player {
         static action: ACTION;
         static plantAction: PLANTACTION;
-        static money: number = 10;
+        static money: number = 0;
         static fertilizer: number = 20;
         static pesticides: number = 20;
         static seeds: Seed[] = [{type: PLANTACTION.PILLOW, amount: 0}, {type: PLANTACTION.TEDDY, amount: 0}, {type: PLANTACTION.SCARF, amount: 0}, {type: PLANTACTION.BLANKET, amount: 0}, {type: PLANTACTION.SOCK, amount: 0}];

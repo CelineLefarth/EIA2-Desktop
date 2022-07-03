@@ -10,6 +10,21 @@ var GGSim;
     GGSim.plants = [];
     GGSim.fields = [];
     function handleLoad() {
+        document.getElementById("startBtn").addEventListener("click", handleStart);
+        GGSim.settings = document.getElementById("settings");
+        toggleSettings();
+    }
+    function handleStart() {
+        if (GGSim.startMoney.value && !isNaN(parseInt(GGSim.startMoney.value))) {
+            GGSim.Player.money = parseInt(GGSim.startMoney.value);
+        }
+        else {
+            alert("Please fill in the start money amount!");
+            return;
+        }
+        while (document.getElementById("settingsContainer").firstChild) {
+            document.getElementById("settingsContainer").removeChild(document.getElementById("settingsContainer").firstChild);
+        }
         console.log("GGSim");
         GGSim.Asset.load();
         GGSim.canvas = document.getElementById("field_canvas");
@@ -43,9 +58,6 @@ var GGSim;
         shop = document.getElementById("shop");
         const shopBtn = document.getElementById("shopBtn");
         shopBtn.addEventListener("click", toggleShop);
-        GGSim.settings = document.getElementById("settings");
-        const settingsBtn = document.getElementById("settingsBtn");
-        settingsBtn.addEventListener("click", toggleSettings);
         const inventoryBtn = document.getElementById("inventoryBtn");
         inventoryBtn.addEventListener("click", toggleInventory);
         GGSim.canvas.addEventListener("click", (e) => getMousePos(GGSim.canvas, e));
@@ -64,6 +76,9 @@ var GGSim;
         if (settingsOpen == false) {
             settingsOpen = true;
             GGSim.Market.manipulate();
+            GGSim.startMoney = document.createElement("input");
+            GGSim.startMoney.setAttribute("placeholder", "Set start Money");
+            GGSim.settings.appendChild(GGSim.startMoney);
         }
         else if (settingsOpen == true) {
             settingsOpen = false;
@@ -136,37 +151,37 @@ var GGSim;
         }
     }
     function boughtPillow() {
-        if (GGSim.Player.money > 0) {
+        if (GGSim.Player.money - Math.round(GGSim.Market.price.costPillow / 2) >= 0) {
             GGSim.Player.seeds[0].amount++;
-            GGSim.Player.money--;
+            GGSim.Player.money = GGSim.Player.money - Math.round(GGSim.Market.price.costPillow / 2);
             GGSim.Simulation.update();
         }
     }
     function boughtTeddy() {
-        if (GGSim.Player.money > 0) {
+        if (GGSim.Player.money - Math.round(GGSim.Market.price.costTeddy / 2) >= 0) {
             GGSim.Player.seeds[1].amount++;
-            GGSim.Player.money--;
+            GGSim.Player.money = GGSim.Player.money - Math.round(GGSim.Market.price.costTeddy / 2);
             GGSim.Simulation.update();
         }
     }
     function boughtScarf() {
-        if (GGSim.Player.money > 0) {
+        if (GGSim.Player.money - Math.round(GGSim.Market.price.costScarf / 2) >= 0) {
             GGSim.Player.seeds[2].amount++;
-            GGSim.Player.money--;
+            GGSim.Player.money = GGSim.Player.money - Math.round(GGSim.Market.price.costScarf / 2);
             GGSim.Simulation.update();
         }
     }
     function boughtBlanket() {
-        if (GGSim.Player.money > 0) {
+        if (GGSim.Player.money - Math.round(GGSim.Market.price.costBlanket / 2) >= 0) {
             GGSim.Player.seeds[3].amount++;
-            GGSim.Player.money--;
+            GGSim.Player.money = GGSim.Player.money - Math.round(GGSim.Market.price.costBlanket / 2);
             GGSim.Simulation.update();
         }
     }
     function boughtSock() {
-        if (GGSim.Player.money > 0) {
+        if (GGSim.Player.money - Math.round(GGSim.Market.price.costSocks / 2) >= 0) {
             GGSim.Player.seeds[4].amount++;
-            GGSim.Player.money--;
+            GGSim.Player.money = GGSim.Player.money - Math.round(GGSim.Market.price.costSocks / 2);
             GGSim.Simulation.update();
         }
     }

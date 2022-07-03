@@ -32,6 +32,7 @@ canvas{
 #moneyCount{
     font-size: 70px;
     font-family: 'Times New Roman', Times, serif;
+
 }
 button{
     background-color: rgba(00, 00, 00, 0);
@@ -52,8 +53,9 @@ button :hover{
 
 #marketCount{
     position: absolute;
-    left: 400px;
-    top: 90px;
+    text-align: center;
+    left: 180px;
+    top: 50px;
 }
 #field{
     position: absolute;

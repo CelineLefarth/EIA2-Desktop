@@ -20,7 +20,7 @@ var GGSim;
     class Player {
         static action;
         static plantAction;
-        static money = 10;
+        static money = 0;
         static fertilizer = 20;
         static pesticides = 20;
         static seeds = [{ type: PLANTACTION.PILLOW, amount: 0 }, { type: PLANTACTION.TEDDY, amount: 0 }, { type: PLANTACTION.SCARF, amount: 0 }, { type: PLANTACTION.BLANKET, amount: 0 }, { type: PLANTACTION.SOCK, amount: 0 }];
