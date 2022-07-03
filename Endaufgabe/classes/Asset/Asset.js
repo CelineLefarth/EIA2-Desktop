@@ -18,9 +18,8 @@ var GGSim;
         static sockPlantSeed;
         static sockPlantSappling;
         static sockPlantPlant;
-        static needWaterOne;
-        static needWaterTwo;
-        static needWaterThree;
+        static needWater;
+        static finishedFertilizer;
         static moth;
         static load() {
             Asset.empty = document.getElementById("Empty");
@@ -40,9 +39,8 @@ var GGSim;
             Asset.sockPlantSeed = document.getElementById("SockPlantSeed");
             Asset.sockPlantSappling = document.getElementById("SockPlantSappling");
             Asset.sockPlantPlant = document.getElementById("SockPlantPlant");
-            Asset.needWaterOne = document.getElementById("NeedWaterOne");
-            Asset.needWaterTwo = document.getElementById("NeedWaterTwo");
-            Asset.needWaterThree = document.getElementById("NeedWaterThree");
+            Asset.needWater = document.getElementById("NeedWater");
+            Asset.finishedFertilizer = document.getElementById("FinishedFertilizer");
             Asset.moth = document.getElementById("Moth");
         }
     }

@@ -32,7 +32,7 @@ var GGSim;
         GGSim.canvas.width = 1100;
         GGSim.canvas.height = 400;
         GGSim.canvasM.width = 400;
-        GGSim.canvasM.height = 300;
+        GGSim.canvasM.height = 150;
         GGSim.ctx = GGSim.canvas.getContext("2d");
         GGSim.ctxM = GGSim.canvasM.getContext("2d");
         for (let j = 0; j < 4; j++) {

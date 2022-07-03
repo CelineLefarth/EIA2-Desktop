@@ -25,9 +25,8 @@ namespace GGSim {
         static sockPlantSappling: HTMLImageElement;
         static sockPlantPlant: HTMLImageElement;
 
-        static needWaterOne: HTMLImageElement;
-        static needWaterTwo: HTMLImageElement;
-        static needWaterThree: HTMLImageElement;
+        static needWater: HTMLImageElement;
+        static finishedFertilizer: HTMLImageElement;
 
         static moth: HTMLImageElement;
 
@@ -56,9 +55,8 @@ namespace GGSim {
             Asset.sockPlantSappling = <HTMLImageElement>document.getElementById("SockPlantSappling");
             Asset.sockPlantPlant = <HTMLImageElement>document.getElementById("SockPlantPlant");
 
-            Asset.needWaterOne = <HTMLImageElement>document.getElementById("NeedWaterOne");
-            Asset.needWaterTwo = <HTMLImageElement>document.getElementById("NeedWaterTwo");
-            Asset.needWaterThree = <HTMLImageElement>document.getElementById("NeedWaterThree");
+            Asset.needWater = <HTMLImageElement>document.getElementById("NeedWater");
+            Asset.finishedFertilizer = <HTMLImageElement>document.getElementById("FinishedFertilizer");
 
             Asset.moth = <HTMLImageElement>document.getElementById("Moth");
 

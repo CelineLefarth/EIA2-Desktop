@@ -46,7 +46,7 @@ namespace GGSim {
         canvas.width = 1100;
         canvas.height = 400;
         canvasM.width = 400;
-        canvasM.height = 300;
+        canvasM.height = 150;
         ctx = canvas.getContext("2d");
         ctxM = canvasM.getContext("2d");
         for (let j: number = 0; j < 4; j++) {
