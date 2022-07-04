@@ -3,18 +3,11 @@ var GGSim;
     class Pest {
         fieldX;
         fieldY;
-        corrupting;
         constructor(_fiedX, _fieldY) {
             this.fieldX = _fiedX;
             this.fieldY = _fieldY;
         }
-        timeupdate() {
-            //
-        }
         fly() {
-            //
-        }
-        eat() {
             //
         }
         draw(_fieldX, _fieldY) {

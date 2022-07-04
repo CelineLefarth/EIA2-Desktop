@@ -7,17 +7,16 @@ namespace GGSim {
         fieldY: number;
         waterLevel: number;
         maxWaterlevel: number;
-        fertilizeLevel: number;
+        fertilizeLevel: number = 0;
         maxFertilizeLevel: number;
         fertilizeSteps: number;
-        age: number;
+        age: number = 0;
         maxAge: number;
-        priceValue: number;
-        isReady: boolean;
-        pests: Pest[];
+        priceValue: number = 1;
+        isReady: boolean = false;
+        pests: Pest[] = [];
         images: HTMLImageElement[];
         image: HTMLImageElement;
-        pest: Pest;
         statusLevelImages: HTMLImageElement[] = [Asset.empty, Asset.needWater, Asset.finishedFertilizer];
         statusLevelImageWater: HTMLImageElement = this.statusLevelImages[0];
         statusLevelImageFertilizer: HTMLImageElement = this.statusLevelImages[0];
@@ -151,7 +150,7 @@ namespace GGSim {
         }
 
         dry(): void {
-            if (this.isReady == false && this.waterLevel > 0) {
+            if (this.waterLevel > 0) {
                 this.waterLevel--;
                 if (this.waterLevel == this.maxWaterlevel - 1) {
                     this.statusLevelImageWater = this.statusLevelImages[1];

@@ -4,15 +4,9 @@ namespace GGSim {
 
         waterLevel: number = 5;
         maxWaterlevel: number = 5;
-        fertilizeLevel: number = 0;
         maxFertilizeLevel: number = 5;
         fertilizeSteps: number = 1;
-        pesticideAmount: number = 0;
-        age: number = 0;
         maxAge: number = 5;
-        priceValue: number = 1;
-        isReady: boolean = false;
-        pests: Pest[] = [];
         images: HTMLImageElement[] = [Asset.scarfPlantSeed, Asset.scarfPlantSappling, Asset.scarfPlantPlant];
         image: HTMLImageElement = this.images[0];
 

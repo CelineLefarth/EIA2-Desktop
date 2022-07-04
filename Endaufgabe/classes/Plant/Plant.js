@@ -5,17 +5,16 @@ var GGSim;
         fieldY;
         waterLevel;
         maxWaterlevel;
-        fertilizeLevel;
+        fertilizeLevel = 0;
         maxFertilizeLevel;
         fertilizeSteps;
-        age;
+        age = 0;
         maxAge;
-        priceValue;
-        isReady;
-        pests;
+        priceValue = 1;
+        isReady = false;
+        pests = [];
         images;
         image;
-        pest;
         statusLevelImages = [GGSim.Asset.empty, GGSim.Asset.needWater, GGSim.Asset.finishedFertilizer];
         statusLevelImageWater = this.statusLevelImages[0];
         statusLevelImageFertilizer = this.statusLevelImages[0];
@@ -137,7 +136,7 @@ var GGSim;
             this.pests.push(new GGSim.Pest(this.fieldX, this.fieldY));
         }
         dry() {
-            if (this.isReady == false && this.waterLevel > 0) {
+            if (this.waterLevel > 0) {
                 this.waterLevel--;
                 if (this.waterLevel == this.maxWaterlevel - 1) {
                     this.statusLevelImageWater = this.statusLevelImages[1];

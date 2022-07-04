@@ -1,7 +1,6 @@
 namespace GGSim {
     export class Field {
         static size: number = 100;
-        time: number;
         positionX: number;
         positionY: number;
         isEmpty: boolean = true;
@@ -62,7 +61,6 @@ namespace GGSim {
             plants.splice(plants.findIndex((_plant) => _plant == this.plant), 1);
             this.isEmpty = true;
             Simulation.update();
-            console.log(this.positionX, this.positionY);
             
         }
 

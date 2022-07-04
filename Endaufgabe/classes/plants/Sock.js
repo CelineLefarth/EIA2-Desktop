@@ -3,15 +3,9 @@ var GGSim;
     class Sock extends GGSim.Plant {
         waterLevel = 2;
         maxWaterlevel = 2;
-        fertilizeLevel = 0;
         maxFertilizeLevel = 2;
         fertilizeSteps = 1;
-        pesticideAmount = 0;
-        age = 0;
         maxAge = 4;
-        priceValue = 1;
-        isReady = false;
-        pests = [];
         images = [GGSim.Asset.sockPlantSeed, GGSim.Asset.sockPlantSappling, GGSim.Asset.sockPlantPlant];
         image = this.images[0];
         constructor(_fieldX, _fieldY) {

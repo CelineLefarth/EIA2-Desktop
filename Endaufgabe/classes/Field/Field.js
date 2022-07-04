@@ -2,7 +2,6 @@ var GGSim;
 (function (GGSim) {
     class Field {
         static size = 100;
-        time;
         positionX;
         positionY;
         isEmpty = true;
@@ -57,7 +56,6 @@ var GGSim;
             GGSim.plants.splice(GGSim.plants.findIndex((_plant) => _plant == this.plant), 1);
             this.isEmpty = true;
             GGSim.Simulation.update();
-            console.log(this.positionX, this.positionY);
         }
         draw() {
             GGSim.ctx.resetTransform();

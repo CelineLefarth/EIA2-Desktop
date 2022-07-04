@@ -3,22 +3,13 @@ namespace GGSim {
     export class Pest {
         fieldX: number;
         fieldY: number;
-        corrupting: boolean;
 
         constructor(_fiedX: number, _fieldY: number) {
             this.fieldX = _fiedX;
             this.fieldY = _fieldY;
         }
 
-        timeupdate(): void {
-            //
-        }
-
         fly(): void {
-            //
-        }
-
-        eat(): void {
             //
         }
 

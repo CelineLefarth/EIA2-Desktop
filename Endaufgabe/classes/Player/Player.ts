@@ -54,27 +54,26 @@ namespace GGSim {
         }
 
         plant(_value: string): void {
-            if (_value == "pillow") {
-                Player.action = ACTION.PLANT ;
-                Player.plantAction = PLANTACTION.PILLOW;
+            switch (_value) {
+                case "pillow":
+                    Player.plantAction = PLANTACTION.PILLOW;
+                    break;
+                case "teddy":
+                    Player.plantAction = PLANTACTION.TEDDY;
+                    break;
+                case "blanket":
+                    Player.plantAction = PLANTACTION.BLANKET;
+                    break;
+                case "scarf":
+                    Player.plantAction = PLANTACTION.SCARF;
+                    break;
+                case "sock":
+                    Player.plantAction = PLANTACTION.SOCK;
+                    break;
             }
-            else if (_value == "teddy") {
-                Player.action = ACTION.PLANT ;
-                Player.plantAction = PLANTACTION.TEDDY;
-            }
-            else if (_value == "blanket") {
-                Player.action = ACTION.PLANT ;
-                Player.plantAction = PLANTACTION.BLANKET;
-            }
-            else if (_value == "scarf") {
-                Player.action = ACTION.PLANT ;
-                Player.plantAction = PLANTACTION.SCARF;
-            }
-            else if (_value == "sock") {
-                Player.action = ACTION.PLANT ;
-                Player.plantAction = PLANTACTION.SOCK;
-            }
+            Player.action = ACTION.PLANT ;
             document.querySelector("body").style.cursor = "url(../Endaufgabe/assets/CursorPlant.png) 50 50, auto";
+            
         }
 
     }
