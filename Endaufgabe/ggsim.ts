@@ -39,7 +39,6 @@ namespace GGSim {
         while (document.getElementById("settingsContainer").firstChild) {
             document.getElementById("settingsContainer").removeChild(document.getElementById("settingsContainer").firstChild);
         }
-        console.log("GGSim");
         Asset.load();
         canvas = <HTMLCanvasElement>document.getElementById("field_canvas");
         canvasM = <HTMLCanvasElement>document.getElementById("market_canvas");
@@ -86,7 +85,6 @@ namespace GGSim {
         let rect: DOMRect = canvas.getBoundingClientRect();
         mouseX = _evt.clientX - rect.left;
         mouseY = _evt.clientY - rect.top;
-        console.log(mouseX, mouseY);
 
         for (let field of fields) {
             field.clicked(mouseX, mouseY);

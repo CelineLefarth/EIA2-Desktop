@@ -25,7 +25,6 @@ var GGSim;
         while (document.getElementById("settingsContainer").firstChild) {
             document.getElementById("settingsContainer").removeChild(document.getElementById("settingsContainer").firstChild);
         }
-        console.log("GGSim");
         GGSim.Asset.load();
         GGSim.canvas = document.getElementById("field_canvas");
         GGSim.canvasM = document.getElementById("market_canvas");
@@ -66,7 +65,6 @@ var GGSim;
         let rect = GGSim.canvas.getBoundingClientRect();
         GGSim.mouseX = _evt.clientX - rect.left;
         GGSim.mouseY = _evt.clientY - rect.top;
-        console.log(GGSim.mouseX, GGSim.mouseY);
         for (let field of GGSim.fields) {
             field.clicked(GGSim.mouseX, GGSim.mouseY);
         }
