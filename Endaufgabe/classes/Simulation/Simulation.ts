@@ -31,6 +31,7 @@ namespace GGSim {
         static run(): void {
             setInterval(this.timer, 2000);
             setInterval(this.updateAnimation, 30);
+
         }
 
         static timer(): void {

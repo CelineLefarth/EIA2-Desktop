@@ -1,6 +1,7 @@
 var GGSim;
 (function (GGSim) {
     window.addEventListener("load", handleLoad);
+    GGSim.screenDependentSize = "100px";
     let settingsOpen = false;
     let inventoryOpen = true;
     let shopOpen = false;
@@ -25,6 +26,7 @@ var GGSim;
         while (document.getElementById("settingsContainer").firstChild) {
             document.getElementById("settingsContainer").removeChild(document.getElementById("settingsContainer").firstChild);
         }
+        document.querySelector("body").removeChild(document.querySelector("#settingsbackground"));
         GGSim.Asset.load();
         GGSim.canvas = document.getElementById("field_canvas");
         GGSim.canvasM = document.getElementById("market_canvas");
@@ -42,16 +44,27 @@ var GGSim;
         GGSim.Simulation.run();
         GGSim.Market.draw();
         GGSim.Simulation.update();
+        if (screen.width < 600) {
+            GGSim.screenDependentSize = "50px";
+        }
         const fertilizeBtn = document.getElementById("fertilizeBtn");
+        fertilizeBtn.firstElementChild.setAttribute("width", GGSim.screenDependentSize);
+        fertilizeBtn.firstElementChild.setAttribute("height", GGSim.screenDependentSize);
         fertilizeBtn.addEventListener("click", GGSim.player.fertilize);
         const harvestBtn = document.getElementById("harvestBtn");
+        harvestBtn.firstElementChild.setAttribute("width", GGSim.screenDependentSize);
+        harvestBtn.firstElementChild.setAttribute("height", GGSim.screenDependentSize);
         harvestBtn.addEventListener("click", GGSim.player.harvest);
         const waterBtn = document.getElementById("waterBtn");
+        waterBtn.firstElementChild.setAttribute("width", GGSim.screenDependentSize);
+        waterBtn.firstElementChild.setAttribute("height", GGSim.screenDependentSize);
         waterBtn.addEventListener("click", GGSim.player.water);
         let plantBtn;
         plantBtn = document.getElementById("plantBtn");
         plantBtn.addEventListener("click", () => { GGSim.player.plant(plantBtn.value); });
         const pesticideBtn = document.getElementById("pesticideBtn");
+        pesticideBtn.firstElementChild.setAttribute("width", GGSim.screenDependentSize);
+        pesticideBtn.firstElementChild.setAttribute("height", GGSim.screenDependentSize);
         pesticideBtn.addEventListener("click", GGSim.player.pesticide);
         shop = document.getElementById("shop");
         const shopBtn = document.getElementById("shopBtn");
@@ -63,8 +76,12 @@ var GGSim;
     //https://stackoverflow.com/questions/17130395/real-mouse-position-in-canvas/17130415#17130415
     function getMousePos(_canvas, _evt) {
         let rect = GGSim.canvas.getBoundingClientRect();
-        GGSim.mouseX = _evt.clientX - rect.left;
-        GGSim.mouseY = _evt.clientY - rect.top;
+        GGSim.mouseX = (_evt.clientX - rect.left);
+        GGSim.mouseY = (_evt.clientY - rect.top);
+        if (screen.width < 600) { //Smartphone (Not responsive but adaptive)
+            GGSim.mouseX = (_evt.clientX - rect.left) * 2.6;
+            GGSim.mouseY = (_evt.clientY - rect.top) * 2.6;
+        }
         for (let field of GGSim.fields) {
             field.clicked(GGSim.mouseX, GGSim.mouseY);
         }
@@ -103,6 +120,8 @@ var GGSim;
                 let shopItem = document.createElement("button");
                 shopItem.innerHTML = shopItemImages[currentShopItem];
                 shopItem.addEventListener("click", () => { boughtItem(currentShopItem); });
+                shopItem.firstElementChild.setAttribute("width", GGSim.screenDependentSize);
+                shopItem.firstElementChild.setAttribute("height", GGSim.screenDependentSize);
                 shop.appendChild(shopItem);
             }
             function boughtItem(_currentShopItem) {

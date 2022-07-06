@@ -7,7 +7,7 @@ namespace GGSim {
     export let ctxM: CanvasRenderingContext2D;
     export let mouseX: number;
     export let mouseY: number;
-
+    export let screenDependentSize: string = "100px";
     export let settings: HTMLElement;
     export let startMoney: HTMLInputElement;
     let settingsOpen: boolean = false;
@@ -39,6 +39,7 @@ namespace GGSim {
         while (document.getElementById("settingsContainer").firstChild) {
             document.getElementById("settingsContainer").removeChild(document.getElementById("settingsContainer").firstChild);
         }
+        document.querySelector("body").removeChild(document.querySelector("#settingsbackground"));
         Asset.load();
         canvas = <HTMLCanvasElement>document.getElementById("field_canvas");
         canvasM = <HTMLCanvasElement>document.getElementById("market_canvas");
@@ -58,16 +59,28 @@ namespace GGSim {
         Market.draw();
         Simulation.update();
 
+        if (screen.width < 600) {
+            screenDependentSize = "50px";
+        }
+
         const fertilizeBtn: HTMLElement = document.getElementById("fertilizeBtn");
+        fertilizeBtn.firstElementChild.setAttribute("width", screenDependentSize);
+        fertilizeBtn.firstElementChild.setAttribute("height", screenDependentSize);
         fertilizeBtn.addEventListener("click", player.fertilize);
         const harvestBtn: HTMLElement = document.getElementById("harvestBtn");
+        harvestBtn.firstElementChild.setAttribute("width", screenDependentSize);
+        harvestBtn.firstElementChild.setAttribute("height", screenDependentSize);
         harvestBtn.addEventListener("click", player.harvest);
         const waterBtn: HTMLElement = document.getElementById("waterBtn");
+        waterBtn.firstElementChild.setAttribute("width", screenDependentSize);
+        waterBtn.firstElementChild.setAttribute("height", screenDependentSize);
         waterBtn.addEventListener("click", player.water);
         let plantBtn: HTMLInputElement;
         plantBtn = <HTMLInputElement>document.getElementById("plantBtn");
         plantBtn.addEventListener("click", () => { player.plant(plantBtn.value); });
         const pesticideBtn: HTMLElement = document.getElementById("pesticideBtn");
+        pesticideBtn.firstElementChild.setAttribute("width", screenDependentSize);
+        pesticideBtn.firstElementChild.setAttribute("height", screenDependentSize);
         pesticideBtn.addEventListener("click", player.pesticide);
 
         shop = document.getElementById("shop");
@@ -83,8 +96,13 @@ namespace GGSim {
     //https://stackoverflow.com/questions/17130395/real-mouse-position-in-canvas/17130415#17130415
     function getMousePos(_canvas: HTMLCanvasElement, _evt: MouseEvent): void {
         let rect: DOMRect = canvas.getBoundingClientRect();
-        mouseX = _evt.clientX - rect.left;
-        mouseY = _evt.clientY - rect.top;
+        mouseX = (_evt.clientX - rect.left);
+        mouseY = (_evt.clientY - rect.top);
+        
+        if (screen.width < 600) {   //Smartphone (Not responsive but adaptive)
+            mouseX = (_evt.clientX - rect.left) * 2.6;
+            mouseY = (_evt.clientY - rect.top) * 2.6;
+        }
 
         for (let field of fields) {
             field.clicked(mouseX, mouseY);
@@ -133,6 +151,8 @@ namespace GGSim {
                 let shopItem: HTMLButtonElement = document.createElement("button");
                 shopItem.innerHTML = shopItemImages[currentShopItem];
                 shopItem.addEventListener("click", () => { boughtItem(currentShopItem); });
+                shopItem.firstElementChild.setAttribute("width", screenDependentSize);
+                shopItem.firstElementChild.setAttribute("height", screenDependentSize);
                 shop.appendChild(shopItem);
             }
             function boughtItem(_currentShopItem: number): void {

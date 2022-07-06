@@ -1,13 +1,14 @@
-body{
-    background-image: url(.//assets/Backgound.png);
-    font-size: 20px;
-    font-family: 'Times New Roman', Times, serif;
-    user-select: none;
+
+#settingsbackground{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: brown;
+    z-index: 1;
 }
-canvas{
-    background-color: rgba(00, 00, 00, 0);
-    image-rendering: pixelated;
-}
+
 #market_canvas{
     background-color: rgba(00, 00, 00, 0);
     position: absolute;
@@ -22,13 +23,14 @@ canvas{
     left: 1100px;
     top: 100px;
 }
-#hotbar{
-    position: absolute;
-    top: 290px;
+.visImg{
+    visibility: visible;
 }
+
 #settingsContainer{
     position: absolute;
     top: 210px;
+    z-index: 2;
 }
 #moneyCount{
     font-size: 70px;
@@ -42,22 +44,15 @@ button{
     font-family: 'Times New Roman', Times, serif;
     cursor: pointer;
 }
-
 button :hover{
     cursor: pointer;
     opacity: 70%;
 }
-
-.visImg{
-    visibility: visible;
-}
-
 select{
     position: relative;
     top: -50px;
     padding: 20px;
 }
-
 #marketCount{
     position: absolute;
     text-align: center;
@@ -94,4 +89,60 @@ select{
 }
 img{
     visibility: hidden;
+}
+/* Desktop:*/
+@media only screen and (min-width: 60em){ 
+    body{
+        background-image: url(.//assets/Backgound.png);
+        font-size: 20px;
+        font-family: 'Times New Roman', Times, serif;
+        user-select: none;
+    }
+    #hotbar{
+        position: absolute;
+        top: 290px;
+    }
+    canvas{
+        background-color: rgba(00, 00, 00, 0);
+        image-rendering: pixelated;
+    }
+}
+/* Handy:*/
+@media only screen and (max-width: 60em){ 
+    body{
+        background-image: url(.//assets/Backgound.png);
+        font-size: 20px;
+        font-family: 'Times New Roman', Times, serif;
+        user-select: none;
+        overflow: hidden;
+    }
+    #hotbar{
+        position: absolute;
+        top: 280px;
+        width: 40%;
+    }
+    canvas{
+        width: 100%;
+        height: auto;
+    }
+    #market_canvas{
+        position: absolute;
+        top: 290px;
+        left: 140px;
+        width: 60%;
+    }
+    select {
+        position: absolute;
+        padding: 10px;
+    }
+    #shopContainer{
+        position: absolute;
+        top: 470px;
+        left: 0px;
+    }
+    #moneyCount{
+        position: relative;
+        left: 130px;
+        top: 90px;
+    }
 }
