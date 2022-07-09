@@ -49,7 +49,6 @@ namespace GGSim {
             for (let plant of plants) {
                 for (let pest of plant.pests) {
                     pest.draw(plant.fieldX, plant.fieldY);
-                    pest.fly();
                 }
             }
             Simulation.update();
@@ -65,7 +64,6 @@ namespace GGSim {
                 plant.draw();
                 for (let pest of plant.pests) {
                     pest.draw(plant.fieldX, plant.fieldY);
-                    pest.fly();
                 }
             }
             document.getElementById("moneyCount").innerHTML = Player.money + "$";

@@ -15,6 +15,7 @@ namespace GGSim {
         priceValue: number = 1;
         isReady: boolean = false;
         pests: Pest[] = [];
+        pest: Pest;
         images: HTMLImageElement[];
         image: HTMLImageElement;
         statusLevelImages: HTMLImageElement[] = [Asset.empty, Asset.needWater, Asset.finishedFertilizer];
@@ -99,9 +100,11 @@ namespace GGSim {
         }
 
         getPesticided(): void {
-            if (this.pests.length > 0) {
+            if (this.pest) {
+            if (this.pest.position <= 0) {
                 Player.pesticides--;
                 this.pests = [];
+            }
             }
         }
 
@@ -130,7 +133,8 @@ namespace GGSim {
                     this.isReady = true;
                 }
             }
-            else if (this.age >= 0 && this.pests.length > 0) {
+            else if (this.pest) {
+            if (this.age >= 0 && this.pest.position <= 0) {
                 this.isReady = false;
                 this.age--;
                 if (this.age == this.maxAge - 1) {
@@ -143,10 +147,12 @@ namespace GGSim {
                     this.die();
                 }
             }
+            }
         }
 
         shrink(): void {
-            this.pests.push(new Pest(this.fieldX, this.fieldY));
+            this.pest = new Pest(this.fieldX, this.fieldY);
+            this.pests.push(this.pest);
         }
 
         dry(): void {

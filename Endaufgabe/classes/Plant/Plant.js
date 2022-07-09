@@ -13,6 +13,7 @@ var GGSim;
         priceValue = 1;
         isReady = false;
         pests = [];
+        pest;
         images;
         image;
         statusLevelImages = [GGSim.Asset.empty, GGSim.Asset.needWater, GGSim.Asset.finishedFertilizer];
@@ -89,9 +90,11 @@ var GGSim;
             }
         }
         getPesticided() {
-            if (this.pests.length > 0) {
-                GGSim.Player.pesticides--;
-                this.pests = [];
+            if (this.pest) {
+                if (this.pest.position <= 0) {
+                    GGSim.Player.pesticides--;
+                    this.pests = [];
+                }
             }
         }
         getHarvested() {
@@ -118,22 +121,25 @@ var GGSim;
                     this.isReady = true;
                 }
             }
-            else if (this.age >= 0 && this.pests.length > 0) {
-                this.isReady = false;
-                this.age--;
-                if (this.age == this.maxAge - 1) {
-                    this.image = this.images[1];
-                }
-                else if (this.age == 0) {
-                    this.image = this.images[0];
-                }
-                else if (this.age == -1) {
-                    this.die();
+            else if (this.pest) {
+                if (this.age >= 0 && this.pest.position <= 0) {
+                    this.isReady = false;
+                    this.age--;
+                    if (this.age == this.maxAge - 1) {
+                        this.image = this.images[1];
+                    }
+                    else if (this.age == 0) {
+                        this.image = this.images[0];
+                    }
+                    else if (this.age == -1) {
+                        this.die();
+                    }
                 }
             }
         }
         shrink() {
-            this.pests.push(new GGSim.Pest(this.fieldX, this.fieldY));
+            this.pest = new GGSim.Pest(this.fieldX, this.fieldY);
+            this.pests.push(this.pest);
         }
         dry() {
             if (this.waterLevel > 0) {
