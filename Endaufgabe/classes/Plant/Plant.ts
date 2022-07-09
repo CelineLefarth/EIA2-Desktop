@@ -80,7 +80,7 @@ namespace GGSim {
         }
 
         getFertilized(): void {
-            if (this.pests.length == 0) {
+            if (this.pests.length == 0 && Player.fertilizer > 0) {
             if (this.fertilizeLevel < this.maxFertilizeLevel) {
                 this.fertilizeLevel++;
                 this.age = this.age + this.fertilizeSteps;
@@ -100,8 +100,8 @@ namespace GGSim {
         }
 
         getPesticided(): void {
-            if (this.pest) {
-            if (this.pest.position <= 0) {
+            if (this.pests.length > 0) {
+            if (this.pest.position <= 0 && Player.pesticides > 0) {
                 Player.pesticides--;
                 this.pests = [];
             }

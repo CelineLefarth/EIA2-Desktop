@@ -71,7 +71,7 @@ var GGSim;
             }
         }
         getFertilized() {
-            if (this.pests.length == 0) {
+            if (this.pests.length == 0 && GGSim.Player.fertilizer > 0) {
                 if (this.fertilizeLevel < this.maxFertilizeLevel) {
                     this.fertilizeLevel++;
                     this.age = this.age + this.fertilizeSteps;
@@ -90,8 +90,8 @@ var GGSim;
             }
         }
         getPesticided() {
-            if (this.pest) {
-                if (this.pest.position <= 0) {
+            if (this.pests.length > 0) {
+                if (this.pest.position <= 0 && GGSim.Player.pesticides > 0) {
                     GGSim.Player.pesticides--;
                     this.pests = [];
                 }
