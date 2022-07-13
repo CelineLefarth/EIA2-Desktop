@@ -127,44 +127,44 @@ var GGSim;
             function boughtItem(_currentShopItem) {
                 switch (_currentShopItem) {
                     case 0:
-                        if (GGSim.Player.money - Math.round(GGSim.Market.price.costPesticides) >= 0) {
-                            GGSim.Player.money = GGSim.Player.money - Math.round(GGSim.Market.price.costPesticides);
+                        if (GGSim.Player.money - Math.round(GGSim.Market.price.costPesticides) / 2 >= 0) {
+                            GGSim.Player.money = GGSim.Player.money - Math.round(GGSim.Market.price.costPesticides) / 2;
                             GGSim.Player.pesticides++;
                         }
                         break;
                     case 1:
-                        if (GGSim.Player.money - Math.round(GGSim.Market.price.costFertilizer) >= 0) {
-                            GGSim.Player.money = GGSim.Player.money - Math.round(GGSim.Market.price.costFertilizer);
+                        if (GGSim.Player.money - Math.round(GGSim.Market.price.costFertilizer) / 2 >= 0) {
+                            GGSim.Player.money = GGSim.Player.money - Math.round(GGSim.Market.price.costFertilizer) / 2;
                             GGSim.Player.fertilizer++;
                         }
                         break;
                     case 2:
-                        if (GGSim.Player.money - Math.round(GGSim.Market.price.costPillow) >= 0) {
-                            GGSim.Player.money = GGSim.Player.money - Math.round(GGSim.Market.price.costPillow);
+                        if (GGSim.Player.money - Math.round(GGSim.Market.price.costPillow) / 2 >= 0) {
+                            GGSim.Player.money = GGSim.Player.money - Math.round(GGSim.Market.price.costPillow) / 2;
                             GGSim.Player.seeds[0].amount++;
                         }
                         break;
                     case 3:
-                        if (GGSim.Player.money - Math.round(GGSim.Market.price.costTeddy) >= 0) {
-                            GGSim.Player.money = GGSim.Player.money - Math.round(GGSim.Market.price.costTeddy);
+                        if (GGSim.Player.money - Math.round(GGSim.Market.price.costTeddy) / 2 >= 0) {
+                            GGSim.Player.money = GGSim.Player.money - Math.round(GGSim.Market.price.costTeddy) / 2;
                             GGSim.Player.seeds[1].amount++;
                         }
                         break;
                     case 4:
-                        if (GGSim.Player.money - Math.round(GGSim.Market.price.costScarf) >= 0) {
-                            GGSim.Player.money = GGSim.Player.money - Math.round(GGSim.Market.price.costScarf);
+                        if (GGSim.Player.money - Math.round(GGSim.Market.price.costScarf) / 2 >= 0) {
+                            GGSim.Player.money = GGSim.Player.money - Math.round(GGSim.Market.price.costScarf) / 2;
                             GGSim.Player.seeds[2].amount++;
                         }
                         break;
                     case 5:
-                        if (GGSim.Player.money - Math.round(GGSim.Market.price.costBlanket) >= 0) {
-                            GGSim.Player.money = GGSim.Player.money - Math.round(GGSim.Market.price.costBlanket);
+                        if (GGSim.Player.money - Math.round(GGSim.Market.price.costBlanket) / 2 >= 0) {
+                            GGSim.Player.money = GGSim.Player.money - Math.round(GGSim.Market.price.costBlanket) / 2;
                             GGSim.Player.seeds[3].amount++;
                         }
                         break;
                     case 6:
-                        if (GGSim.Player.money - Math.round(GGSim.Market.price.costSocks) >= 0) {
-                            GGSim.Player.money = GGSim.Player.money - Math.round(GGSim.Market.price.costSocks);
+                        if (GGSim.Player.money - Math.round(GGSim.Market.price.costSocks) / 2 >= 0) {
+                            GGSim.Player.money = GGSim.Player.money - Math.round(GGSim.Market.price.costSocks) / 2;
                             GGSim.Player.seeds[4].amount++;
                         }
                         break;

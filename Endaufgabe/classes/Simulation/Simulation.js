@@ -26,24 +26,6 @@ var GGSim;
             setInterval(this.timer, 2000);
             setInterval(this.updateAnimation, 30);
         }
-        static timer() {
-            GGSim.Market.lastTime = GGSim.time;
-            GGSim.time++;
-            for (let plant of GGSim.plants) {
-                randomAction = timeActions[Math.round(Math.random() * timeActions.length - 1)];
-                plant.timeUpdate(randomAction);
-            }
-            GGSim.Market.priceUpdate();
-        }
-        static updateAnimation() {
-            GGSim.animationTime++;
-            for (let plant of GGSim.plants) {
-                for (let pest of plant.pests) {
-                    pest.draw(plant.fieldX, plant.fieldY);
-                }
-            }
-            Simulation.update();
-        }
         static update() {
             GGSim.ctx.clearRect(0, 0, GGSim.canvas.width, GGSim.canvas.height);
             GGSim.ctx.resetTransform();
@@ -61,6 +43,24 @@ var GGSim;
             document.getElementById("pestiCount").innerHTML = GGSim.Player.pesticides + "P";
             document.getElementById("seedsCount").innerHTML = "Pillow seeds: " + GGSim.Player.seeds[0].amount + "S" + "<br>" + "Teddy seeds: " + GGSim.Player.seeds[1].amount + "S" + "<br>" + "Scarf seeds: " + GGSim.Player.seeds[2].amount + "S" + "<br>" + "Blanket seeds: " + GGSim.Player.seeds[3].amount + "S" + "<br>" + "Sock seeds: " + GGSim.Player.seeds[4].amount + "S";
             GGSim.Market.visualUpdate();
+        }
+        static timer() {
+            GGSim.Market.lastTime = GGSim.time;
+            GGSim.time++;
+            for (let plant of GGSim.plants) {
+                randomAction = timeActions[Math.round(Math.random() * timeActions.length - 1)];
+                plant.timeUpdate(randomAction);
+            }
+            GGSim.Market.priceUpdate();
+        }
+        static updateAnimation() {
+            GGSim.animationTime++;
+            for (let plant of GGSim.plants) {
+                for (let pest of plant.pests) {
+                    pest.draw(plant.fieldX, plant.fieldY);
+                }
+            }
+            Simulation.update();
         }
     }
     GGSim.Simulation = Simulation;

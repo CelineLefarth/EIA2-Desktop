@@ -2,19 +2,19 @@ namespace GGSim {
 
     export class Sock extends Plant {
 
-        waterLevel: number = 2;
-        maxWaterlevel: number = 2;
-        maxFertilizeLevel: number = 2;
-        fertilizeSteps: number = 1;
-        maxAge: number = 4;
-        images: HTMLImageElement[] = [Asset.sockPlantSeed, Asset.sockPlantSappling, Asset.sockPlantPlant];
-        image: HTMLImageElement = this.images[0];
+        protected waterLevel: number = 2;
+        protected maxWaterlevel: number = 2;
+        protected maxFertilizeLevel: number = 2;
+        protected fertilizeSteps: number = 1;
+        protected maxAge: number = 4;
+        protected images: HTMLImageElement[] = [Asset.sockPlantSeed, Asset.sockPlantSappling, Asset.sockPlantPlant];
+        protected image: HTMLImageElement = this.images[0];
 
-        constructor(_fieldX: number, _fieldY: number) {
+        public constructor(_fieldX: number, _fieldY: number) {
             super(_fieldX, _fieldY);
         }
 
-        priceUpdate(): void {
+        protected priceUpdate(): void {
             this.priceValue = Market.price.costSocks;
         }
 

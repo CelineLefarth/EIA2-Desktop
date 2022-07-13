@@ -159,44 +159,44 @@ namespace GGSim {
 
                 switch (_currentShopItem) {
                     case 0:
-                        if (Player.money - Math.round(Market.price.costPesticides) >= 0) {
-                            Player.money = Player.money - Math.round(Market.price.costPesticides);
+                        if (Player.money - Math.round(Market.price.costPesticides) / 2 >= 0) {
+                            Player.money = Player.money - Math.round(Market.price.costPesticides) / 2;
                             Player.pesticides++;
                         }
                         break;
                     case 1:
-                        if (Player.money - Math.round(Market.price.costFertilizer) >= 0) {
-                            Player.money = Player.money - Math.round(Market.price.costFertilizer);
+                        if (Player.money - Math.round(Market.price.costFertilizer) / 2 >= 0) {
+                            Player.money = Player.money - Math.round(Market.price.costFertilizer) / 2;
                             Player.fertilizer++;
                         }
                         break;
                     case 2:
-                        if (Player.money - Math.round(Market.price.costPillow) >= 0) {
-                            Player.money = Player.money - Math.round(Market.price.costPillow);
+                        if (Player.money - Math.round(Market.price.costPillow) / 2 >= 0) {
+                            Player.money = Player.money - Math.round(Market.price.costPillow) / 2;
                             Player.seeds[0].amount++;
                         }
                         break;
                     case 3:
-                        if (Player.money - Math.round(Market.price.costTeddy) >= 0) {
-                            Player.money = Player.money - Math.round(Market.price.costTeddy);
+                        if (Player.money - Math.round(Market.price.costTeddy) / 2 >= 0) {
+                            Player.money = Player.money - Math.round(Market.price.costTeddy) / 2;
                             Player.seeds[1].amount++;
                         }
                         break;
                     case 4:
-                        if (Player.money - Math.round(Market.price.costScarf) >= 0) {
-                            Player.money = Player.money - Math.round(Market.price.costScarf);
+                        if (Player.money - Math.round(Market.price.costScarf) / 2 >= 0) {
+                            Player.money = Player.money - Math.round(Market.price.costScarf) / 2;
                             Player.seeds[2].amount++;
                         }
                         break;
                     case 5:
-                        if (Player.money - Math.round(Market.price.costBlanket) >= 0) {
-                            Player.money = Player.money - Math.round(Market.price.costBlanket);
+                        if (Player.money - Math.round(Market.price.costBlanket) / 2 >= 0) {
+                            Player.money = Player.money - Math.round(Market.price.costBlanket) / 2;
                             Player.seeds[3].amount++;
                         }
                         break;
                     case 6:
-                        if (Player.money - Math.round(Market.price.costSocks) >= 0) {
-                            Player.money = Player.money - Math.round(Market.price.costSocks);
+                        if (Player.money - Math.round(Market.price.costSocks) / 2 >= 0) {
+                            Player.money = Player.money - Math.round(Market.price.costSocks) / 2;
                             Player.seeds[4].amount++;
                         }
                         break;

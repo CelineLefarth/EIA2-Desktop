@@ -2,20 +2,20 @@ namespace GGSim {
 
     export class Blanket extends Plant {
 
-        waterLevel: number = 10;
-        maxWaterlevel: number = 10;
-        maxFertilizeLevel: number = 10;
-        fertilizeSteps: number = 1;
-        maxAge: number = 10;
-        images: HTMLImageElement[] = [Asset.blanketPlantSeed, Asset.blanketPlantSappling, Asset.blanketPlantPlant];
-        image: HTMLImageElement = this.images[0];
+        protected waterLevel: number = 10;
+        protected maxWaterlevel: number = 10;
+        protected maxFertilizeLevel: number = 10;
+        protected fertilizeSteps: number = 1;
+        protected maxAge: number = 10;
+        protected images: HTMLImageElement[] = [Asset.blanketPlantSeed, Asset.blanketPlantSappling, Asset.blanketPlantPlant];
+        protected image: HTMLImageElement = this.images[0];
 
 
-        constructor(_fieldX: number, _fieldY: number) {
+        public constructor(_fieldX: number, _fieldY: number) {
             super(_fieldX, _fieldY);
         }
 
-        priceUpdate(): void {
+        protected priceUpdate(): void {
             this.priceValue = Market.price.costBlanket;
         }
     }

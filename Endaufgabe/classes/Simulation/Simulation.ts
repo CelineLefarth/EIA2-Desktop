@@ -26,35 +26,15 @@ namespace GGSim {
 
     export class Simulation {
 
-        static timeAction: TIMEACTION;
+        private static timeAction: TIMEACTION;
 
-        static run(): void {
+        public static run(): void {
             setInterval(this.timer, 2000);
             setInterval(this.updateAnimation, 30);
 
         }
 
-        static timer(): void {
-            Market.lastTime = time;
-            time++;
-            for (let plant of plants) {
-                randomAction = timeActions[Math.round(Math.random() * timeActions.length - 1)];
-                plant.timeUpdate(randomAction);
-            }
-            Market.priceUpdate();
-        }
-
-        static updateAnimation(): void {
-            animationTime++;
-            for (let plant of plants) {
-                for (let pest of plant.pests) {
-                    pest.draw(plant.fieldX, plant.fieldY);
-                }
-            }
-            Simulation.update();
-        }
-
-        static update(): void {
+        public static update(): void {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.resetTransform();
             for (let field of fields) {
@@ -72,6 +52,27 @@ namespace GGSim {
             document.getElementById("seedsCount").innerHTML = "Pillow seeds: " + Player.seeds[0].amount + "S" + "<br>" + "Teddy seeds: " + Player.seeds[1].amount + "S" + "<br>" + "Scarf seeds: " + Player.seeds[2].amount + "S" + "<br>" + "Blanket seeds: " + Player.seeds[3].amount + "S" + "<br>" + "Sock seeds: " + Player.seeds[4].amount + "S";
             Market.visualUpdate();
         }
+
+        private static timer(): void {
+            Market.lastTime = time;
+            time++;
+            for (let plant of plants) {
+                randomAction = timeActions[Math.round(Math.random() * timeActions.length - 1)];
+                plant.timeUpdate(randomAction);
+            }
+            Market.priceUpdate();
+        }
+
+        private static updateAnimation(): void {
+            animationTime++;
+            for (let plant of plants) {
+                for (let pest of plant.pests) {
+                    pest.draw(plant.fieldX, plant.fieldY);
+                }
+            }
+            Simulation.update();
+        }
+
     }
 
 }

@@ -2,35 +2,35 @@ namespace GGSim {
 
     export class Asset {
 
-        static empty: HTMLImageElement;
-        static field: HTMLImageElement;
+        public static empty: HTMLImageElement;
+        public static field: HTMLImageElement;
 
-        static pillowPlantSeed: HTMLImageElement;
-        static pillowPlantSappling: HTMLImageElement;
-        static pillowPlantPlant: HTMLImageElement;
+        public static pillowPlantSeed: HTMLImageElement;
+        public static pillowPlantSappling: HTMLImageElement;
+        public static pillowPlantPlant: HTMLImageElement;
 
-        static teddyPlantSeed: HTMLImageElement;
-        static teddyPlantSappling: HTMLImageElement;
-        static teddyPlantPlant: HTMLImageElement;
+        public static teddyPlantSeed: HTMLImageElement;
+        public static teddyPlantSappling: HTMLImageElement;
+        public static teddyPlantPlant: HTMLImageElement;
 
-        static scarfPlantSeed: HTMLImageElement;
-        static scarfPlantSappling: HTMLImageElement;
-        static scarfPlantPlant: HTMLImageElement;
+        public static scarfPlantSeed: HTMLImageElement;
+        public static scarfPlantSappling: HTMLImageElement;
+        public static scarfPlantPlant: HTMLImageElement;
 
-        static blanketPlantSeed: HTMLImageElement;
-        static blanketPlantSappling: HTMLImageElement;
-        static blanketPlantPlant: HTMLImageElement;
+        public static blanketPlantSeed: HTMLImageElement;
+        public static blanketPlantSappling: HTMLImageElement;
+        public static blanketPlantPlant: HTMLImageElement;
 
-        static sockPlantSeed: HTMLImageElement;
-        static sockPlantSappling: HTMLImageElement;
-        static sockPlantPlant: HTMLImageElement;
+        public static sockPlantSeed: HTMLImageElement;
+        public static sockPlantSappling: HTMLImageElement;
+        public static sockPlantPlant: HTMLImageElement;
 
-        static needWater: HTMLImageElement;
-        static finishedFertilizer: HTMLImageElement;
+        public static needWater: HTMLImageElement;
+        public static finishedFertilizer: HTMLImageElement;
 
-        static moth: HTMLImageElement;
+        public static moth: HTMLImageElement;
 
-        static load(): void {
+        public static load(): void {
 
             Asset.empty = <HTMLImageElement>document.getElementById("Empty");
             Asset.field = <HTMLImageElement>document.getElementById("Field");

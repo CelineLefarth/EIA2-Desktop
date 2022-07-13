@@ -3,19 +3,19 @@ var GGSim;
     class Plant {
         fieldX;
         fieldY;
+        pests = [];
         waterLevel;
         maxWaterlevel;
-        fertilizeLevel = 0;
         maxFertilizeLevel;
         fertilizeSteps;
-        age = 0;
         maxAge;
         priceValue = 1;
-        isReady = false;
-        pests = [];
-        pest;
         images;
         image;
+        fertilizeLevel = 0;
+        age = 0;
+        isReady = false;
+        pest;
         statusLevelImages = [GGSim.Asset.empty, GGSim.Asset.needWater, GGSim.Asset.finishedFertilizer];
         statusLevelImageWater = this.statusLevelImages[0];
         statusLevelImageFertilizer = this.statusLevelImages[0];
@@ -55,6 +55,14 @@ var GGSim;
                     break;
             }
             GGSim.Simulation.update();
+        }
+        draw() {
+            GGSim.ctx.resetTransform();
+            GGSim.ctx.translate(GGSim.Field.size / 2 + GGSim.Field.size * this.fieldX, GGSim.Field.size / 2 + GGSim.Field.size * this.fieldY);
+            GGSim.ctx.translate((-GGSim.Field.size / 2), (-GGSim.Field.size / 2));
+            GGSim.ctx.drawImage(this.image, 0, 0);
+            GGSim.ctx.drawImage(this.statusLevelImageWater, GGSim.Field.size / 4, GGSim.Field.size / 4);
+            GGSim.ctx.drawImage(this.statusLevelImageFertilizer, GGSim.Field.size / -4, GGSim.Field.size / -4);
         }
         getWaterd() {
             if (this.pests.length == 0) {
@@ -158,14 +166,6 @@ var GGSim;
                     field.clear(this.plant);
                 }
             }
-        }
-        draw() {
-            GGSim.ctx.resetTransform();
-            GGSim.ctx.translate(GGSim.Field.size / 2 + GGSim.Field.size * this.fieldX, GGSim.Field.size / 2 + GGSim.Field.size * this.fieldY);
-            GGSim.ctx.translate((-GGSim.Field.size / 2), (-GGSim.Field.size / 2));
-            GGSim.ctx.drawImage(this.image, 0, 0);
-            GGSim.ctx.drawImage(this.statusLevelImageWater, GGSim.Field.size / 4, GGSim.Field.size / 4);
-            GGSim.ctx.drawImage(this.statusLevelImageFertilizer, GGSim.Field.size / -4, GGSim.Field.size / -4);
         }
     }
     GGSim.Plant = Plant;

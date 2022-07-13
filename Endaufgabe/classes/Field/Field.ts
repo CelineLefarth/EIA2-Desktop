@@ -1,18 +1,18 @@
 namespace GGSim {
     export class Field {
-        static size: number = 100;
-        positionX: number;
-        positionY: number;
-        isEmpty: boolean = true;
-        plant: Plant;
+        public static size: number = 100;
+        public positionX: number;
+        public positionY: number;
+        private isEmpty: boolean = true;
+        private plant: Plant;
 
 
-        constructor(_positionX: number, _positionY: number) {
+        public constructor(_positionX: number, _positionY: number) {
             this.positionX = _positionX;
             this.positionY = _positionY;
         }
 
-        clicked(_x: number, _y: number): void {
+        public clicked(_x: number, _y: number): void {
             _x = _x - Field.size;
             _y = _y - Field.size;
 
@@ -56,7 +56,7 @@ namespace GGSim {
             }
         }
 
-        clear(_plant: Plant): void {
+        public clear(_plant: Plant): void {
             this.plant.playerUpdate(this.plant);
             plants.splice(plants.findIndex((_plant) => _plant == this.plant), 1);
             this.isEmpty = true;
@@ -64,7 +64,7 @@ namespace GGSim {
             
         }
 
-        draw(): void {
+        public draw(): void {
             ctx.resetTransform();
             ctx.translate(this.positionX * Field.size, this.positionY * Field.size);
             ctx.drawImage(Asset.field, 0, 0);

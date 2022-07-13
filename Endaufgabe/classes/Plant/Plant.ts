@@ -3,34 +3,32 @@ namespace GGSim {
 
     export abstract class Plant {
 
-        fieldX: number;
-        fieldY: number;
-        waterLevel: number;
-        maxWaterlevel: number;
-        fertilizeLevel: number = 0;
-        maxFertilizeLevel: number;
-        fertilizeSteps: number;
-        age: number = 0;
-        maxAge: number;
-        priceValue: number = 1;
-        isReady: boolean = false;
-        pests: Pest[] = [];
-        pest: Pest;
-        images: HTMLImageElement[];
-        image: HTMLImageElement;
-        statusLevelImages: HTMLImageElement[] = [Asset.empty, Asset.needWater, Asset.finishedFertilizer];
-        statusLevelImageWater: HTMLImageElement = this.statusLevelImages[0];
-        statusLevelImageFertilizer: HTMLImageElement = this.statusLevelImages[0];
-        plant: Plant;
+        public fieldX: number;
+        public fieldY: number;
+        public pests: Pest[] = [];
+        protected waterLevel: number;
+        protected maxWaterlevel: number;
+        protected maxFertilizeLevel: number;
+        protected fertilizeSteps: number;
+        protected maxAge: number;
+        protected priceValue: number = 1;
+        protected images: HTMLImageElement[];
+        protected image: HTMLImageElement;
+        private fertilizeLevel: number = 0;
+        private age: number = 0;
+        private isReady: boolean = false;
+        private pest: Pest;
+        private statusLevelImages: HTMLImageElement[] = [Asset.empty, Asset.needWater, Asset.finishedFertilizer];
+        private statusLevelImageWater: HTMLImageElement = this.statusLevelImages[0];
+        private statusLevelImageFertilizer: HTMLImageElement = this.statusLevelImages[0];
+        private plant: Plant;
 
-        constructor(_fieldX: number, _fieldY: number) {
+        public constructor(_fieldX: number, _fieldY: number) {
             this.fieldX = _fieldX;
             this.fieldY = _fieldY;
         }
 
-        abstract priceUpdate(): void;
-
-        timeUpdate(_action: TIMEACTION): void {
+        public timeUpdate(_action: TIMEACTION): void {
             switch (_action) {
                 case TIMEACTION.GROW:
                     this.grow();
@@ -45,7 +43,7 @@ namespace GGSim {
             Simulation.update();
         }
 
-        playerUpdate(_plant: Plant): void {
+        public playerUpdate(_plant: Plant): void {
             this.plant = _plant;
             switch (Player.action) {
                 case ACTION.WATER:
@@ -64,7 +62,18 @@ namespace GGSim {
             Simulation.update();
         }
 
-        getWaterd(): void {
+        public draw(): void {
+            ctx.resetTransform();
+            ctx.translate(Field.size / 2 + Field.size * this.fieldX, Field.size / 2 + Field.size * this.fieldY);
+            ctx.translate((- Field.size / 2), (- Field.size / 2));
+            ctx.drawImage(this.image, 0, 0);
+            ctx.drawImage(this.statusLevelImageWater, Field.size / 4, Field.size / 4);
+            ctx.drawImage(this.statusLevelImageFertilizer, Field.size / -4, Field.size / -4);
+        }
+
+        protected abstract priceUpdate(): void;
+
+        private getWaterd(): void {
             if (this.pests.length == 0) {
                 if (this.waterLevel < this.maxWaterlevel) {
                     this.waterLevel++;
@@ -79,7 +88,7 @@ namespace GGSim {
             }
         }
 
-        getFertilized(): void {
+        private getFertilized(): void {
             if (this.pests.length == 0 && Player.fertilizer > 0) {
             if (this.fertilizeLevel < this.maxFertilizeLevel) {
                 this.fertilizeLevel++;
@@ -99,7 +108,7 @@ namespace GGSim {
             }
         }
 
-        getPesticided(): void {
+        private getPesticided(): void {
             if (this.pests.length > 0) {
             if (this.pest.position <= 0 && Player.pesticides > 0) {
                 Player.pesticides--;
@@ -108,7 +117,7 @@ namespace GGSim {
             }
         }
 
-        getHarvested(): void {
+        private getHarvested(): void {
             if (this.pests.length == 0) {
             if (this.isReady == true) {
                 this.priceUpdate();
@@ -120,7 +129,7 @@ namespace GGSim {
             }
         }
 
-        grow(): void {
+        private grow(): void {
             if (this.waterLevel == this.maxWaterlevel && this.pests.length == 0) {
                 if (this.age < this.maxAge) {
                     this.age++;
@@ -150,12 +159,12 @@ namespace GGSim {
             }
         }
 
-        shrink(): void {
+        private shrink(): void {
             this.pest = new Pest(this.fieldX, this.fieldY);
             this.pests.push(this.pest);
         }
 
-        dry(): void {
+        private dry(): void {
             if (this.waterLevel > 0) {
                 this.waterLevel--;
                 if (this.waterLevel == this.maxWaterlevel - 1) {
@@ -168,21 +177,12 @@ namespace GGSim {
             }
         }
 
-        die(): void {
+        private die(): void {
             for (let field of fields) {
                 if (field.positionX == this.fieldX && field.positionY == this.fieldY) {
                     field.clear(this.plant);
                 }
             }
-        }
-
-        draw(): void {
-            ctx.resetTransform();
-            ctx.translate(Field.size / 2 + Field.size * this.fieldX, Field.size / 2 + Field.size * this.fieldY);
-            ctx.translate((- Field.size / 2), (- Field.size / 2));
-            ctx.drawImage(this.image, 0, 0);
-            ctx.drawImage(this.statusLevelImageWater, Field.size / 4, Field.size / 4);
-            ctx.drawImage(this.statusLevelImageFertilizer, Field.size / -4, Field.size / -4);
         }
 
     }

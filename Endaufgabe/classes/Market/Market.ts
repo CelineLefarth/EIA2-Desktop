@@ -15,14 +15,15 @@ namespace GGSim {
     let schub: number = 0;
 
     export class Market {
-        static price: Price = {type: "all", amount: 1, costTeddy: 1, costPillow: 1, costBlanket: 1, costScarf: 1, costPesticides: 1, costFertilizer: 1, costSocks: 1};
-        static lastPrice: Price = {type: "all", amount: 1, costTeddy: 1, costPillow: 1, costBlanket: 1, costScarf: 1, costPesticides: 1, costFertilizer: 1, costSocks: 1};
-        static lastTime: number = 0;
-        static fluctuation: number = 5;
-        static canvasScaleFactor: number = 20;
+        public static price: Price = {type: "all", amount: 1, costTeddy: 1, costPillow: 1, costBlanket: 1, costScarf: 1, costPesticides: 1, costFertilizer: 1, costSocks: 1};
+        public static lastPrice: Price = {type: "all", amount: 1, costTeddy: 1, costPillow: 1, costBlanket: 1, costScarf: 1, costPesticides: 1, costFertilizer: 1, costSocks: 1};
+        public static lastTime: number = 0;
+        private static canvasScaleFactor: number = 20;
+        private static fluctuation: number = 5;
 
 
-        static priceUpdate(): void {
+
+        public static priceUpdate(): void {
             Market.lastPrice.costPillow = Market.price.costPillow;
             Market.price.costPillow = (Math.random() * (Math.sin(time) + Math.sin(time + Math.random() * 10) * Market.fluctuation / 4) + 6);
             Market.lastPrice.costBlanket = Market.price.costBlanket;
@@ -40,7 +41,7 @@ namespace GGSim {
             Market.draw();
         }
 
-        static visualUpdate(): void {
+        public static visualUpdate(): void {
             document.getElementById("marketPricePillow").innerHTML = "Sell Pillow: " + (Market.price.costPillow).toFixed(2) + "$";
             document.getElementById("marketPriceTeddy").innerHTML = "Sell Teddy: " + (Market.price.costTeddy).toFixed(2) + "$";
             document.getElementById("marketPriceBlanket").innerHTML = "Sell Blanket: " + (Market.price.costBlanket).toFixed(2) + "$";
@@ -50,7 +51,7 @@ namespace GGSim {
             document.getElementById("marketPricePesticides").innerHTML = "Price Pesticides: " + (Market.price.costPesticides).toFixed(2) + "$";
         }
 
-        static manipulate(): void {
+        public static manipulate(): void {
             const marketFluctPlus: HTMLButtonElement = document.createElement("button");
             const marketFluctVis: HTMLElement = document.createElement("span");
             const marketFluctMinus: HTMLButtonElement = document.createElement("button");
@@ -65,7 +66,7 @@ namespace GGSim {
 
         }
 
-        static draw(): void {
+        public static draw(): void {
             ctxM.resetTransform();
             if (time % 20 === 0 || time == 0) {
                 ctxM.clearRect(0, 0, canvasM.width, canvasM.height);

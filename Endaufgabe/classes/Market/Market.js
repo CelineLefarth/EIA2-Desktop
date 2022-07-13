@@ -5,8 +5,8 @@ var GGSim;
         static price = { type: "all", amount: 1, costTeddy: 1, costPillow: 1, costBlanket: 1, costScarf: 1, costPesticides: 1, costFertilizer: 1, costSocks: 1 };
         static lastPrice = { type: "all", amount: 1, costTeddy: 1, costPillow: 1, costBlanket: 1, costScarf: 1, costPesticides: 1, costFertilizer: 1, costSocks: 1 };
         static lastTime = 0;
-        static fluctuation = 5;
         static canvasScaleFactor = 20;
+        static fluctuation = 5;
         static priceUpdate() {
             Market.lastPrice.costPillow = Market.price.costPillow;
             Market.price.costPillow = (Math.random() * (Math.sin(GGSim.time) + Math.sin(GGSim.time + Math.random() * 10) * Market.fluctuation / 4) + 6);
