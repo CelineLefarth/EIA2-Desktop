@@ -5,7 +5,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: brown;
+    background-image: url(.//assets/Mothbg.png);
     z-index: 1;
 }
 
@@ -31,7 +31,29 @@
     position: absolute;
     top: 210px;
     z-index: 2;
+    color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(00, 00, 00, 0.7);
 }
+#settingsContainer button {
+    color: white;
+    background-color: rgba(00, 00, 00, 0.7);
+    padding: 20px;
+    border-radius: 20px;
+}
+
+#settingsContainer input {
+    padding: 20px;
+}
+
+#settingsContainer button:hover {
+    border-color: white;
+    border-style: solid;
+    border-width: 2px;
+}
+
 #moneyCount{
     font-size: 70px;
     font-family: 'Times New Roman', Times, serif;
@@ -43,6 +65,9 @@ button{
     font-size: 30px;
     font-family: 'Times New Roman', Times, serif;
     cursor: pointer;
+    border-color: rgba(00, 00, 00, 0);
+    border-style: solid;
+    border-width: 2px;
 }
 button :hover{
     cursor: pointer;
